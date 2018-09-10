@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Campus Gestion</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../Materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="../index.html" class="brand-logo">Gestión</a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Crear</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Solicitud de Creación de Aula Virtual</h5>
+      </div>
+      
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="icon-block">
+            <h5 class="center">Información del Aula</h5>
+            
+            <div>
+                <select class="browser-default">
+					<option value="1">Departamento de Ciencias Básicas</option>
+					<option value="2">Departamento de Ingeniería Civil</option>
+					<option value="3">Departamento de Ingeniería Eléctrica</option>
+					<option value="4">Departamento de Ingeniería Electrónica</option>
+					<option value="5">Departamento de Ingeniería Industrial</option>
+					<option value="6">Departamento de Ingeniería Mecánica</option>
+					<option value="7">Departamento de Ingeniería Naval</option>
+					<option value="8">Departamento de Ingeniería Química</option>
+					<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
+					<option value="10">Departamento de Ingeniería Textil</option>
+				</select>
+				<label>Dependencia</label>
+                <input type="text" />
+                <label>Nombre del aula</label>
+                <input type="text" />
+                <label>Nombre del profesor</label>
+                <input type="text" />
+                <label>E-mail del profesor</label>
+            </div>
+          </div>
+      </div>
+      <div class="col s12 m6">
+          <div class="icon-block">
+            <h5 class="center">Información del Docente</h5>
+
+            <div>
+            	<input type="text" />
+                <label>Nombre</label>
+                <input type="text" />
+                <label>Apellido</label>
+                <input type="text" />
+                <label>DNI</label>                
+                <select class="browser-default">
+					<option value="1">Docente</option>
+					<option value="2">Docente a cargo</option>
+					<option value="3">Auxiliar</option>
+				</select>
+				<label>Rol</label>
+				<textarea></textarea>
+				<label>Descripcion</label>
+            </div>
+            <div class="row center">
+		    	<a href="usuarios.html" id="download-button" class="btn-small waves-effect waves-light red">Enviar</a>
+		    </div>
+          </div>
+      </div>
+    </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Grupo 3</h5>
+          <p class="grey-text text-lighten-4">Somos el mejor grupo de todos</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Integrantes</h5>
+          <ul>
+            <li>Benitez Griselda</li>
+            <li>Lucero José</li>
+            <li>Olmos Martín</li>
+            <li>Trezza Nicolás</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      	<p>UNLa, INC. - Derechos Reservados 2018</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
