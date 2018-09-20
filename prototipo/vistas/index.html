@@ -11,97 +11,91 @@
   <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <!-- <link href="Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
   <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-
 </head>
-<body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" class="brand-logo">Gestión</a>
-    </div>
-  </nav>
+<body class="grey lighten-4">
+
+  <div class="navbar-fixed">
+  	<nav class="light-blue darken-3" role="navigation">
+	  <div class="nav-wrapper container">
+	    <i class="material-icons left">child_care</i>
+	    <a id="logo-container" class="brand-logo">Gestión</a>
+	  </div>
+  	</nav>
+  </div>
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <br><br>
       <h1 class="header center orange-text">Campus Virtual</h1>
       <div class="row center">
         <h5 class="header col s12 light">Gestión de pedidos - Educación a distancia</h5>
       </div>
-      
       <br><br>
-
     </div>
   </div>
 
+  <div class="section">
+    <div class="mdl-grid card-centered">	
+	  <div class="row">
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">person</i>
+	          <span class="card-title">Usuarios</span>
+	          <p>Formularios para la gestión de usuarios en las aulas virtuales.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="Usuario/matricular.html" class="btn-small light-blue darken-3">Matricular</a>
+	        </div>
+	      </div>
+	    </div>
 
-  <div class="container">
-    <div class="section">
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">group</i>
+	          <span class="card-title">Aulas</span>
+	          <p>Contempla los pasos administrativos para la gestión de un espacio curricular en una aula virtual.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="Aula/crear.html" class="btn-small light-blue darken-3">Crear</a>
+			  <a href="Aula/reutilizar.html" class="btn-small light-blue darken-3">Reutilizar</a>
+			  <a href="Aula/eliminar.html" class="btn-small light-blue darken-3">Eliminar</a>
+			</div>
+	      </div>
+	    </div>
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">person</i></h2>
-            <h5 class="center">Usuarios</h5>
-
-            <p class="light">Formularios para la gestión de usuarios en las aulas virtuales.</p>
-            <div class="row center">
-		    	<a href="Usuario/matricular.html" id="download-button" class="btn-small waves-effect waves-light red">Matricular</a>
-		    </div>
-          </div>
-        </div>
-
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">Aulas</h5>
-
-            <p class="light">Contempla los pasos administrativos para la gestión de un espacio curricular en una aula virtual.</p>
-            <div class="row center">
-		    	<a href="Aula/crear.html" id="download-button" class="btn-small waves-effect waves-light red">Crear</a>
-		    </div>
-		    <div class="row center">
-		    	<a href="Aula/reutilizar.html" id="download-button" class="btn-small waves-effect waves-light red">Reutilizar</a>
-		    </div>
-		    <div class="row center">
-		    	<a href="Aula/eliminar.html" id="download-button" class="btn-small waves-effect waves-light red">Eliminar</a>
-		    </div>
-          </div>
-        </div>
-
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">computer</i></h2>
-            <h5 class="center">Capacitaciones</h5>
-
-            <p class="light">El Campus Virtual brinda capacitación constante a la comunidad educativa de la UNLa.</p>
-            <div class="row center">
-		    	<a href="Capacitacion/tutorias.html" id="download-button" class="btn-small waves-effect waves-light red">Tutoría / Capacitación</a>
-		    </div>
-		    <div class="row center">
-		    	<a href="Capacitacion/microtalleres.html" id="download-button" class="btn-small waves-effect waves-light red">Microtalleres</a>
-		    </div>
-          </div>
-        </div>
-
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">airplay</i></h2>
-            <h5 class="center">Virtualizaciones</h5>
-
-            <p class="light">Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p>
-            <div class="row center">
-		    	<a href="#" id="download-button" class="btn-small waves-effect waves-light red">Solicitud de virtualizacion</a>
-		    </div>
-		    <div class="row center">
-		    	<a href="#" id="download-button" class="btn-small waves-effect waves-light red">Actualizacion (U.C)</a>
-		    </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">computer</i>
+	          <span class="card-title">Capacitaciones</span>
+	          <p>El Campus Virtual brinda capacitación constante a la comunidad educativa de la UNLa.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="Capacitacion/tutorias.html" class="btn-small light-blue darken-3">Tutoría / Capacitación</a>
+			  <a href="Capacitacion/microtalleres.html" class="btn-small light-blue darken-3">Microtalleres</a>
+			</div>
+	      </div>
+	    </div>
+	    
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">airplay</i>
+	          <span class="card-title">Virtualizaciones</span>
+	          <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="#" class="btn-small light-blue darken-3">Solicitud de virtualizacion</a>
+			  <a href="#" class="btn-small light-blue darken-3">Actualizacion (U.C)</a>
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   </div>
+
+  <br><br>
 
   <footer class="page-footer orange">
     <div class="container">
@@ -133,13 +127,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <!--
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-	-->
-	<script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/init.js') }}"></script>
-	
-	
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+
   </body>
 </html>
