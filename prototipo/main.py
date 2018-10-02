@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask import render_template
+from flask import request
 
 app = Flask(__name__, template_folder="vistas")
 
@@ -12,8 +13,16 @@ def index():
 def matricular():
     return render_template('Usuario/matricular.html', titulo="Matricular")
 	
-@app.route('/aula/crear')
+@app.route('/aula/crear', methods = ['GET', 'POST'])
 def crear():
+    if request.method == 'POST':
+        print request.form['dependencia']
+        print request.form['nombreaula']
+	print request.form['nombreprofesor']
+        print request.form['email']
+	print request.form['nombre']
+	print request.form['apellido']
+        print request.form['dni']
     return render_template('Aula/crear.html', titulo="Crear aula")
 	
 @app.route('/aula/reutilizar')

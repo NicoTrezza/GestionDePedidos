@@ -61,13 +61,17 @@
 					<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
 					<option value="10">Departamento de Ingeniería Textil</option>
 				</select>
+				
+				<form method="POST">
 				<label>Dependencia</label>
-                <input type="text" />
+                <input type="text" id="dependencia" name="dependencia" value="">
                 <label>Nombre del aula</label>
-                <input type="text" />
+                 <input type="text" id="nombreaula" name="nombreaula" value="">
                 <label>Nombre del profesor</label>
-                <input type="text" />
+                <input type="text" id="nombreprofesor" name="nombreprofesor" value="">
                 <label>E-mail del profesor</label>
+				<input type="text" id="email" name="email" value="">
+				
             </div>
           </div>
       </div>
@@ -76,12 +80,12 @@
             <h5 class="center">Información del Docente</h5>
 
             <div>
-            	<input type="text" />
-                <label>Nombre</label>
-                <input type="text" />
+				<label>Nombre</label>
+            	<input type="text" id="nombre" name="nombre" value="">
                 <label>Apellido</label>
-                <input type="text" />
-                <label>DNI</label>                
+                <input type="text" id="apellido" name="apellido" value="">
+                <label>DNI</label> 
+                <input type="text" id="dni" name="dni" value="">
                 <select class="browser-default">
 					<option value="1">Docente</option>
 					<option value="2">Docente a cargo</option>
@@ -92,8 +96,9 @@
 				<label>Descripcion</label>
             </div>
             <div class="row center">
-		    	<a href="usuarios.html" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+				<button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>>
 		    </div>
+			</form>
           </div>
       </div>
     </div>
