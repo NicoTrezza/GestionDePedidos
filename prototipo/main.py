@@ -2,6 +2,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from negocio.aulaABM import AulaABM
 
 app = Flask(__name__, template_folder="vistas")
 
@@ -16,6 +17,7 @@ def matricular():
 @app.route('/aula/crear', methods = ['GET', 'POST'])
 def crear():
     if request.method == 'POST':
+        abm = AulaABM()
         print request.form['dependencia']
         print request.form['nombreaula']
 	print request.form['nombreprofesor']
@@ -23,6 +25,7 @@ def crear():
 	print request.form['nombre']
 	print request.form['apellido']
         print request.form['dni']
+        abm.insertar(request.form['dependencia'],request.form['nombreaula'],request.form['nombreprofesor'],request.form['email'])
     return render_template('Aula/crear.html', titulo="Crear aula")
 	
 @app.route('/aula/reutilizar')
