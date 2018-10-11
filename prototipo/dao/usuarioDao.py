@@ -6,14 +6,14 @@ from datos.usuario import Usuario
 class UsuarioDao(Conexion):
         
     def __init__(self):
-        pass		
+        super(UsuarioDao, self).__init__()		
 
     def insertar(self, nombre, apellido, dni, email):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into usuario (nombre, apellido, dni, email) values (%s, %s, %s, %s)'
+            sql = 'insert into Usuario (nombre, apellido, dni, email) values (%s, %s, %s, %s)'
             val = (nombre, apellido, dni, email)
         
             cursor.execute(sql, val)
@@ -28,7 +28,7 @@ class UsuarioDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update usuario set nombre = %s, apellido = %s, dni = %s, email = %s where idUsuario = %s'
+            sql = 'update Usuario set nombre = %s, apellido = %s, dni = %s, email = %s where idUsuario = %s'
             val = (nombre, apellido, dni, email, idUsuario)
             
             cursor.execute(sql, val)
@@ -43,7 +43,7 @@ class UsuarioDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'delete from usuario where idUsuario = %s'
+            sql = 'delete from Usuario where idUsuario = %s'
             val = (idUsuario, )
             
             cursor.execute(sql, val)
@@ -58,7 +58,7 @@ class UsuarioDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from usuario where idUsuario = %s'
+            sql = 'select * from Usuario where idUsuario = %s'
             val = (idUsuario, )
             
             cursor.execute(sql, val)
@@ -76,7 +76,7 @@ class UsuarioDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from usuario'
+            sql = 'select * from Usuario'
     
             cursor.execute(sql)
             

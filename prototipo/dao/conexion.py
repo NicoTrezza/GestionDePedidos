@@ -4,7 +4,7 @@ from mysql.connector import Error
 class Conexion(object):
 
 	def __init__(self):
-		pass
+		self.conexion = None
 
 	def conectar(self):
 		try:

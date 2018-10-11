@@ -20,10 +20,10 @@ def crear():
         abm = AulaABM()
         print request.form['dependencia']
         print request.form['nombreaula']
-	print request.form['nombreprofesor']
+        print request.form['nombreprofesor']
         print request.form['email']
-	print request.form['nombre']
-	print request.form['apellido']
+        print request.form['nombre']
+        print request.form['apellido']
         print request.form['dni']
         abm.insertar(request.form['dependencia'],request.form['nombreaula'],request.form['nombreprofesor'],request.form['email'])
     return render_template('Aula/crear.html', titulo="Crear aula")
