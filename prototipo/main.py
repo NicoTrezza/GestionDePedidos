@@ -3,10 +3,12 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import send_file
+from flask_wtf import CsrfProtect
 from negocio.aulaABM import AulaABM
 
 app = Flask(__name__, template_folder="vistas")
-
+app.secret_key = 'clavesupersecreta100porcientosegurarealnofake'
+csrf = CsrfProtect(app)
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
