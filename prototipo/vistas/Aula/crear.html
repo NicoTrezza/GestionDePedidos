@@ -49,22 +49,25 @@
             <h5 class="center">Información del Aula</h5>
 
             <div>
-                <select class="browser-default">
-					<option value="1">Departamento de Ciencias Básicas</option>
-					<option value="2">Departamento de Ingeniería Civil</option>
-					<option value="3">Departamento de Ingeniería Eléctrica</option>
-					<option value="4">Departamento de Ingeniería Electrónica</option>
-					<option value="5">Departamento de Ingeniería Industrial</option>
-					<option value="6">Departamento de Ingeniería Mecánica</option>
-					<option value="7">Departamento de Ingeniería Naval</option>
-					<option value="8">Departamento de Ingeniería Química</option>
-					<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
-					<option value="10">Departamento de Ingeniería Textil</option>
-				</select>
-
+                <form method="POST">
                 {% from "macro_forms.html" import render_field %}
 
-                <form method="POST">
+                    {{ render_field(form.departamento, class='browser-default') }}
+
+                    <!--
+                <select class="browser-default">
+
+                    {% for departamento in departamentos: %}
+
+                    <option value={{departamento}}>{{departamento}}</option>
+
+                    {% endfor %}
+
+				</select>
+                -->
+
+
+
 
                     {{ render_field(form.dependencia) }}
                     {{ render_field(form.nombreAula) }}
@@ -84,13 +87,10 @@
                     {{ render_field(form.apellido) }}
                     {{ render_field(form.dni) }}
 
-                <select class="browser-default">
-					<option value="1">Docente</option>
-					<option value="2">Docente a cargo</option>
-					<option value="3">Auxiliar</option>
-				</select>
+                {{ render_field(form.rol, class='browser-default') }}
+
 				<label>Rol</label>
-				<textarea></textarea>
+                {{ render_field(form.descripcion) }}
 				<label>Descripcion</label>
             </div>
             <div class="row center">

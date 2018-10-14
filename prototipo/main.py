@@ -30,7 +30,8 @@ def devolverarchivo():
 def crear():
     crear_aula = forms.CrearAula(request.form)
     if request.method == 'POST':
-        abm = AulaABM()
+        #abm = AulaABM()
+        print crear_aula.departamento.data
         print crear_aula.dependencia.data
         print crear_aula.nombreAula.data
         print crear_aula.nombreprofesor.data
@@ -38,9 +39,11 @@ def crear():
         print crear_aula.nombre.data
         print crear_aula.apellido.data
         print crear_aula.dni.data
+        print crear_aula.rol.data
+        print crear_aula.descripcion.data
 
-        abm.insertar(crear_aula.dependencia.data, crear_aula.nombreAula.data, crear_aula.nombreprofesor.data,
-                     crear_aula.email.data)
+        #abm.insertar(crear_aula.dependencia.data, crear_aula.nombreAula.data, crear_aula.nombreprofesor.data,
+        #             crear_aula.email.data)
     return render_template('Aula/crear.html', titulo="Crear aula", form=crear_aula)
 
 
