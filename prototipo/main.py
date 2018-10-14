@@ -6,6 +6,8 @@ from flask import send_file
 from flask_wtf import CsrfProtect
 from negocio.aulaABM import AulaABM
 
+import forms
+
 app = Flask(__name__, template_folder="vistas")
 app.secret_key = 'clavesupersecreta100porcientosegurarealnofake'
 csrf = CsrfProtect(app)
@@ -26,18 +28,20 @@ def devolverarchivo():
 
 @app.route('/aula/crear', methods=['GET', 'POST'])
 def crear():
+    crear_aula = forms.CrearAula(request.form)
     if request.method == 'POST':
         abm = AulaABM()
-        print request.form['dependencia']
-        print request.form['nombreaula']
-        print request.form['nombreprofesor']
-        print request.form['email']
-        print request.form['nombre']
-        print request.form['apellido']
-        print request.form['dni']
-        abm.insertar(request.form['dependencia'], request.form['nombreaula'], request.form['nombreprofesor'],
-                     request.form['email'])
-    return render_template('Aula/crear.html', titulo="Crear aula")
+        print crear_aula.dependencia.data
+        print crear_aula.nombreAula.data
+        print crear_aula.nombreprofesor.data
+        print crear_aula.email.data
+        print crear_aula.nombre.data
+        print crear_aula.apellido.data
+        print crear_aula.dni.data
+
+        abm.insertar(crear_aula.dependencia.data, crear_aula.nombreAula.data, crear_aula.nombreprofesor.data,
+                     crear_aula.email.data)
+    return render_template('Aula/crear.html', titulo="Crear aula", form=crear_aula)
 
 
 @app.route('/aula/reutilizar')
