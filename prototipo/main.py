@@ -29,7 +29,7 @@ def devolverarchivo():
 @app.route('/aula/crear', methods=['GET', 'POST'])
 def crear():
     crear_aula = forms.CrearAula(request.form)
-    if request.method == 'POST':
+    if request.method == 'POST' and crear_aula.validate():
         #abm = AulaABM()
         print crear_aula.departamento.data
         print crear_aula.dependencia.data
