@@ -48,9 +48,9 @@
             <h5 class="center">Microtalleres</h5>
 
             <div>
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
+                <form method="POST">
+                {% from "macro_forms.html" import render_field %}
+                {{ render_field(form.microtalleres) }}
             </div>
           </div>
       </div>
@@ -59,18 +59,17 @@
             <h5 class="center">Datos personales</h5>
 
             <div>
-                <label>Nombre</label>
-                <input type="text" />
-                <label>Apellido</label>
-                <input type="text" />
-                <label>DNI</label>
-                <input type="text" />
-                <label>E-mail</label>
-                <input type="text" />
+                {{ render_field(form.nombre) }}
+                {{ render_field(form.apellido) }}
+                {{ render_field(form.dni) }}
+                {{ render_field(form.email) }}
             </div>
             <div class="row center">
-		    	<a href="usuarios.html" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+		    	<button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
 		    </div>
+              <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+
+              </form>
           </div>
       </div>
     </div>

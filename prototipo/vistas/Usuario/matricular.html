@@ -69,14 +69,16 @@
             <h5 class="center">Indique la procedencia del pedido</h5>
 
             <div>
-                <label>Departamento</label>
-                <input type="text" />
-                <label>Carrera</label>
-                <input type="text" />
+                <form method="POST">
+                {% from "macro_forms.html" import render_field %}
+                  {{ render_field(form.departamento, class='browser-default') }}
+                  {{ render_field(form.carrera, class='browser-default') }}
             </div>
             <div class="row center">
-		    	<a href="usuarios.html" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
-		    </div>
+		    	<button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
+        </div>
+            <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+                </form>
           </div>
       </div>
     </div>

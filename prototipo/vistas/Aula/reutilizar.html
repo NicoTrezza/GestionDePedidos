@@ -49,14 +49,13 @@
             <h5 class="center">Información del Aula</h5>
 
             <div>
-                <label>Departamento</label>
-                <input type="text" />
-                <label>Carrera</label>
-                <input type="text" />
-                <label>Nombre</label>
-                <input type="text" />
-                <label>Director de la carrera   </label>
-                <input type="text" />
+                <form method="POST">
+                {% from "macro_forms.html" import render_field %}
+                  {{ render_field(form.departamento, class='browser-default') }}
+                  {{ render_field(form.carrera, class='browser-default') }}
+                  {{ render_field(form.nombre) }}
+                  {{ render_field(form.director) }}
+
             </div>
           </div>
       </div>
@@ -66,7 +65,13 @@
 
             <p>Nota: se eliminarán todos los estudiantes incluyendo su participación dentro del aula (tareas, participación en foros, etc.). Los recursos y actividades del docente en el aula, NO serán eliminados.</p>
             <div class="row center">
-          <a href="usuarios.html" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+				<button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
+		    </div>
+
+              <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+
+
+                </form>
         </div>
           </div>
       </div>
