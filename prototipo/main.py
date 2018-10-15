@@ -59,7 +59,6 @@ def reutilizar():
         print reutilizar_aula.carrera.data
         print reutilizar_aula.nombre.data
         print reutilizar_aula.director.data
-        print reutilizar_aula.motivo.data
     return render_template('Aula/reutilizar.html', titulo="Reutilizar aula", form=reutilizar_aula)
 
 
