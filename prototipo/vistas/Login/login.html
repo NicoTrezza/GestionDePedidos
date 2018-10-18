@@ -1,0 +1,157 @@
+{% extends 'base/baseSinFooter.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+  <nav class="nav-extended light-blue darken-3">
+    <div class="nav-wrapper">
+      <div class="nav-wrapper container">
+      <i class="material-icons left">child_care</i>
+      <a id="logo-container" href="/" class="brand-logo">Gestión</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="../usuario/matricular">Usuarios</a></li>
+        <li><a href="../capacitacion/tutorias">Capacitaciones</a></li>
+        <li><a href="#">Virtualizaciones</a></li>
+      </ul>
+
+      <ul id="slide-out" class="sidenav">
+	<div class="nav-title"></div>
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Usuarios<i class="material-icons light-blue-text left">person</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+					<a href="../usuario/matricular"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Matricular</p></a>
+					</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Aulas<i class="material-icons light-blue-text left">group</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="../aula/crear"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+				</li>
+				<li>
+				<a href="../aula/reutilizar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Reutilizar</p></a>
+				</li>
+				<li>
+				<a href="../aula/eliminar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Eliminar</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Capacitaciones<i class="material-icons light-blue-text left">computer</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="../capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
+				</li>
+				<li>
+				<a href="../capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Microtalleres</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Virtualizaciones<i class="material-icons light-blue-text left">airplay</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitud</p></a>
+				</li>
+				<li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Actualizacion</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+
+	</ul>
+	
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+	  
+    </div>
+      
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+
+	  <li class="tab"><a href="../usuario/matricular">Usuarios</a></li>
+	  <li class="tab"><a href="../aula/crear">Aulas</a></li>
+	  <li class="tab"><a href="../capacitacion/tutorias">Capacitaciones</a></li>
+	  <li class="tab"><a href="#">Virtualizaciones</a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Iniciar sesión</h1>
+
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+      	
+
+	    <div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title"><i class="material-icons center s12">account_circle</i></span>
+	        </div>
+	        <div class="card-action">
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="first_name" type="text" class="validate">
+			          <label for="first_name">Usuario</label>
+			        </div>
+			        <div class="input-field col s12">
+			          <input id="usuario" type="password" class="validate">
+			          <label for="usuario">Contraseña</label>
+			        </div>
+			      </div>
+	        </div>
+	      </div>
+	    </div>
+
+	  <div class="row center">
+		<a href="login/login" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+	  </div>
+    </div>
+
+    </div>
+    <br><br>
+  </div>
+
+{% endblock %}

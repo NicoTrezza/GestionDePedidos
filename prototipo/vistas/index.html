@@ -3,15 +3,99 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
-  <div class="navbar-fixed">
-  	<nav class="light-blue darken-3" role="navigation">
-	  <div class="nav-wrapper container">
-	    <i class="material-icons left">child_care</i>
-	    <a id="logo-container" class="brand-logo">Gestión</a>
-	  </div>
-  	</nav>
-  </div>
 
+  <nav class="light-blue darken-3 " role="navigation">
+
+	<div class="nav-wrapper container ">
+	
+	<ul id="slide-out" class="sidenav">
+	<div class="nav-title"></div>
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Usuarios<i class="material-icons light-blue-text left">person</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+					<a href="usuario/matricular"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Matricular</p></a>
+					</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Aulas<i class="material-icons light-blue-text left">group</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="aula/crear"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+				</li>
+				<li>
+				<a href="aula/reutilizar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Reutilizar</p></a>
+				</li>
+				<li>
+				<a href="aula/eliminar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Eliminar</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Capacitaciones<i class="material-icons light-blue-text left">computer</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
+				</li>
+				<li>
+				<a href="capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Microtalleres</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Virtualizaciones<i class="material-icons light-blue-text left">airplay</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitud</p></a>
+				</li>
+				<li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Actualizacion</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+
+	</ul>
+	
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+ 	  <i class="material-icons left">child_care</i>
+	  <a id="logo-container" class="brand-logo">Gestión</a>
+
+	  <a href="login/login"><i class="material-icons right">account_circle</i><p class="right">Inicia sesión</p></a>
+	  <!-- <a class="modal-trigger right" href="#modal"><i class="material-icons right">account_circle</i><p class ="right">Inicia sesión</p></a> -->
+	  
+    </div>	
+  </nav>
+
+  	
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <h1 class="header center orange-text">Campus Virtual</h1>
@@ -85,5 +169,4 @@
   </div>
 
   <br><br>
-
 {% endblock %}

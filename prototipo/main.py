@@ -3,19 +3,22 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import send_file
-from flask_wtf import CsrfProtect
+from flask_wtf import CSRFProtect
 from negocio.aulaABM import AulaABM
 
 import forms
 
 app = Flask(__name__, template_folder="vistas")
 app.secret_key = 'clavesupersecreta100porcientosegurarealnofake'
-csrf = CsrfProtect(app)
+csrf = CSRFProtect(app)
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
     return render_template('index.html', titulo="Campus Gestion")
 
+@app.route('/login/login', methods=['GET', 'POST'])  # rutas a las que el usuario puede entrar
+def login():
+    return render_template('Login/login.html', titulo="Login")
 
 @app.route('/usuario/matricular', methods=['GET', 'POST'])
 def matricular():
@@ -53,7 +56,7 @@ def crear():
 
 @app.route('/aula/reutilizar', methods=['GET', 'POST'])
 def reutilizar():
-    reutilizar_aula = forms.ReutilizarAulaAula(request.form)
+    reutilizar_aula = forms.ReutilizarAula(request.form)
     if request.method == 'POST' and reutilizar_aula.validate():
         print reutilizar_aula.departamento.data
         print reutilizar_aula.carrera.data

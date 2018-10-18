@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/baseSinFooter.html' %}
 
 {% block titulo %} {{ titulo }} {% endblock %}
 
@@ -7,19 +7,79 @@
     <div class="nav-wrapper">
       <div class="nav-wrapper container">
       <i class="material-icons left">child_care</i>
-      <a id="logo-container" href="../index.html" class="brand-logo">Gestión</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <a id="logo-container" href="/" class="brand-logo">Gestión</a>
+      <ul class="right hide-on-med-and-down">
         <li><a href="../usuario/matricular">Usuarios</a></li>
         <li><a href="../aula/crear">Aulas</a></li>
         <li><a href="#">Virtualizaciones</a></li>
-       </ul>
-    </div>
+      </ul>
 
+      <ul id="slide-out" class="sidenav">
+	<div class="nav-title"></div>
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Usuarios<i class="material-icons light-blue-text left">person</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+					<a href="../usuario/matricular"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Matricular</p></a>
+					</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Aulas<i class="material-icons light-blue-text left">group</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="../aula/crear"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+				</li>
+				<li>
+				<a href="../aula/reutilizar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Reutilizar</p></a>
+				</li>
+				<li>
+				<a href="../aula/eliminar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Eliminar</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Virtualizaciones<i class="material-icons light-blue-text left">airplay</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitud</p></a>
+				</li>
+				<li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Actualizacion</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+
+	</ul>
+	
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+      
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="../capacitacion/tutorias">Tutoría / Capacitación</a></li>
-        <li class="tab"><a href="../capacitacion/microtalleres">Microtalleres</a></li>
+        <li class="tab"><a href="capacitacion/tutorias">Tutoría / Capacitación</a></li>
+        <li class="tab"><a href="capacitacion/microtalleres">Microtalleres</a></li>
       </ul>
     </div>
   </nav>
@@ -31,7 +91,7 @@
       <div class="row center">
         <h5 class="header col s12 light">Inscripción a Microtalleres</h5>
       </div>
-
+      
       <br><br>
 
     </div>
@@ -43,34 +103,96 @@
 
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h5 class="center">Microtalleres</h5>
-
-            <div>
-                <form method="POST">
-                {% from "macro_forms.html" import render_field %}
-                {{ render_field(form.microtalleres) }}
+      <div class="col s12">
+        <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Datos personales</span>
+	        </div>
+	        <div class="card-action">
+			  <div class="row">
+			    <div class="col s12">
+			      <div class="row">
+			        
+			        <div class="input-field col s6">
+			          <input id="nombre" type="text" class="validate">
+			          <label for="nombre">Nombre</label>
+			        </div>
+					<div class="input-field col s6">
+			          <input id="apellido" type="text" class="validate">
+			          <label for="apellido">Apellido</label>
+			        </div>
+					<div class="input-field col s6">
+			          <input id="email" type="text" class="validate">
+			          <label for="email">E-mail</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="telefono" type="text" class="validate">
+			          <label for="telefono">Telefono</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="dni" type="text" class="validate">
+			          <label for="dni">DNI</label>
+			        </div>
+					
+					<div class="input-field col s6">
+			          <select class="browser-default">
+					  	<option value="" disabled selected>Elige el departamento</option>
+					    <option value="1">Departamento de Ciencias Básicas</option>
+						<option value="2">Departamento de Ingeniería Civil</option>
+						<option value="3">Departamento de Ingeniería Eléctrica</option>
+						<option value="4">Departamento de Ingeniería Electrónica</option>
+						<option value="5">Departamento de Ingeniería Industrial</option>
+						<option value="6">Departamento de Ingeniería Mecánica</option>
+						<option value="7">Departamento de Ingeniería Naval</option>
+						<option value="8">Departamento de Ingeniería Química</option>
+						<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
+						<option value="10">Departamento de Ingeniería Textil</option>
+					  </select>
+			        </div>
+					<div class="input-field col s6">
+						<select class="browser-default">
+							<option value="" disabled selected>Elige la carrera</option>
+							<option value="1">Carrera 1</option>
+							<option value="2">Carrera 2</option>
+							<option value="3">Carrera 3</option>
+							<option value="4">Carrera 4</option>
+					</select>
+			        </div>
+					
+					<div class="input-field col s12">
+			          <input id="motivo" type="text" class="validate">
+			          <label for="motivo">¿Por qué motivo se inscribe?</label>
+			        </div>
+					
+			    </div>
+			  </div>
+	        </div>
+	      </div>
+	    </div>
+		
+		<div class="col s12">
+        <div class="card center">
+          <div class="card-content">
+            <span class="card-title">Usted es:</span>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                 <div>
+			          <a class="btn-small light-blue darken-3">docente</a> 
+					  <a class="btn-small light-blue darken-3">estudiante</a>
+			      </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
       </div>
-      <div class="col s12 m6">
-          <div class="icon-block">
-            <h5 class="center">Datos personales</h5>
 
-            <div>
-                {{ render_field(form.nombre) }}
-                {{ render_field(form.apellido) }}
-                {{ render_field(form.dni) }}
-                {{ render_field(form.email) }}
-            </div>
-            <div class="row center">
-		    	<button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
-		    </div>
-              <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
-
-              </form>
-          </div>
+        <div class="row center">
+          <a href="capacitacion/microtalleres" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+        </div>
       </div>
     </div>
 

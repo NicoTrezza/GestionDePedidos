@@ -1,27 +1,92 @@
-{% extends 'base/base.html' %}
+{% extends 'base/baseSinFooter.html' %}
 
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
-  <nav class="nav-extended light-blue darken-3">
-    <div class="nav-wrapper">
-      <div class="nav-wrapper container">
-      <i class="material-icons left">child_care</i>
-      <a id="logo-container" href="/" class="brand-logo">Gestión</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="../aula/crear">Aulas</a></li>
+	<nav class="nav-extended light-blue darken-3">
+	<div class="nav-wrapper">
+	  <div class="nav-wrapper container">
+	  <i class="material-icons left">child_care</i>
+	  <a id="logo-container" href="/" class="brand-logo">Gestión</a>
+	  
+	  <ul class="right hide-on-med-and-down">
+	  <li><a href="../aula/crear">Aulas</a></li>
         <li><a href="../capacitacion/tutorias">Capacitaciones</a></li>
         <li><a href="#">Virtualizaciones</a></li>
-       </ul>
+	  </ul>
+
+	 <ul id="slide-out" class="sidenav">
+	<div class="nav-title"></div>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Aulas<i class="material-icons light-blue-text left">group</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="../aula/crear"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+				</li>
+				<li>
+				<a href="../aula/reutilizar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Reutilizar</p></a>
+				</li>
+				<li>
+				<a href="../aula/eliminar"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Eliminar</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Capacitaciones<i class="material-icons light-blue-text left">computer</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="../capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
+				</li>
+				<li>
+				<a href="../capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Microtalleres</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Virtualizaciones<i class="material-icons light-blue-text left">airplay</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitud</p></a>
+				</li>
+				<li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Actualizacion</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+
+	</ul>
+	
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+	</div>
     </div>
 
-    </div>
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#">Matricular</a></li>
-      </ul>
-    </div>
-  </nav>
+	<div class="nav-content">
+	  <ul class="tabs tabs-transparent">
+	    <li class="tab"><a href="usuario/matricular">Matricular</a></li>
+	  </ul>
+	</div>
+	</nav>
 
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -30,60 +95,96 @@
       <div class="row center">
         <h5 class="header col s12 light">Solicitud de Matriculación de Usuarios</h5>
       </div>
-
       <br><br>
-
     </div>
   </div>
-
 
   <div class="container">
     <div class="section">
-
-      <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m6">
-          <div class="icon-block">
-            <h5 class="center">Descargar planilla</h5>
-            <p>Si lo necesita, aquí usted puede obtener la planilla de Excel que debe completar</p>
+      	<div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Video explicativo</span>
+	          <p>Instructivo para completar la planilla de matriculación de usuarios.</p>
+	        </div>
+	        <div class="card-action">
+	          <video src=""></video>
+	        </div>
+	      </div>
+	    </div>
 
-            <div class="row center">
-              <a href="/return_file/" class="btn-small light-blue darken-3"><i class="material-icons">cloud</i></a>
+      	<div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Descargar planilla</span>
+	          <p>Si lo necesita, aquí usted puede obtener la planilla de Excel que debe completar.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="/return_file/" class="btn-small light-blue darken-3"><i class="material-icons">cloud</i></a>
+	        </div>
+	      </div>
+	    </div>
 
-              <!--
-              <a href="../Archivos/Formulario_de_matriculacion.xlsx" class="btn-small light-blue darken-3"><i class="material-icons">cloud</i></a>
-		      -->
-            </div>
-          </div>
-          <div class="icon-block">
-            <h5 class="center">Subir planilla</h5>
-            <p>Aquí usted debe subir su archivo Excel con la lista de usuarios a matricular</p>
-
-            <div class="row center">
-               <input class="btn-small light-blue darken-3" accept=".xls, .xlsx" type="file">
+	    <div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Subir planilla</span>
+	          <p>Aquí usted debe subir su archivo Excel con la lista de usuarios a matricular.</p>
+	        </div>
+	        <div class="card-action">
+	          <div class="file-field input-field">
+		        <div class="btn light-blue darken-3">
+		          <span>Excel</span>
+		          <input type="file" accept=".xls, .xlsx">
 		        </div>
-          </div>
-      </div>
-      <div class="col s12 m6">
-          <div class="icon-block">
-            <h5 class="center">Indique la procedencia del pedido</h5>
+		          <div class="file-path-wrapper">
+		            <input class="file-path validate" type="text">
+		          </div>
+		        </div>
+		   </div>
+	      </div>
+	    </div>
 
-            <div>
-                <form method="POST">
-                {% from "macro_forms.html" import render_field %}
-                  {{ render_field(form.departamento, class='browser-default') }}
-                  {{ render_field(form.carrera, class='browser-default') }}
-            </div>
-            <div class="row center">
-		    	<button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
-        </div>
-            <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
-                </form>
-          </div>
-      </div>
-    </div>
+	    <div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Pedido</span>
+	          <p>Indique la procedencia del pedido.</p>
+	        </div>
+	        <div class="card-action">
+	          <label>Departamento</label>
+				  <select class="browser-default">
+				  	<option value="" disabled selected>Elige el departamento</option>
+				    <option value="1">Departamento de Ciencias Básicas</option>
+					<option value="2">Departamento de Ingeniería Civil</option>
+					<option value="3">Departamento de Ingeniería Eléctrica</option>
+					<option value="4">Departamento de Ingeniería Electrónica</option>
+					<option value="5">Departamento de Ingeniería Industrial</option>
+					<option value="6">Departamento de Ingeniería Mecánica</option>
+					<option value="7">Departamento de Ingeniería Naval</option>
+					<option value="8">Departamento de Ingeniería Química</option>
+					<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
+					<option value="10">Departamento de Ingeniería Textil</option>
+				  </select>
+				  <label>Carrera</label>
+				  <select class="browser-default">
+				  	<option value="" disabled selected>Elige la carrera</option>
+				    <option value="1">Carrera 1</option>
+				    <option value="2">Carrera 2</option>
+				    <option value="3">Carrera 3</option>
+				    <option value="4">Carrera 4</option>
+				  </select>
+	        </div>
+	      </div>
+	    </div>
 
-    </div>
-    <br><br>
+	    <div class="row center">
+		  <a href="usuario/matricular" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+		</div>
+
+	</div>
+  	</div>
   </div>
+
 {% endblock %}
