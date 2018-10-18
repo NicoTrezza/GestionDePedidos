@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Campus Gestion</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="Materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+    <script type="text/javascript">
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+  </script>
+
+    <script type="text/javascript">
+   $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+  </script>
+
+  
+</head>
+<body class="grey lighten-4">
+
+  <nav class="light-blue darken-3 " role="navigation">
+
+	<div class="nav-wrapper container ">
+	
+	<ul id="slide-out" class="sidenav">
+	<div class="nav-title"></div>
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Usuarios<i class="material-icons light-blue-text left">person</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+					<a href="Usuario/matricular.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Matricular</p></a>
+					</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Aulas<i class="material-icons light-blue-text left">group</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="Aula/crear.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+				</li>
+				<li>
+				<a href="Aula/reutilizar.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Reutilizar</p></a>
+				</li>
+				<li>
+				<a href="Aula/eliminar.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Eliminar</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Capacitaciones<i class="material-icons light-blue-text left">computer</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="Capacitacion/tutorias.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
+				</li>
+				<li>
+				<a href="Capacitacion/microtalleres.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Microtalleres</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Virtualizaciones<i class="material-icons light-blue-text left">airplay</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitud</p></a>
+				</li>
+				<li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Actualizacion</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+
+	</ul>
+	
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+ 	  <i class="material-icons left">child_care</i>
+	  <a id="logo-container" class="brand-logo">Gestión</a>
+
+	  <a href="Login/login.html"><i class="material-icons right">account_circle</i><p class="right">Inicia sesión</p></a>
+	  <!-- <a class="modal-trigger right" href="#modal"><i class="material-icons right">account_circle</i><p class ="right">Inicia sesión</p></a> -->
+	  
+    </div>	
+  </nav>
+
+  	
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="header center orange-text">Campus Virtual</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Gestión de pedidos - Educación a distancia</h5>
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="mdl-grid card-centered">	
+	  <div class="row">
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">person</i>
+	          <span class="card-title">Usuarios</span>
+	          <p>Formularios para la gestión de usuarios en las aulas virtuales.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="Usuario/matricular.html" class="btn-small light-blue darken-3">Matricular</a>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">group</i>
+	          <span class="card-title">Aulas</span>
+	          <p>Contempla los pasos administrativos para la gestión de un espacio curricular en una aula virtual.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="Aula/crear.html" class="btn-small light-blue darken-3">Crear</a>
+			  <a href="Aula/reutilizar.html" class="btn-small light-blue darken-3">Reutilizar</a>
+			  <a href="Aula/eliminar.html" class="btn-small light-blue darken-3">Eliminar</a>
+			</div>
+	      </div>
+	    </div>
+
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">computer</i>
+	          <span class="card-title">Capacitaciones</span>
+	          <p>El Campus Virtual brinda capacitación constante a la comunidad educativa de la UNLa.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="Capacitacion/tutorias.html" class="btn-small light-blue darken-3">Tutoría / Capacitación</a>
+			  <a href="Capacitacion/microtalleres.html" class="btn-small light-blue darken-3">Microtalleres</a>
+			</div>
+	      </div>
+	    </div>
+	    
+	    <div class="col s12 m3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">airplay</i>
+	          <span class="card-title">Virtualizaciones</span>
+	          <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p>
+	        </div>
+	        <div class="card-action">
+	          <a href="#" class="btn-small light-blue darken-3">Solicitud de virtualizacion</a>
+			  <a href="#" class="btn-small light-blue darken-3">Actualizacion (U.C)</a>
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  </div>
+
+  <br><br>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Grupo 3</h5>
+          <p class="grey-text text-lighten-4">Somos el mejor grupo de todos</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Integrantes</h5>
+          <ul>
+            <li>Benitez Griselda</li>
+            <li>Lucero José</li>
+            <li>Olmos Martín</li>
+            <li>Trezza Nicolás</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      	<p>UNLa, INC. - Derechos Reservados 2018</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="Materialize/js/materialize.js"></script>
+  <script src="Materialize/js/init.js"></script>
+
+  </body>
+</html>

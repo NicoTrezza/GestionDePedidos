@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Campus Gestion</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../Materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+    <script type="text/javascript">
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+  </script>
+
+    <script type="text/javascript">
+   $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+  </script>
+  
+</head>
+<body class="grey lighten-4">
+  <nav class="nav-extended light-blue darken-3">
+    <div class="nav-wrapper">
+      <div class="nav-wrapper container">
+      <i class="material-icons left">child_care</i>
+      <a id="logo-container" href="../index.html" class="brand-logo">Gestión</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="../Usuario/matricular.html">Usuarios</a></li>
+        <li><a href="../Aula/crear.html">Aulas</a></li>
+        <li><a href="#">Virtualizaciones</a></li>
+      </ul>
+
+      <ul id="slide-out" class="sidenav">
+	<div class="nav-title"></div>
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Usuarios<i class="material-icons light-blue-text left">person</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+					<a href="../Usuario/matricular.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Matricular</p></a>
+					</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Aulas<i class="material-icons light-blue-text left">group</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="../Aula/crear.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+				</li>
+				<li>
+				<a href="../Aula/reutilizar.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Reutilizar</p></a>
+				</li>
+				<li>
+				<a href="../Aula/eliminar.html"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Eliminar</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+		
+		<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Virtualizaciones<i class="material-icons light-blue-text left">airplay</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitud</p></a>
+				</li>
+				<li>
+				<a href="#"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Actualizacion</p></a>
+				</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+		</li>
+
+	</ul>
+	
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+      
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a href="tutorias.html">Tutoría / Capacitación</a></li>
+        <li class="tab"><a href="microtalleres.html">Microtalleres</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Microtalleres</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Inscripción a Microtalleres</h5>
+      </div>
+      
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+      <div class="col s12">
+        <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Datos personales</span>
+	        </div>
+	        <div class="card-action">
+			  <div class="row">
+			    <div class="col s12">
+			      <div class="row">
+			        
+			        <div class="input-field col s6">
+			          <input id="nombre" type="text" class="validate">
+			          <label for="nombre">Nombre</label>
+			        </div>
+					<div class="input-field col s6">
+			          <input id="apellido" type="text" class="validate">
+			          <label for="apellido">Apellido</label>
+			        </div>
+					<div class="input-field col s6">
+			          <input id="email" type="text" class="validate">
+			          <label for="email">E-mail</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="telefono" type="text" class="validate">
+			          <label for="telefono">Telefono</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="dni" type="text" class="validate">
+			          <label for="dni">DNI</label>
+			        </div>
+					
+					<div class="input-field col s6">
+			          <select class="browser-default">
+					  	<option value="" disabled selected>Elige el departamento</option>
+					    <option value="1">Departamento de Ciencias Básicas</option>
+						<option value="2">Departamento de Ingeniería Civil</option>
+						<option value="3">Departamento de Ingeniería Eléctrica</option>
+						<option value="4">Departamento de Ingeniería Electrónica</option>
+						<option value="5">Departamento de Ingeniería Industrial</option>
+						<option value="6">Departamento de Ingeniería Mecánica</option>
+						<option value="7">Departamento de Ingeniería Naval</option>
+						<option value="8">Departamento de Ingeniería Química</option>
+						<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
+						<option value="10">Departamento de Ingeniería Textil</option>
+					  </select>
+			        </div>
+					<div class="input-field col s6">
+						<select class="browser-default">
+							<option value="" disabled selected>Elige la carrera</option>
+							<option value="1">Carrera 1</option>
+							<option value="2">Carrera 2</option>
+							<option value="3">Carrera 3</option>
+							<option value="4">Carrera 4</option>
+					</select>
+			        </div>
+					
+					<div class="input-field col s12">
+			          <input id="motivo" type="text" class="validate">
+			          <label for="motivo">¿Por qué motivo se inscribe?</label>
+			        </div>
+					
+			    </div>
+			  </div>
+	        </div>
+	      </div>
+	    </div>
+		
+		<div class="col s12">
+        <div class="card center">
+          <div class="card-content">
+            <span class="card-title">Usted es:</span>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                 <div>
+			          <a class="btn-small light-blue darken-3">docente</a> 
+					  <a class="btn-small light-blue darken-3">estudiante</a>
+			      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="row center">
+          <a href="usuarios.html" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../Materialize/js/materialize.js"></script>
+  <script src="../Materialize/js/init.js"></script>
+
+  </body>
+</html>
