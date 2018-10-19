@@ -1,5 +1,5 @@
 from wtforms import Form
-from wtforms import StringField, IntegerField, SelectField, TextAreaField, DateTimeField
+from wtforms import StringField, IntegerField, SelectField, TextAreaField, DateTimeField, PasswordField
 from wtforms.fields.html5 import EmailField, DateField
 from wtforms import validators
 from datetime import datetime
@@ -9,7 +9,7 @@ class Login(Form):
     usuario = StringField('Usuario',
                           [validators.required()]
                           )
-    contrasenia = StringField('Contrasenia',
+    contrasenia = PasswordField('Contrasenia',
                               [validators.required()]
                               )
 

@@ -4,6 +4,10 @@ from flask import render_template
 from flask import request
 from flask import send_file
 from flask_wtf import CSRFProtect
+
+from flask import session
+from flask import url_for
+from flask import redirect
 from negocio.aulaABM import AulaABM
 
 import forms
@@ -12,25 +16,38 @@ app = Flask(__name__, template_folder="vistas")
 app.secret_key = 'clavesupersecreta100porcientosegurarealnofake'
 csrf = CSRFProtect(app)
 
+usuariovalido = 'martin'
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
-    return render_template('index.html', titulo="Campus Gestion")
+    usuario = ''
+    if 'usuario' in session:
+        usuario = session['usuario']
+        print usuario
+    return render_template('index.html', titulo="Campus Gestion", usuario=usuario)
 
 
 @app.route('/login/login', methods=['GET', 'POST'])
 def login():
     login = forms.Login(request.form)
     if request.method == 'POST' and login.validate():
+        session['usuario'] = login.usuario.data
         print login.usuario.data
         print login.contrasenia.data
     return render_template('Login/login.html', titulo="Login", form=login)
 
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    if 'usuario' in session:
+        session.pop('usuario')
+    return redirect(url_for('index'))
+
+
 @app.route('/usuario/matricular', methods=['GET', 'POST'])
 def matricular():
     matricular = forms.Matricular(request.form)
-    if request.method == 'POST' and matricular.validate():
+    if request.method == 'POST' and matricular.validate() and session['usuario'] == usuariovalido:
         print matricular.departamento.data
         print matricular.carrera.data
     return render_template('Usuario/matricular.html', titulo="Matricular", form=matricular)
@@ -46,7 +63,7 @@ def devolverarchivo():
 @app.route('/aula/crear', methods=['GET', 'POST'])
 def crear():
     crear_aula = forms.CrearAula(request.form)
-    if request.method == 'POST' and crear_aula.validate():
+    if request.method == 'POST' and crear_aula.validate() and session['usuario'] == usuariovalido:
         # abm = AulaABM()
         print crear_aula.departamento.data
         print crear_aula.carrera.data
@@ -68,7 +85,7 @@ def crear():
 @app.route('/aula/reutilizar', methods=['GET', 'POST'])
 def reutilizar():
     reutilizar_aula = forms.ReutilizarAula(request.form)
-    if request.method == 'POST' and reutilizar_aula.validate():
+    if request.method == 'POST' and reutilizar_aula.validate() and session['usuario'] == usuariovalido:
         print reutilizar_aula.departamento.data
         print reutilizar_aula.carrera.data
         print reutilizar_aula.nombreaula.data
@@ -83,7 +100,7 @@ def reutilizar():
 @app.route('/aula/eliminar', methods=['GET', 'POST'])
 def eliminar():
     eliminar_aula = forms.EliminarAula(request.form)
-    if request.method == 'POST' and eliminar_aula.validate():
+    if request.method == 'POST' and eliminar_aula.validate() and session['usuario'] == usuariovalido:
         print eliminar_aula.departamento.data
         print eliminar_aula.carrera.data
         print eliminar_aula.nombreaula.data
@@ -97,7 +114,7 @@ def eliminar():
 @app.route('/capacitacion/tutorias', methods=['GET', 'POST'])
 def tutorias():
     tutorias = forms.Tutorias(request.form)
-    if request.method == 'POST' and tutorias.validate():
+    if request.method == 'POST' and tutorias.validate() and session['usuario'] == usuariovalido:
         print tutorias.motivo.data
         print tutorias.nombre.data
         print tutorias.apellido.data
@@ -114,7 +131,7 @@ def tutorias():
 @app.route('/capacitacion/microtalleres', methods=['GET', 'POST'])
 def microtalleres():
     microtalleres = forms.Microtalleres(request.form)
-    if request.method == 'POST' and microtalleres.validate():
+    if request.method == 'POST' and microtalleres.validate() and session['usuario'] == usuariovalido:
         print microtalleres.nombre.data
         print microtalleres.apellido.data
         print microtalleres.email.data
