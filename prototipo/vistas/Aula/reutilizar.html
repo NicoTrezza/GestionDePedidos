@@ -100,6 +100,7 @@
 
       <!--   Icon Section   -->
       <div class="row">
+		  <form method="POST">
       	<div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
@@ -109,45 +110,20 @@
 			  <div class="row">
 			    <div class="col s12">
 			      <div class="row">
+			        {% from "macro_forms.html" import render_field %}
+						{{ render_field(form.departamento, class='browser-default') }}
+						{{ render_field(form.carrera, class='browser-default') }}
 			        <div class="input-field col s6">
-			          <select class="browser-default">
-                  <option value="" disabled selected>Elige el departamento</option>
-                  <option value="1">Departamento de Ciencias Básicas</option>
-                  <option value="2">Departamento de Ingeniería Civil</option>
-                  <option value="3">Departamento de Ingeniería Eléctrica</option>
-                  <option value="4">Departamento de Ingeniería Electrónica</option>
-                  <option value="5">Departamento de Ingeniería Industrial</option>
-                  <option value="6">Departamento de Ingeniería Mecánica</option>
-                  <option value="7">Departamento de Ingeniería Naval</option>
-                  <option value="8">Departamento de Ingeniería Química</option>
-                  <option value="9">Departamento de Ingeniería en Sistemas de Información</option>
-                  <option value="10">Departamento de Ingeniería Textil</option>
-                </select>
+						{{ render_field(form.nombreaula) }}
 			        </div>
 					<div class="input-field col s6">
-						<select class="browser-default">
-							<option value="" disabled selected>Elige la carrera</option>
-							<option value="1">Carrera 1</option>
-							<option value="2">Carrera 2</option>
-							<option value="3">Carrera 3</option>
-							<option value="4">Carrera 4</option>
-					</select>
-					</div>
-			        <div class="input-field col s6">
-			          <input id="nombre_a" type="text" class="validate">
-			          <label for="nombre_a">Nombre del aula</label>
-			        </div>
-					<div class="input-field col s6">
-			          <input id="dir" type="text" class="validate">
-			          <label for="nombre_a">Direccion del aula(ulr)</label>
+						{{ render_field(form.direccionulr) }}
 			        </div>
 			        <div class="input-field col s6">
-			          <input id="nombre_d" type="text" class="validate">
-			          <label for="nombre_d">Nombre del director</label>
+						{{ render_field(form.nombredirector) }}
 			        </div>
 			        <div class="input-field col s6">
-			          <input id="email" type="email" class="validate">
-			          <label for="email">Email del director</label>
+						{{ render_field(form.emaildirector) }}
 			        </div>
 			    </div>
 			  </div>
@@ -174,8 +150,7 @@
 						  <div class="collapsible-header">Cambiar nombre del aula</div>
 						  <div class="collapsible-body">
 					<div>
-			          <input id="nombre" type="text" class="validate">
-			          <label for="nombre">Nombre</label>
+						{{ render_field(form.nombrenuevo) }}
 			        </div>
 						</div>
 						</li>
@@ -189,8 +164,7 @@
 						  <div class="collapsible-header">Otros</div>
 						  <div class="collapsible-body">
 						  <div>
-			          <input id="otros" type="text" class="validate">
-			          <label for="otros">Explique Brevemente</label>
+							  {{ render_field(form.otro) }}
 			        </div>
 					</div>
 						</li>
@@ -202,10 +176,13 @@
 	      </div>
 	    </div>
       <div class="row center">
-    	<a href="../aula/reutilizar" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
       </div>
     </div>
+
     </div>
+			  <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+		  </form>
     <br><br>
   </div>
 

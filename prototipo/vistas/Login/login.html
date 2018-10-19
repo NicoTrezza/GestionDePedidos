@@ -122,8 +122,8 @@
 
       <!--   Icon Section   -->
       <div class="row">
-      	
-
+          <form method="POST">
+              {% from "macro_forms.html" import render_field %}
 	    <div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
@@ -132,12 +132,10 @@
 	        <div class="card-action">
 			      <div class="row">
 			        <div class="input-field col s12">
-			          <input id="first_name" type="text" class="validate">
-			          <label for="first_name">Usuario</label>
+                        {{ render_field(form.usuario) }}
 			        </div>
 			        <div class="input-field col s12">
-			          <input id="usuario" type="password" class="validate">
-			          <label for="usuario">Contraseña</label>
+                        {{ render_field(form.contrasenia) }}
 			        </div>
 			      </div>
 	        </div>
@@ -145,8 +143,10 @@
 	    </div>
 
 	  <div class="row center">
-		<a href="login/login" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
 	  </div>
+              <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+		  </form>
     </div>
 
     </div>

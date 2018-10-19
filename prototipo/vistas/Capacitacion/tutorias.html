@@ -77,8 +77,8 @@
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="capacitacion/tutorias">Tutoría / Capacitación</a></li>
-        <li class="tab"><a href="capacitacion/microtalleres">Microtalleres</a></li>
+        <li class="tab"><a href="../capacitacion/tutorias">Tutoría / Capacitación</a></li>
+        <li class="tab"><a href="../capacitacion/microtalleres">Microtalleres</a></li>
       </ul>
     </div>
   </nav>
@@ -102,6 +102,8 @@
 
       <!--   Icon Section   -->
       <div class="row">
+          <form method="POST">
+              {% from "macro_forms.html" import render_field %}
       <div class="col s12">
         <div class="card center">
           <div class="card-content">
@@ -111,10 +113,7 @@
             <div class="row">
               <div class="col s12">
                 <div class="row">
-                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Motivo de la tutoria / capacitacion</label>
-                  </div>
+                    {{ render_field(form.motivo) }}
                 </div>
               </div>
             </div>
@@ -133,62 +132,28 @@
 			      <div class="row">
 			        
 			        <div class="input-field col s6">
-			          <input id="nombre" type="text" class="validate">
-			          <label for="nombre">Nombre</label>
+                        {{ render_field(form.nombre) }}
+
 			        </div>
 					<div class="input-field col s6">
-			          <input id="apellido" type="text" class="validate">
-			          <label for="apellido">Apellido</label>
+                        {{ render_field(form.apellido) }}
 			        </div>
 					<div class="input-field col s6">
-			          <input id="email" type="text" class="validate">
-			          <label for="email">E-mail</label>
+                        {{ render_field(form.email) }}
 			        </div>
 			        <div class="input-field col s6">
-			          <input id="telefono" type="text" class="validate">
-			          <label for="telefono">Telefono</label>
+                        {{ render_field(form.telefono) }}
 			        </div>
-			        <div class="input-field col s6">
-			          <input id="dni" type="email" class="validate">
-			          <label for="dni">DNI</label>
+			        <div class="input-field col s12">
+                        {{ render_field(form.dni) }}
 			        </div>
-					
-					<div class="input-field col s6">
-			          <select class="browser-default">
-					  	<option value="" disabled selected>Elige el departamento</option>
-					    <option value="1">Departamento de Ciencias Básicas</option>
-						<option value="2">Departamento de Ingeniería Civil</option>
-						<option value="3">Departamento de Ingeniería Eléctrica</option>
-						<option value="4">Departamento de Ingeniería Electrónica</option>
-						<option value="5">Departamento de Ingeniería Industrial</option>
-						<option value="6">Departamento de Ingeniería Mecánica</option>
-						<option value="7">Departamento de Ingeniería Naval</option>
-						<option value="8">Departamento de Ingeniería Química</option>
-						<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
-						<option value="10">Departamento de Ingeniería Textil</option>
-					  </select>
-			        </div>
-					<div class="input-field col s6">
-						<select class="browser-default">
-							<option value="" disabled selected>Elige la carrera</option>
-							<option value="1">Carrera 1</option>
-							<option value="2">Carrera 2</option>
-							<option value="3">Carrera 3</option>
-							<option value="4">Carrera 4</option>
-					</select>
-			        </div>			
-					<div class="input-field col s6">
-						<select class="browser-default">
-							<option value="" disabled selected>Elige rol</option>
-							<option value="1">rol 1</option>
-							<option value="2">rol 2</option>
-							<option value="3">rol 3</option>
-					</select>
-			        </div>
-					<div class="input-field col s6">
-			          <input id="horario" type="text" class="validate">
-			          <label for="horario">Horario</label>
-			        </div>
+
+					{{ render_field(form.departamento, class='browser-default') }}
+                      {{ render_field(form.carrera, class='browser-default') }}
+                      {{ render_field(form.rol, class='browser-default') }}
+
+					<div class="input-field col s12">
+                        {{ render_field(form.fecha) }}
 			    </div>
 			  </div>
 	        </div>
@@ -196,13 +161,17 @@
 	    </div>
 
         <div class="row center">
-          <a href="capacitacion/tutorias" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
         </div>
       </div>
+              <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+		  </form>
     </div>
 
     </div>
+
     <br><br>
+
   </div>
 
 {% endblock %}

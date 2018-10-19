@@ -4,43 +4,56 @@ from wtforms.fields.html5 import EmailField, DateField
 from wtforms import validators
 from datetime import datetime
 
+
+class Login(Form):
+    usuario = StringField('Usuario',
+                          [validators.required()]
+                          )
+    contrasenia = StringField('Contrasenia',
+                              [validators.required()]
+                              )
+
+
 class CrearAula(Form):
     departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
+    carreras = ['carrera 1', 'carrera 2', 'carrera 3']
     roles = ['rol 1', 'rol 2', 'rol 3']
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(d.id), d.nombre) for d in departamentos]
     # rol = SelectField('departamento', choices=eleccion)
-    departamento = SelectField('departamento',
+    departamento = SelectField('Departamento',
                                choices=[('1', departamentos[0]), ('2', departamentos[1]), ('3', departamentos[2])])
-    dependencia = StringField('dependencia',
-                              [validators.length(min=5, max=25,
-                                                 message='Departamento debe tener entre 5 y 25 caracteres.'),
-                               validators.required()]
-                              )
-    nombreAula = StringField('nombreAula',
+    carrera = SelectField('Carrera',
+                          choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
+
+    nombreaula = StringField('Nombre del aula',
                              [validators.required()]
                              )
-    nombreprofesor = StringField('nombreprofesor',
+    nombredirector = StringField('Nombre del director',
                                  [validators.required()]
                                  )
-    email = EmailField('email',
-                       [validators.required(),
-                        validators.email()]
-                       )
-    nombre = StringField('nombre',
-                         [validators.required()]
-                         )
-    apellido = StringField('apellido',
-                           [validators.required()]
-                           )
-    dni = StringField('dni',
+    emaildirector = EmailField('E-mail del director',
+                               [validators.required(),
+                                validators.email()]
+                               )
+    nombredocente = StringField('Nombre del docente',
+                                [validators.required()]
+                                )
+    apellidodocente = StringField('Apellido del docente',
+                                  [validators.required()]
+                                  )
+    dni = StringField('DNI',
                       [validators.required()]
                       )
+    emailprofesor = EmailField('E-mail del profesor',
+                               [validators.required(),
+                                validators.email()]
+                               )
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(r.id), r.nombre) for r in roles]
     # rol = SelectField('rol', choices=eleccion)
     rol = SelectField('rol', choices=[('1', roles[0]), ('2', roles[1]), ('3', roles[2])])
-    descripcion = TextAreaField('descripcion',
+    descripcion = TextAreaField('Descripcion',
                                 [validators.required()]
                                 )
 
@@ -48,89 +61,135 @@ class CrearAula(Form):
 class ReutilizarAula(Form):
     departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
     carreras = ['carrera 1', 'carrera 2', 'carrera 3']
+    roles = ['rol 1', 'rol 2', 'rol 3']
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(d.id), d.nombre) for d in departamentos]
     # rol = SelectField('departamento', choices=eleccion)
-    departamento = SelectField('departamento',
+    departamento = SelectField('Departamento',
                                choices=[('1', departamentos[0]), ('2', departamentos[1]), ('3', departamentos[2])])
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(r.id), r.nombre) for r in roles]
     # rol = SelectField('rol', choices=eleccion)
-    carrera = SelectField('carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
-    nombre = StringField('nombre',
-                         [validators.required()]
-                         )
-
-    director = StringField('director',
-                           [validators.length(min=5, max=25,
-                                              message='director debe tener entre 5 y 25 caracteres.'),
-                            validators.required()]
-                           )
+    carrera = SelectField('Carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
+    nombreaula = StringField('Nombre del aula',
+                             [validators.required()]
+                             )
+    direccionulr = StringField('Direccion del aula (ulr)',
+                                [validators.required()]
+                                )
+    nombredirector = StringField('Nombre del director',
+                                 [validators.required()]
+                                 )
+    emaildirector = EmailField('E-mail del director',
+                               [validators.required(),
+                                validators.email()]
+                               )
+    nombrenuevo = StringField('Nombre nuevo')
+    otro = TextAreaField('Otro')
 
 
 class EliminarAula(Form):
     departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
     carreras = ['carrera 1', 'carrera 2', 'carrera 3']
+    roles = ['rol 1', 'rol 2', 'rol 3']
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(d.id), d.nombre) for d in departamentos]
     # rol = SelectField('departamento', choices=eleccion)
-    departamento = SelectField('departamento',
+    departamento = SelectField('Departamento',
                                choices=[('1', departamentos[0]), ('2', departamentos[1]), ('3', departamentos[2])])
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(r.id), r.nombre) for r in roles]
     # rol = SelectField('rol', choices=eleccion)
-    carrera = SelectField('carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
-    nombre = StringField('nombre',
-                         [validators.required()]
-                         )
-
-    director = StringField('director',
-                           [validators.length(min=5, max=25,
-                                              message='director debe tener entre 5 y 25 caracteres.'),
-                            validators.required()]
-                           )
-    motivo = TextAreaField('motivo',
+    carrera = SelectField('Carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
+    nombreaula = StringField('Nombre del aula',
+                             [validators.required()]
+                             )
+    direccionulr = StringField('Direccion del aula (ulr)',
+                                [validators.required()]
+                                )
+    nombredirector = StringField('Nombre del director',
+                                 [validators.required()]
+                                 )
+    emaildirector = EmailField('E-mail del director',
+                               [validators.required(),
+                                validators.email()]
+                               )
+    motivo = TextAreaField('Motivo',
                            [validators.required()]
                            )
+
 
 class Tutorias(Form):
-    motivo = TextAreaField('motivo',
+    motivo = TextAreaField('Motivo',
                            [validators.required()]
                            )
-    fecha = DateTimeField('fecha', format="%d/%m/%Y %H:%M:%S", default=datetime.today,
-        validators=[validators.DataRequired(message='formato incorrecto')]
-    )
-    nombre = StringField('nombre',
+    nombre = StringField('Nombre',
                          [validators.required()]
                          )
-    apellido = StringField('apellido',
+    apellido = StringField('Apellido',
                            [validators.required()]
                            )
-    dni = StringField('dni',
-                      [validators.required()]
-                      )
-    email = EmailField('email',
+    email = EmailField('E-mail',
                        [validators.required(),
                         validators.email()]
                        )
+    telefono = StringField('Telefono',
+                           [validators.required()]
+                           )
+    dni = StringField('DNI',
+                      [validators.required()]
+                      )
+    fecha = DateTimeField('Fecha', format="%d/%m/%Y %H:%M:%S", default=datetime.today,
+                          validators=[validators.DataRequired(message='formato incorrecto')]
+                          )
+    departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
+    carreras = ['carrera 1', 'carrera 2', 'carrera 3']
+    roles = ['rol 1', 'rol 2', 'rol 3']
+    # cuando haya una lista de una base de datos usar este metodo
+    # eleccion = [(str(d.id), d.nombre) for d in departamentos]
+    # rol = SelectField('departamento', choices=eleccion)
+    departamento = SelectField('Departamento',
+                               choices=[('1', departamentos[0]), ('2', departamentos[1]), ('3', departamentos[2])])
+    # cuando haya una lista de una base de datos usar este metodo
+    # eleccion = [(str(r.id), r.nombre) for r in roles]
+    # rol = SelectField('rol', choices=eleccion)
+    carrera = SelectField('Carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
+    rol = SelectField('Rol', choices=[('1', roles[0]), ('2', roles[1]), ('3', roles[2])])
+
 
 class Microtalleres(Form):
-    microtalleres = StringField('microtalleres',
-                           [validators.required()]
-                           )
-    nombre = StringField('nombre',
+    nombre = StringField('Nombre',
                          [validators.required()]
                          )
-    apellido = StringField('apellido',
+    apellido = StringField('Apellido',
                            [validators.required()]
                            )
-    dni = StringField('dni',
-                      [validators.required()]
-                      )
-    email = EmailField('email',
+    email = EmailField('E-mail',
                        [validators.required(),
                         validators.email()]
                        )
+    telefono = StringField('Telefono',
+                           [validators.required()]
+                           )
+    dni = StringField('DNI',
+                      [validators.required()]
+                      )
+
+
+    departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
+    carreras = ['carrera 1', 'carrera 2', 'carrera 3']
+    # cuando haya una lista de una base de datos usar este metodo
+    # eleccion = [(str(d.id), d.nombre) for d in departamentos]
+    # rol = SelectField('departamento', choices=eleccion)
+    departamento = SelectField('Departamento',
+                               choices=[('1', departamentos[0]), ('2', departamentos[1]), ('3', departamentos[2])])
+    # cuando haya una lista de una base de datos usar este metodo
+    # eleccion = [(str(r.id), r.nombre) for r in roles]
+    # rol = SelectField('rol', choices=eleccion)
+    carrera = SelectField('Carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
+    motivo = TextAreaField('Motivo',
+                           [validators.required()]
+                           )
 
 class Matricular(Form):
     departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
@@ -138,9 +197,9 @@ class Matricular(Form):
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(d.id), d.nombre) for d in departamentos]
     # rol = SelectField('departamento', choices=eleccion)
-    departamento = SelectField('departamento',
+    departamento = SelectField('Departamento',
                                choices=[('1', departamentos[0]), ('2', departamentos[1]), ('3', departamentos[2])])
     # cuando haya una lista de una base de datos usar este metodo
     # eleccion = [(str(r.id), r.nombre) for r in roles]
     # rol = SelectField('rol', choices=eleccion)
-    carrera = SelectField('carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])
+    carrera = SelectField('Carrera', choices=[('1', carreras[0]), ('2', carreras[1]), ('3', carreras[2])])

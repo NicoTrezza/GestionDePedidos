@@ -100,7 +100,10 @@
 
   <div class="container">
     <div class="section">
+
       <div class="row">
+		  <form method="POST">
+			  {% from "macro_forms.html" import render_field %}
       	<div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
@@ -152,36 +155,17 @@
 	          <p>Indique la procedencia del pedido.</p>
 	        </div>
 	        <div class="card-action">
-	          <label>Departamento</label>
-				  <select class="browser-default">
-				  	<option value="" disabled selected>Elige el departamento</option>
-				    <option value="1">Departamento de Ciencias Básicas</option>
-					<option value="2">Departamento de Ingeniería Civil</option>
-					<option value="3">Departamento de Ingeniería Eléctrica</option>
-					<option value="4">Departamento de Ingeniería Electrónica</option>
-					<option value="5">Departamento de Ingeniería Industrial</option>
-					<option value="6">Departamento de Ingeniería Mecánica</option>
-					<option value="7">Departamento de Ingeniería Naval</option>
-					<option value="8">Departamento de Ingeniería Química</option>
-					<option value="9">Departamento de Ingeniería en Sistemas de Información</option>
-					<option value="10">Departamento de Ingeniería Textil</option>
-				  </select>
-				  <label>Carrera</label>
-				  <select class="browser-default">
-				  	<option value="" disabled selected>Elige la carrera</option>
-				    <option value="1">Carrera 1</option>
-				    <option value="2">Carrera 2</option>
-				    <option value="3">Carrera 3</option>
-				    <option value="4">Carrera 4</option>
-				  </select>
+	          {{ render_field(form.departamento, class='browser-default') }}
+				{{ render_field(form.carrera, class='browser-default') }}
 	        </div>
 	      </div>
 	    </div>
 
 	    <div class="row center">
-		  <a href="usuario/matricular" class="btn-small light-blue darken-3">Enviar<i class="material-icons right">send</i></a>
+		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
 		</div>
-
+			  <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+		  </form>
 	</div>
   	</div>
   </div>
