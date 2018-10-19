@@ -24,12 +24,46 @@
     $('.sidenav').sidenav();
 	});
 	</script>
-  
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $('.modal').modal();
+    });
+  	</script>
+
 </head>
 <body class="grey lighten-4">
+
+    {% with messages = get_flashed_messages() %}
+        {%if messages%}
+            {%for message in messages%}
+    <div class="col s12">
+	      <div class="card center">
+	        <div class="card-action">
+			      <div class="row">
+
+                {{message}}
+
+			      </div>
+	        </div>
+	      </div>
+	    </div>
+    {%endfor%}
+        {%endif%}
+    {% endwith %}
+
+    <!--
+    {% with messages = get_flashed_messages() %}
+        {%if messages%}
+            {%for message in messages%}
+                {{message}}
+            {%endfor%}
+        {%endif%}
+    {% endwith %}
+-->
 	{% block contenido %}
-	
-	{% endblock %}
+    {% endblock %}
+
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>

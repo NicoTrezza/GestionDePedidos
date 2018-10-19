@@ -122,7 +122,7 @@
 
       <!--   Icon Section   -->
       <div class="row">
-          <form method="POST">
+          <form id="loginform" method="POST">
               {% from "macro_forms.html" import render_field %}
 	    <div class="col s12">
 	      <div class="card center">
@@ -144,7 +144,7 @@
 
 	  <div class="row center">
 		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
-	  </div>
+      </div>
               <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
 		  </form>
     </div>
