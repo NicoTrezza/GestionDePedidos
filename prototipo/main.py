@@ -8,18 +8,24 @@ from flask_wtf import CSRFProtect
 from flask import session
 from flask import url_for
 from flask import redirect
-
 from flask import flash
 
+from flask_mail import Mail
+from flask_mail import Message
+
+from config import DevelopmentConfig
 from negocio.aulaABM import AulaABM
 
 import forms
 
 app = Flask(__name__, template_folder="vistas")
-app.secret_key = 'clavesupersecreta100porcientosegurarealnofake'
-csrf = CSRFProtect(app)
+app.config.from_object(DevelopmentConfig)
+
+csrf = CSRFProtect()
+mail = Mail()
 
 usuariovalido = 'martin'
+
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
@@ -93,6 +99,24 @@ def crear():
                 print crear_aula.emailprofesor.data
                 print crear_aula.rol.data
                 print crear_aula.descripcion.data
+
+                #recipients es una lista!!
+                msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
+                              recipients=[crear_aula.emailprofesor.data])
+                msg.html = render_template('email.html',
+                                           departamento=crear_aula.departamento.data,
+                                           carrera=crear_aula.carrera.data,
+                                           nombreaula=crear_aula.nombreaula.data,
+                                           nombredirector=crear_aula.nombredirector.data,
+                                           emaildirector=crear_aula.emaildirector.data,
+                                           nombredocente=crear_aula.nombredocente.data,
+                                           apellidodocente=crear_aula.apellidodocente.data,
+                                           dni=crear_aula.dni.data,
+                                           emailprofesor=crear_aula.emailprofesor.data,
+                                           rol=crear_aula.rol.data,
+                                           descripcion=crear_aula.descripcion.data)
+                mail.send(msg)
+
                 usuario = session['usuario']
                 # abm.insertar(crear_aula.dependencia.data, crear_aula.nombreAula.data, crear_aula.nombreprofesor.data,
                 #             crear_aula.email.data)
@@ -197,4 +221,6 @@ def microtalleres():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)  # ejecuta el server
+    csrf.init_app(app)
+    mail.init_app(app)
+    app.run(port=8000)  # ejecuta el server
