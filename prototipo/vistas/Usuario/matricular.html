@@ -102,8 +102,9 @@
     <div class="section">
 
       <div class="row">
-		  <form method="POST">
-			  {% from "macro_forms.html" import render_field %}
+		  {% from "macro_forms.html" import render_field %}
+		  <form method="POST" enctype="multipart/form-data">
+
       	<div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
@@ -135,10 +136,11 @@
 	          <p>Aquí usted debe subir su archivo Excel con la lista de usuarios a matricular.</p>
 	        </div>
 	        <div class="card-action">
+				<!-- <input type="file" name="file"> -->
 	          <div class="file-field input-field">
 		        <div class="btn light-blue darken-3">
 		          <span>Excel</span>
-		          <input type="file" accept=".xls, .xlsx">
+		          	<input type="file" name="file">
 		        </div>
 		          <div class="file-path-wrapper">
 		            <input class="file-path validate" type="text">

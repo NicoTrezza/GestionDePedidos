@@ -16,6 +16,9 @@ from flask_mail import Message
 from config import DevelopmentConfig
 from negocio.aulaABM import AulaABM
 
+from werkzeug.utils import secure_filename
+
+
 import forms
 
 app = Flask(__name__, template_folder="vistas")
@@ -65,11 +68,17 @@ def matricular():
             if session['usuario'] == usuariovalido:
                 print matricular.departamento.data
                 print matricular.carrera.data
+
+                f = request.files['file']
+                filename = secure_filename(f.filename)
+                f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/vistas/Archivos/ ' + filename)
+
                 usuario = session['usuario']
             else:
                 flash('No tiene permisos')
         if usuario == '':
             flash('Necesita estar logueado para matricular')
+
     return render_template('Usuario/matricular.html', titulo="Matricular", form=matricular)
 
 

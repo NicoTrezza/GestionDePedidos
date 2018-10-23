@@ -12,8 +12,8 @@
     <session id="334213397">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
-          <entry key="project.open.time.18" value="1" />
+          <entry key="project.closed" value="16" />
+          <entry key="project.open.time.18" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.26" value="1" />
@@ -25,39 +25,70 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="53" />
-          <entry key="py" value="20" />
+          <entry key="html" value="56" />
+          <entry key="py" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="53" />
-          <entry key="Python" value="20" />
+          <entry key="HTML" value="56" />
+          <entry key="Python" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="html" value="1588" />
-          <entry key="py" value="4264" />
+          <entry key="html" value="1691" />
+          <entry key="py" value="4519" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1588" />
+          <entry key="HTML" value="1691" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="4264" />
+          <entry key="Python" value="4519" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="73" column="109" selection-start-line="73" selection-start-column="109" selection-end-line="73" selection-end-column="109" />
+              <folding>
+                <element signature="e#46#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vistas/Usuario/matricular.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="138" column="56" selection-start-line="138" selection-start-column="56" selection-end-line="138" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -85,22 +116,22 @@
         <option value="$PROJECT_DIR$/vistas/Aula/eliminar.html" />
         <option value="$PROJECT_DIR$/vistas/Capacitacion/tutorias.html" />
         <option value="$PROJECT_DIR$/vistas/Capacitacion/microtalleres.html" />
-        <option value="$PROJECT_DIR$/vistas/Usuario/matricular.html" />
-        <option value="$PROJECT_DIR$/forms.py" />
         <option value="$PROJECT_DIR$/vistas/index.html" />
         <option value="$PROJECT_DIR$/vistas/base/baseSinFooter.html" />
         <option value="$PROJECT_DIR$/vistas/Login/login.html" />
         <option value="$PROJECT_DIR$/vistas/email.html" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/forms.py" />
+        <option value="$PROJECT_DIR$/vistas/Usuario/matricular.html" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-47" />
-    <option name="y" value="34" />
-    <option name="width" value="1514" />
-    <option name="height" value="900" />
+    <option name="x" value="243" />
+    <option name="y" value="93" />
+    <option name="width" value="1515" />
+    <option name="height" value="888" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -108,6 +139,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -124,13 +156,18 @@
               <item name="prototipo" type="b2602c69:ProjectViewProjectNode" />
               <item name="prototipo" type="462c0819:PsiDirectoryNode" />
               <item name="vistas" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
+              <item name="Login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="prototipo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prototipo" type="462c0819:PsiDirectoryNode" />
+              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="Usuario" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -225,13 +262,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/vistas/macro_select.html" />
-    <entry file="file://$PROJECT_DIR$/vistas/macro_forms.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vistas/Aula/reutilizar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -264,27 +294,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2210">
           <caret line="130" column="41" selection-start-line="130" selection-end-line="131" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vistas/Usuario/matricular.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2686">
-          <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vistas/Login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="124" column="30" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -325,12 +334,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vistas/macro_forms.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vistas/Login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="134" column="41" selection-start-line="134" selection-end-line="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vistas/Usuario/matricular.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="138" column="56" selection-start-line="138" selection-start-column="56" selection-end-line="138" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1275">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="323">
+          <caret line="73" column="109" selection-start-line="73" selection-start-column="109" selection-end-line="73" selection-end-column="109" />
           <folding>
-            <element signature="e#24#47#0" expanded="true" />
+            <element signature="e#46#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
