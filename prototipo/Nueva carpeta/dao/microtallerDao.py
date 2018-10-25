@@ -8,13 +8,13 @@ class MicrotallerDao(Conexion):
     def __init__(self):
         super(MicrotallerDao, self).__init__()  		
 
-    def insertar(self, nombreMicrotaller, descripcion, usuarioMicrotaller):
+    def insertar(self, nombreMicrotaller, motivoMicrotaller):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into microtaller (nombreMicrotaller, descripcion, usuarioMicrotaller) values (%s, %s, %s)'
-            val = (nombreMicrotaller, descripcion, usuarioMicrotaller)
+            sql = 'insert into microtaller (nombreMicrotaller, motivoMicrotaller values (%s, %s, %s)'
+            val = (nombreMicrotaller, motivoMicrotaller)
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +23,13 @@ class MicrotallerDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idMicrotaller, nombreMicrotaller, descripcion, usuarioMicrotaller):
+    def modificar(self, idMicrotaller, nombreMicrotaller, motivoMicrotaller):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update microtaller set nombreMicrotaller = %s, descripcion = %s, usuarioMicrotaller = %s where idMicrotaller = %s'
-            val = (nombreMicrotaller, descripcion, usuarioMicrotaller, idMicrotaller)
+            sql = 'update microtaller set nombreMicrotaller = %s, motivoMicrotaller = %s where idMicrotaller = %s'
+            val = (nombreMicrotaller, motivoMicrotaller, idMicrotaller)
             
             cursor.execute(sql, val)
             self.conexion.commit()

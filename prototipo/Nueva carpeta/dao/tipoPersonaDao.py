@@ -1,20 +1,20 @@
 from conexion import Conexion
 from mysql.connector import Error
 
-from datos.tipoUsuario import TipoUsuario
+from datos.tipoPersona import tipoPersona
 
-class TipoUsuarioDao(Conexion):
+class TipoPersonaDao(Conexion):
         
     def __init__(self):
-        super(TipoUsuarioDao, self).__init__()	
+        super(TipoPersonaDao, self).__init__()	
 
-    def insertar(self, nombreTipo):
+    def insertar(self, rol):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into tipoUsuario (nombreTipo) values (%s)'
-            val = (nombreTipo)
+            sql = 'insert into tipoPersona (rol) values (%s)'
+            val = (rol)
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +23,13 @@ class TipoUsuarioDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idTipoUsuario, nombreTipo):
+    def modificar(self, idTipoPersona, rol):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update tipoUsuario set nombreTipo = %s where idTipoUsuario = %s'
-            val = (nombreTipo, idTipoUsuario)
+            sql = 'update tipoPersona set rol = %s where idTipoPersona = %s'
+            val = (rol, idTipoPersona)
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -38,13 +38,13 @@ class TipoUsuarioDao(Conexion):
         except Error as e:
             print e
     
-    def eliminar(self, idTipoUsuario):
+    def eliminar(self, idTipoPersona):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'delete from tipoUsuario where idTipoUsuario = %s'
-            val = (idTipoUsuario, )
+            sql = 'delete from tipoPersona where idTipoPersona = %s'
+            val = (idTipoPersona, )
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -53,13 +53,13 @@ class TipoUsuarioDao(Conexion):
         except Error as e:
             print e
             
-    def traer(self, idTipoUsuario):
+    def traer(self, idTipoPersona):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from tipoUsuario where idTipoUsuario = %s'
-            val = (idTipoUsuario, )
+            sql = 'select * from tipoPersona where idTipoPersona = %s'
+            val = (idTipoPersona, )
             
             cursor.execute(sql, val)
             
@@ -76,7 +76,7 @@ class TipoUsuarioDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from tipoUsuario'
+            sql = 'select * from tipoPersona'
     
             cursor.execute(sql)
             

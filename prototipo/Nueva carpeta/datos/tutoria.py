@@ -2,17 +2,15 @@ class Tutoria(object):
 
     def __init__(self, dao):
         self.idTutoria = int(dao[0])
-        self.nombreTutoria = str(dao[1])
         self.motivo = str(dao[2])
-        self.fechaInicio = int(dao[3])
-        self.usuarioTutoria = int(dao[4])
+        self.fecha = int(dao[3])
+        self.personaTutoria = int(dao[4])
 
-    """def __init__(self, idTutoria, nombreTutoria, motivo, fechaInicio, usuarioTutoria):
+    """def __init__(self, idTutoria, motivo, fecha, personaTutoria):
         self.idTutoria = idTutoria
-        self.nombreTutoria = nombreTutoria
         self.motivo = motivo
-        self.fechaInicio = fechaInicio
-        self.usuarioTutoria = usuarioTutoria"""
+        self.fecha = fecha
+        self.personaTutoria = personaTutoria"""
 
     def getIdTutoria (self):
         return self.idTutoria
@@ -20,29 +18,23 @@ class Tutoria(object):
     def setIdTutoria (self, idTutoria):
         self.idTutoria = idTutoria
 
-    def getNombreTutoria(self):
-        return self.nombreTutoria
-
-    def setNombreTutoria(self, nombreTutoria):
-        self.nombreTutoria = nombreTutoria
-
     def getMotivo(self):
         return self.motivo
 
     def setMotivo(self, motivo):
         self.motivo = motivo
 
-    def getFechaInicio(self):
-        return self.fechaInicio
+    def getFecha(self):
+        return self.fecha
 
-    def setFechaInicio(self, fechaInicio):
-        self.fechaInicio = fechaInicio
+    def setFecha(self, fecha):
+        self.fecha = fecha
 
-    def getUsuarioTutoria(self):
-        return self.usuarioTutoria
+    def getPersonaTutoria(self):
+        return self.personaTutoria
 
-    def setUsuarioTutoria(self, usuarioTutoria):
-        self.usuarioTutoria = usuarioTutoria
+    def setPersonaTutoria(self, personaTutoria):
+        self.personaTutoria = personaTutoria
 
     def __str__(self):
-        return "Id de la Tutoria: {}, nombre de la Tutoria: {}, motivo de la Tutoria: {}, fecha de inicio de la Tutoria: {}, usuario de la Tutoria: {}".format(self.idTutoria, self.nombreTutoria, self.motivo, self.fechaInicio, self.usuarioTutoria)
+        return "Id de la Tutoria: {}, motivo de la Tutoria: {}, fecha de inicio de la Tutoria: {}, usuario de la Tutoria: {}".format(self.idTutoria, self.motivo, self.fecha, self.personaTutoria)
