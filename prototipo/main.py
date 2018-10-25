@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -18,8 +20,8 @@ from negocio.aulaABM import AulaABM
 
 from werkzeug.utils import secure_filename
 
-
 import forms
+import crearPdf
 
 app = Flask(__name__, template_folder="vistas")
 app.config.from_object(DevelopmentConfig)
@@ -78,7 +80,6 @@ def matricular():
                 flash('No tiene permisos')
         if usuario == '':
             flash('Necesita estar logueado para matricular')
-
     return render_template('Usuario/matricular.html', titulo="Matricular", form=matricular)
 
 
@@ -109,6 +110,11 @@ def crear():
                 print crear_aula.rol.data
                 print crear_aula.descripcion.data
 
+                crearPdf.crear_aula(crear_aula.departamento.data, crear_aula.carrera.data, crear_aula.nombreaula.data,
+                                    crear_aula.nombredirector.data, crear_aula.emaildirector.data,
+                                    crear_aula.nombredocente.data, crear_aula.apellidodocente.data, crear_aula.dni.data,
+                                    crear_aula.emailprofesor.data, crear_aula.rol.data, crear_aula.descripcion.data)
+
                 #recipients es una lista!!
                 msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
                               recipients=[crear_aula.emailprofesor.data])
@@ -124,8 +130,11 @@ def crear():
                                            emailprofesor=crear_aula.emailprofesor.data,
                                            rol=crear_aula.rol.data,
                                            descripcion=crear_aula.descripcion.data)
-                mail.send(msg)
+                with app.open_resource("crear_aula.pdf") as pdf:
+                    msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
 
+                mail.send(msg)
+                os.remove('crear_aula.pdf')
                 usuario = session['usuario']
                 # abm.insertar(crear_aula.dependencia.data, crear_aula.nombreAula.data, crear_aula.nombreprofesor.data,
                 #             crear_aula.email.data)
@@ -133,6 +142,8 @@ def crear():
                 flash('No tiene permisos')
         if usuario == '':
             flash('Necesita estar logueado para crear aula')
+
+
     return render_template('Aula/crear.html', titulo="Crear aula", form=crear_aula)
 
 
