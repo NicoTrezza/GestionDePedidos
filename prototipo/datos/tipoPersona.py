@@ -1,4 +1,4 @@
-class TipoUsuario(object):
+class TipoPersona(object):
 
     def __init__(self, dao):
         self.idTipoPersona = int(dao[0])

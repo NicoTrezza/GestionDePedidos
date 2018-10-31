@@ -1,35 +1,35 @@
 from conexion import Conexion
 from mysql.connector import Error
+from datos.departamento import Departamento
 
-from datos.aula import Aula
 
-class AulaDao(Conexion):
+class DepartamentoDao(Conexion):
         
     def __init__(self):
-        super(AulaDao, self).__init__()  	
+        super(DepartamentoDao, self).__init__()  		
 
-    def insertar(self, nombreAula, urlAula, descripcion, carreraAula):
+    def insertar(self, nombreDepartamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into aula (nombreAula, urlAula, descripcion, carreraAula) values (%s, %s)'
-            val = (nombreAula, carreraAula)
-    
+            sql = 'insert into departamento (nombreDepartamento) values (%s)'
+            val = (nombreDepartamento, )
+        
             cursor.execute(sql, val)
             self.conexion.commit()
-    
+        
             self.desconectar()
         except Error as e:
             print e
 
-    def modificar(self, idAula, nombreAula, urlAula, descripcion, carreraAula):
+    def modificar(self, idDepartamento, nombreDepartamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update aula set nombreAula = %s, urlAula = %s, descripcion = %s, carreraAula = %s where idAula = %s'
-            val = (nombreAula, urlAula, descripcion, carreraAula, idAula)
+            sql = 'update departamento set nombreDepartamento = %s where idDepartamento = %s'
+            val = (nombreDepartamento, idDepartamento)
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -38,13 +38,13 @@ class AulaDao(Conexion):
         except Error as e:
             print e
     
-    def eliminar(self, idAula):
+    def eliminar(self, idDepartamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'delete from aula where idAula = %s'
-            val = (idAula, )
+            sql = 'delete from departamento where idDepartamento = %s'
+            val = (idDepartamento, )
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -53,13 +53,13 @@ class AulaDao(Conexion):
         except Error as e:
             print e
             
-    def traer(self, idAula):
+    def traer(self, idDepartamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from aula where idAula = %s'
-            val = (idAula, )
+            sql = 'select * from departamento where idDepartamento = %s'
+            val = (idDepartamento, )
             
             cursor.execute(sql, val)
             
@@ -69,14 +69,14 @@ class AulaDao(Conexion):
         except Error as e:
             print e
             
-        return Aula(objeto)
+        return Departamento(objeto)
 
     def listar(self):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from aula'
+            sql = 'select * from departamento'
     
             cursor.execute(sql)
             
@@ -89,7 +89,7 @@ class AulaDao(Conexion):
         lis = []
         
         for objeto in lista:
-            ob = Aula(objeto)
+            ob = Departamento(objeto)
             lis.append(ob)
             
         return lis

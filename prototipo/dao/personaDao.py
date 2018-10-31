@@ -69,7 +69,7 @@ class PersonaDao(Conexion):
         except Error as e:
             print e
             
-        return Usuario(objeto)
+        return Persona(objeto)
 
     def listar(self):
         try:

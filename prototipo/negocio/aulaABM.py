@@ -5,20 +5,17 @@ class AulaABM(object):
     def __init__(self):
         self.dao = AulaDao()
         
-    def insertar(self, dependencia, nombreDelAula, nombreDelProfesor, emailDelProfesor):
-        self.dao.insertar(dependencia, nombreDelAula, nombreDelProfesor, emailDelProfesor)
+    def insertar(self, nombreAula, urlAula, descripcion, carreraAula):
+        self.dao.insertar(nombreAula, urlAula, descripcion, carreraAula)
         
     def modificar(self, a):
-        self.dao.modificar(a.getIdAula(), a.getDependencia(), a.getNombreDelAula(), a.getNombreDelProfesor(), a.getEmailDelProfesor())
+        self.dao.modificar(a.getIdAula(), a.getNombreAula(), a.getUrlAula(), a.getDescripcion(), a.getCarreraAula())
    
     def eliminar(self, idAula):
         self.dao.eliminar(idAula)
         
     def traer(self, idAula):
         return self.dao.traer(idAula)
-        
-    def traerPorProfesor(self, nombreDelProfesor):
-        return self.dao.traerPorProfesor(nombreDelProfesor)
     
     def listar(self):
         return self.dao.listar()

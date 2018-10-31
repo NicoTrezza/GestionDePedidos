@@ -1,20 +1,20 @@
 from conexion import Conexion
 from mysql.connector import Error
 
-from datos.login import Login
+from datos.tipoPersona import TipoPersona
 
-class LoginDao(Conexion):
+class TipoPersonaDao(Conexion):
         
     def __init__(self):
-        super(LoginDao, self).__init__()  		
+        super(TipoPersonaDao, self).__init__()	
 
-    def insertar(self, mail, contrasenia):
+    def insertar(self, rol):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into login (mail, contrasenia) values (%s, %s)'
-            val = (mail, contrasenia)
+            sql = 'insert into tipoPersona (rol) values (%s)'
+            val = (rol, )
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +23,13 @@ class LoginDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idLogin, mail, contrasenia):
+    def modificar(self, idTipoPersona, rol):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update login set mail = %s, contrasenia = %s where idLogin = %s'
-            val = (mail, contrasenia, idLogin)
+            sql = 'update tipoPersona set rol = %s where idTipoPersona = %s'
+            val = (rol, idTipoPersona)
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -38,13 +38,13 @@ class LoginDao(Conexion):
         except Error as e:
             print e
     
-    def eliminar(self, idLogin):
+    def eliminar(self, idTipoPersona):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'delete from login where idLogin = %s'
-            val = (idLogin, )
+            sql = 'delete from tipoPersona where idTipoPersona = %s'
+            val = (idTipoPersona, )
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -53,13 +53,13 @@ class LoginDao(Conexion):
         except Error as e:
             print e
             
-    def traer(self, idLogin):
+    def traer(self, idTipoPersona):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from login where idLogin = %s'
-            val = (idLogin, )
+            sql = 'select * from tipoPersona where idTipoPersona = %s'
+            val = (idTipoPersona, )
             
             cursor.execute(sql, val)
             
@@ -69,14 +69,14 @@ class LoginDao(Conexion):
         except Error as e:
             print e
             
-        return Usuario(objeto)
+        return TipoPersona(objeto)
 
     def listar(self):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
     
-            sql = 'select * from login'
+            sql = 'select * from tipoPersona'
     
             cursor.execute(sql)
             
@@ -89,7 +89,7 @@ class LoginDao(Conexion):
         lis = []
         
         for objeto in lista:
-            ob = Login(objeto)
+            ob = TipoPersona(objeto)
             lis.append(ob)
             
         return lis

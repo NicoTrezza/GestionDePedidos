@@ -2,17 +2,17 @@ class Aula(object):
 
     def __init__(self, dao):
         self.idAula = int(dao[0])
-        self.dependencia = str(dao[1])
-        self.nombreDelAula = str(dao[2])
-        self.nombreDelProfesor = str(dao[3])
-        self.emailDelProfesor = str(dao[4])
+        self.nombreAula = str(dao[1])
+        self.urlAula = str(dao[2])
+        self.descripcion = str(dao[3])
+        self.carreraAula = int(dao[4])
 
-    """def __init__(self, idAula, dependencia, nombreDelAula, nombreDelProfesor, emailDelProfesor):
+    """def __init__(self, idAula, nombreAula, urlAula, descripcion, carreraAula):
         self.idAula = idAula
-        self.dependencia = dependencia
-        self.nombreDelAula = nombreDelAula
-        self.nombreDelProfesor = nombreDelProfesor
-        self.emailDelProfesor = emailDelProfesor"""
+        self.nombreAula = nombreAula
+        self.urlAula = urlAula
+        self.descripcion = descripcion
+        self.carreraAula = carreraAula"""
 
     def getIdAula(self):
         return self.idAula
@@ -20,29 +20,29 @@ class Aula(object):
     def setIdAula(self, idAula):
         self.idAula = idAula
 
-    def getDependencia(self):
-        return self.dependencia
+    def getNombreAula(self):
+        return self.nombreAula
 
-    def setDependencia(self, dependencia):
-        self.dependencia = dependencia
+    def setNombreAula(self, nombreAula):
+        self.nombreAula = nombreAula
 
-    def getNombreDelAula(self):
-        return self.nombreDelAula
+    def getUrlAula(self):
+        return self.urlAula
 
-    def setNombreDelAula(self, nombreDelAula):
-        self.nombreDelAula = nombreDelAula
+    def setUrlAula(self, urlAula):
+        self.urlAula = urlAula
 
-    def getNombreDelProfesor(self):
-        return self.nombreDelProfesor
+    def getDescripcion(self):
+        return self.descripcion
 
-    def setNombreDelProfesor(self, nombreDelProfesor):
-        self.nombreDelProfesor = nombreDelProfesor
+    def setDescripcion(self, descripcion):
+        self.descripcion = descripcion
 
-    def getEmailDelProfesor(self):
-        return self.emailDelProfesor
+    def getCarreraAula(self):
+        return self.carreraAula
 
-    def setEmailDelProfesor(self, emailDelProfesor):
-        self.emailDelProfesor = emailDelProfesor
+    def setCarreraAula(self, carreraAula):
+        self.carreraAula = carreraAula
 
     def __str__(self):
-        return "Id del aula: {}, dependencia: {}, nombre del aula: {}, nombre del profesor: {}, email del profesor: {}".format(self.idAula, self.dependencia, self.nombreDelAula, self.nombreDelProfesor, self.emailDelProfesor)
+        return "Id del aula: {}, nombre del Aula: {}, url del Aula: {}, descripcion del Aula: {}, carrera del Aula: {}".format(self.idAula, self.nombreAula, self.urlAula, self.descripcion, self.carreraAula)
