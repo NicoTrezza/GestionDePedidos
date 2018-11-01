@@ -16,6 +16,8 @@ from flask_mail import Mail
 from flask_mail import Message
 
 from config import DevelopmentConfig
+from negocio.loginABM import LoginABM
+
 from negocio.aulaABM import AulaABM
 
 from werkzeug.utils import secure_filename
@@ -31,6 +33,9 @@ mail = Mail()
 
 usuariovalido = 'martin'
 
+@app.before_request
+def before_request():
+    pass
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
@@ -43,14 +48,26 @@ def index():
 
 @app.route('/login/login', methods=['GET', 'POST'])
 def login():
+    login_abm = LoginABM()
     login = forms.Login(request.form)
     if request.method == 'POST' and login.validate():
-        #print login.usuario.data
-        #print login.contrasenia.data
-        mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
-        flash(mensajeBienvenida)
+        mail = login.usuario.data
+        contrasenia = login.contrasenia.data
 
-        session['usuario'] = login.usuario.data
+        try:
+            usuario = login_abm.traerXMail(mail)
+            if usuario.getContrasenia() == contrasenia:
+                mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
+                flash(mensajeBienvenida)
+                session['usuario'] = login.usuario.data
+                return redirect(url_for('index'))
+            else:
+                mensajeError = u'usuario o contraseña no validas'#este es para la contraseña no valida
+                flash(mensajeError)
+        except:
+            mensajeError1 = u'usuario o contraseña no validas'#este es para el usuario no valido
+            flash(mensajeError1)
+
     return render_template('Login/login.html', titulo="Login", form=login)
 
 
@@ -65,9 +82,22 @@ def logout():
 def matricular():
     matricular = forms.Matricular(request.form)
     usuario = ''
+    #########
+    login_abm = LoginABM()
+    permisos = 1
+    try:
+        us = login_abm.traerXMail(session['usuario'])
+        permisos = us.getPermisos()
+    except:
+        mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
+        flash(mensajeError1)
+    print usuario
+    print permisos
+
+    ########
     if request.method == 'POST' and matricular.validate():
         if 'usuario' in session:
-            if session['usuario'] == usuariovalido:
+            if permisos == 1:
                 print matricular.departamento.data
                 print matricular.carrera.data
 

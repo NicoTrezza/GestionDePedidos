@@ -30,7 +30,7 @@ class Login(object):
         self.contrasenia = contrasenia
 
     def getPermisos(self):
-        return self.contrasenia
+        return self.permisos
 
     def setPermisos(self, permisos):
         self.permisos = permisos
