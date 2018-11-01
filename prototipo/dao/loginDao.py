@@ -71,6 +71,24 @@ class LoginDao(Conexion):
             
         return Login(objeto)
 
+    def traerXMail(self, mail):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from login where mail = %s'
+            val = (mail,)
+
+            cursor.execute(sql, val)
+
+            objeto = cursor.fetchone()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        return Login(objeto)
+
     def listar(self):
         try:
             self.conectar()

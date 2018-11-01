@@ -16,6 +16,9 @@ class LoginABM(object):
         
     def traer(self, idLogin):
         return self.dao.traer(idLogin)
+
+    def traerXMail(self, mail):
+        return self.dao.traerXMail(mail)
     
     def listar(self):
         return self.dao.listar()
