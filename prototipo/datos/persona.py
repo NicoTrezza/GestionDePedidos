@@ -1,7 +1,7 @@
-class Usuario(object):
+class Persona(object):
 
 	def __init__(self, dao):
-		self.idUsuario = int(dao[0])
+		self.idPersona = int(dao[0])
 		self.nombre = str(dao[1])
 		self.apellido = str(dao[2])
 		self.dni = int(dao[3])
@@ -9,8 +9,8 @@ class Usuario(object):
 		self.carrera = int(dao[5])
 		self.login = int(dao[6])
 
-	"""def __init__(self, idUsuario, nombre, apellido, dni, tipoPersona, carrera, login):
-		self.idUsuario = idUsuario
+	"""def __init__(self, idPersona, nombre, apellido, dni, tipoPersona, carrera, login):
+		self.idPersona = idPersona
 		self.nombre = nombre
 		self.apellido = apellido
 		self.dni = dni
@@ -18,11 +18,11 @@ class Usuario(object):
 		self.carrera = carrera
 		self.login = login"""
 
-	def getIdUsuario(self):
-		return self.idUsuario
+	def getIdPersona(self):
+		return self.idPersona
 
-	def setIdUsuario(self, idUsuario):
-		self.idUsuario = idUsuario
+	def setIdPersona(self, idPersona):
+		self.idPersona = idPersona
 
 	def getNombre(self):
 		return self.nombre
@@ -61,5 +61,5 @@ class Usuario(object):
 		self.login = login
 		
 	def __str__(self):
-		return "Id del usuario: {}, nombre: {}, apellido: {}, dni: {}, tipo de Persona: {}, carrera: {}, login: {}".format(self.idUsuario, self.nombre, self.apellido, self.dni, self.tipoPersona, self.carrera, self.login)
+		return "Id de persona: {}, nombre: {}, apellido: {}, dni: {}, tipo de Persona: {}, carrera: {}, login: {}".format(self.idPersona, self.nombre, self.apellido, self.dni, self.tipoPersona, self.carrera, self.login)
 

@@ -4,6 +4,7 @@ class Login(object):
         self.idLogin = int(dao[0])
         self.mail = str(dao[1])
         self.contrasenia = str(dao[2])
+        self.permisos = int(dao[3])  # 1= administrador, 2= usuario
 
     """def __init__(self, idLogin, mail, contrasenia):
         self.idLogin = idLogin
@@ -28,5 +29,11 @@ class Login(object):
     def setContrasenia(self, contrasenia):
         self.contrasenia = contrasenia
 
+    def getPermisos(self):
+        return self.contrasenia
+
+    def setPermisos(self, permisos):
+        self.permisos = permisos
+
     def __str__(self):
-        return "Id del login: {}, mail del login: {}, contrasenia del login: {}".format(self.idLogin, self.mail, self.contrasenia)
+        return "Id del login: {}, mail del login: {}, contrasenia del login: {}, permisos del login: {}".format(self.idLogin, self.mail, self.contrasenia, self.permisos)

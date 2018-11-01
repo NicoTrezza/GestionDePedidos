@@ -8,13 +8,13 @@ class LoginDao(Conexion):
     def __init__(self):
         super(LoginDao, self).__init__()  		
 
-    def insertar(self, mail, contrasenia):
+    def insertar(self, mail, contrasenia, permisos):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into login (mail, contrasenia) values (%s, %s)'
-            val = (mail, contrasenia)
+            sql = 'insert into login (mail, contrasenia, permisos) values (%s, %s, %s)'
+            val = (mail, contrasenia, permisos)
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +23,13 @@ class LoginDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idLogin, mail, contrasenia):
+    def modificar(self, idLogin, mail, contrasenia, permisos):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update login set mail = %s, contrasenia = %s where idLogin = %s'
-            val = (mail, contrasenia, idLogin)
+            sql = 'update login set mail = %s, contrasenia = %s, permisos = %s where idLogin = %s'
+            val = (mail, contrasenia, permisos, idLogin)
             
             cursor.execute(sql, val)
             self.conexion.commit()
