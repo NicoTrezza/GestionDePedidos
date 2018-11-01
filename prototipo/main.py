@@ -84,7 +84,7 @@ def matricular():
     usuario = ''
     #########
     login_abm = LoginABM()
-    permisos = 1
+    permisos = 0
     try:
         us = login_abm.traerXMail(session['usuario'])
         permisos = us.getPermisos()
@@ -124,9 +124,18 @@ def devolverarchivo():
 def crear():
     crear_aula = forms.CrearAula(request.form)
     usuario = ''
+    ##
+    login_abm = LoginABM()
+    permisos = 0
+    try:
+        us = login_abm.traerXMail(session['usuario'])
+        permisos = us.getPermisos()
+    except:
+        mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
+        flash(mensajeError1)
     if request.method == 'POST' and crear_aula.validate():
         if 'usuario' in session:
-            if session['usuario'] == usuariovalido:
+            if permisos == 1:
                 # abm = AulaABM()
                 print crear_aula.departamento.data
                 print crear_aula.carrera.data
@@ -173,7 +182,6 @@ def crear():
         if usuario == '':
             flash('Necesita estar logueado para crear aula')
 
-
     return render_template('Aula/crear.html', titulo="Crear aula", form=crear_aula)
 
 
@@ -181,9 +189,18 @@ def crear():
 def reutilizar():
     reutilizar_aula = forms.ReutilizarAula(request.form)
     usuario = ''
+    ##
+    login_abm = LoginABM()
+    permisos = 0
+    try:
+        us = login_abm.traerXMail(session['usuario'])
+        permisos = us.getPermisos()
+    except:
+        mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
+        flash(mensajeError1)
     if request.method == 'POST' and reutilizar_aula.validate():
         if 'usuario' in session:
-            if session['usuario'] == usuariovalido:
+            if permisos == 1:
                 print reutilizar_aula.departamento.data
                 print reutilizar_aula.carrera.data
                 print reutilizar_aula.nombreaula.data
@@ -204,9 +221,18 @@ def reutilizar():
 def eliminar():
     eliminar_aula = forms.EliminarAula(request.form)
     usuario = ''
+    ##
+    login_abm = LoginABM()
+    permisos = 0
+    try:
+        us = login_abm.traerXMail(session['usuario'])
+        permisos = us.getPermisos()
+    except:
+        mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
+        flash(mensajeError1)
     if request.method == 'POST' and eliminar_aula.validate():
         if 'usuario' in session:
-            if session['usuario'] == usuariovalido:
+            if permisos == 1:
                 print eliminar_aula.departamento.data
                 print eliminar_aula.carrera.data
                 print eliminar_aula.nombreaula.data
@@ -226,9 +252,18 @@ def eliminar():
 def tutorias():
     tutorias = forms.Tutorias(request.form)
     usuario = ''
+    ##
+    login_abm = LoginABM()
+    permisos = 0
+    try:
+        us = login_abm.traerXMail(session['usuario'])
+        permisos = us.getPermisos()
+    except:
+        mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
+        flash(mensajeError1)
     if request.method == 'POST' and tutorias.validate():
         if 'usuario' in session:
-            if session['usuario'] == usuariovalido:
+            if permisos == 1:
                 print tutorias.motivo.data
                 print tutorias.nombre.data
                 print tutorias.apellido.data
@@ -251,9 +286,18 @@ def tutorias():
 def microtalleres():
     microtalleres = forms.Microtalleres(request.form)
     usuario = ''
+    ##
+    login_abm = LoginABM()
+    permisos = 0
+    try:
+        us = login_abm.traerXMail(session['usuario'])
+        permisos = us.getPermisos()
+    except:
+        mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
+        flash(mensajeError1)
     if request.method == 'POST' and microtalleres.validate():
         if 'usuario' in session:
-            if session['usuario'] == usuariovalido:
+            if permisos == 1:
                 print microtalleres.nombre.data
                 print microtalleres.apellido.data
                 print microtalleres.email.data
