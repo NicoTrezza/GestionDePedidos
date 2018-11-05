@@ -194,6 +194,7 @@ class Microtalleres(Form):
                            [validators.required()]
                            )
 
+
 class Matricular(Form):
     departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
     carreras = ['carrera 1', 'carrera 2', 'carrera 3']

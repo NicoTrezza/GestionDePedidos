@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from conexion import Conexion
 from mysql.connector import Error
 
@@ -8,13 +11,13 @@ class PersonaDao(Conexion):
     def __init__(self):
         super(PersonaDao, self).__init__()	
 
-    def insertar(self, nombre, apellido, dni, emailPersona, tipoPersona, carrera, login):
+    def insertar(self, nombre, apellido, dni, emailPersona, tipoPersona, login):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into persona (nombre, apellido, dni, emailPersona, tipoPersona, carrera, login) values (%s, %s, %s, %s, %s, %s, %s)'
-            val = (nombre, apellido, dni, emailPersona, tipoPersona, carrera, login)
+            sql = 'insert into persona (nombre, apellido, dni, emailPersona, tipoPersona, login) values (%s, %s, %s, %s, %s, %s)'
+            val = (nombre, apellido, dni, emailPersona, tipoPersona, login)
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +26,13 @@ class PersonaDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idPersona, nombre, apellido, dni, emailPersona, tipoPersona, carrera, login):
+    def modificar(self, idPersona, nombre, apellido, dni, emailPersona, tipoPersona, login):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update persona set nombre = %s, apellido = %s, dni = %s, emailPersona = %s, tipoPersona = %s, carrera = %s, login = %s where idUsuario = %s'
-            val = (nombre, apellido, dni, emailPersona, tipoPersona, carrera, login, idPersona)
+            sql = 'update persona set nombre = %s, apellido = %s, dni = %s, emailPersona = %s, tipoPersona = %s, login = %s where idUsuario = %s'
+            val = (nombre, apellido, dni, emailPersona, tipoPersona, login, idPersona)
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -71,6 +74,24 @@ class PersonaDao(Conexion):
             
         return Persona(objeto)
 
+    def traerXDni(self, dni):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from persona where dni = %s'
+            val = (dni,)
+
+            cursor.execute(sql, val)
+
+            objeto = cursor.fetchone()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        return Persona(objeto)
+
     def listar(self):
         try:
             self.conectar()
@@ -89,7 +110,7 @@ class PersonaDao(Conexion):
         lis = []
         
         for objeto in lista:
-            ob = Usuario(objeto)
+            ob = Persona(objeto)
             lis.append(ob)
             
         return lis

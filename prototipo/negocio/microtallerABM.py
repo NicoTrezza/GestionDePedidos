@@ -5,8 +5,8 @@ class MicrotallerABM(object):
     def __init__(self):
         self.dao = MicrotallerDao()
         
-    def insertar(self, nombreMicrotaller, motivoMicrotaller):
-        self.dao.insertar(nombreMicrotaller, motivoMicrotaller)
+    def insertar(self, nombreMicrotaller, motivoMicrotaller, tipo):
+        self.dao.insertar(nombreMicrotaller, motivoMicrotaller, tipo)
         
     def modificar(self, m):
         self.dao.modificar(m.getIdMicrotaller(),  m.getNombreMicrotaller(), m.getMotivoMicrotaller())

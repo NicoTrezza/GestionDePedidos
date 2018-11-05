@@ -13,7 +13,7 @@ class TutoriaDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into tutoria (motivo, fecha, personaTutoria) values (%s, %s, %s, %s)'
+            sql = 'insert into tutoria (motivo, fecha, personaTutoria) values (%s, %s, %s)'
             val = (motivo, fecha, personaTutoria)
         
             cursor.execute(sql, val)

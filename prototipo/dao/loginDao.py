@@ -3,6 +3,7 @@ from mysql.connector import Error
 
 from datos.login import Login
 
+
 class LoginDao(Conexion):
         
     def __init__(self):

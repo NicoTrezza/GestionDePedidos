@@ -1,20 +1,20 @@
 from conexion import Conexion
 from mysql.connector import Error
 
-from datos.microtaller import Microtaller
+from datos.microtaller import MicroTaller
 
 class MicrotallerDao(Conexion):
         
     def __init__(self):
         super(MicrotallerDao, self).__init__()  		
 
-    def insertar(self, nombreMicrotaller, motivoMicrotaller):
+    def insertar(self, nombreMicrotaller, motivoMicrotaller, tipo):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into microtaller (nombreMicrotaller, motivoMicrotaller values (%s, %s, %s)'
-            val = (nombreMicrotaller, motivoMicrotaller)
+            sql = 'insert into microtaller (nombreMicrotaller, motivoMicrotaller, tipo) values (%s, %s, %s)'
+            val = (nombreMicrotaller, motivoMicrotaller, tipo)
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +23,13 @@ class MicrotallerDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idMicrotaller, nombreMicrotaller, motivoMicrotaller):
+    def modificar(self, idMicrotaller, nombreMicrotaller, motivoMicrotaller, tipo):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update microtaller set nombreMicrotaller = %s, motivoMicrotaller = %s where idMicrotaller = %s'
-            val = (nombreMicrotaller, motivoMicrotaller, idMicrotaller)
+            sql = 'update microtaller set nombreMicrotaller = %s, motivoMicrotaller = %s, tipo = %s where idMicrotaller = %s'
+            val = (nombreMicrotaller, motivoMicrotaller, tipo, idMicrotaller)
             
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -69,7 +69,7 @@ class MicrotallerDao(Conexion):
         except Error as e:
             print e
             
-        return Microtaller(objeto)
+        return MicroTaller(objeto)
 
     def listar(self):
         try:
@@ -89,7 +89,7 @@ class MicrotallerDao(Conexion):
         lis = []
         
         for objeto in lista:
-            ob = Microtaller(objeto)
+            ob = MicroTaller(objeto)
             lis.append(ob)
             
         return lis

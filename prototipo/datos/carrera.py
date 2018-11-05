@@ -5,11 +5,6 @@ class Carrera(object):
         self.nombreCarrera = str(dao[1])
         self.departamento = int(dao[2])
 
-    """def __init__(self, idCarrera, nombreCarrera, departamento):
-        self.idCarrera = idCarrera
-        self.nombreCarrera = nombreCarrera
-        self.departamento = departamento"""
-
     def getIdCarreraa(self):
         return self.idCarrera
 

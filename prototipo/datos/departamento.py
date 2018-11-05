@@ -4,10 +4,6 @@ class Departamento(object):
         self.idDepartamento = int(dao[0])
         self.nombreDepartamento = str(dao[1])
 
-    """def __init__(self, idDepartamento, nombreDepartamento:
-        self.idDepartamento = idDepartamento
-        self.nombreDepartamento = nombreDepartamento"""
-
     def getIdDepartamento(self):
         return self.idDepartamento
 

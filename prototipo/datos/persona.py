@@ -1,22 +1,23 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 class Persona(object):
 
 	def __init__(self, dao):
 		self.idPersona = int(dao[0])
-		self.nombre = str(dao[1])
-		self.apellido = str(dao[2])
+		self.nombre = u'{}'.format(dao[1])
+		self.apellido = u'{}'.format(dao[2])
 		self.dni = int(dao[3])
-		self.tipoPersona = int(dao[4])
-		self.carrera = int(dao[5])
-		self.login = int(dao[6])
-
-	"""def __init__(self, idPersona, nombre, apellido, dni, tipoPersona, carrera, login):
-		self.idPersona = idPersona
-		self.nombre = nombre
-		self.apellido = apellido
-		self.dni = dni
-		self.tipoPersona = tipoPersona
-		self.carrera = carrera
-		self.login = login"""
+		try:
+			self.mailPersona = u'{}'.format(dao[4])
+		except:
+			self.mailPersona = None
+		self.tipoPersona = int(dao[5])
+		try:
+			self.login = int(dao[6])
+		except:
+			self.login = None
 
 	def getIdPersona(self):
 		return self.idPersona
@@ -48,12 +49,6 @@ class Persona(object):
 	def setTipoPersona(self, tipoPersona):
 		self.tipoPersona = tipoPersona
 
-	def getCarrera(self):
-		return self.carrera
-
-	def setCarrera(self, carrera):
-		self.carrera = carrera
-
 	def getLogin(self):
 		return self.login
 
@@ -61,5 +56,5 @@ class Persona(object):
 		self.login = login
 		
 	def __str__(self):
-		return "Id de persona: {}, nombre: {}, apellido: {}, dni: {}, tipo de Persona: {}, carrera: {}, login: {}".format(self.idPersona, self.nombre, self.apellido, self.dni, self.tipoPersona, self.carrera, self.login)
+		return u'Id de persona: {}, nombre: {}, apellido: {}, dni: {}, tipo de Persona: {}, login: {}'.format(self.idPersona, self.nombre, self.apellido, self.dni, self.tipoPersona, self.login)
 

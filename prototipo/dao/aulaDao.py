@@ -13,12 +13,27 @@ class AulaDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into aula (nombreAula, urlAula, descripcion, carreraAula) values (%s, %s)'
-            val = (nombreAula, carreraAula)
+            sql = 'insert into aula (nombreAula, urlAula, descripcion, Carrera_idCarrera) values (%s, %s, %s, %s)'
+            val = (nombreAula, urlAula, descripcion, carreraAula)
     
             cursor.execute(sql, val)
             self.conexion.commit()
     
+            self.desconectar()
+        except Error as e:
+            print e
+
+    def insertarpersona(self, idpersona, idaula):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula) values (%s, %s)'
+            val = (idpersona, idaula)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
             self.desconectar()
         except Error as e:
             print e
@@ -69,6 +84,24 @@ class AulaDao(Conexion):
         except Error as e:
             print e
             
+        return Aula(objeto)
+
+    def traerXNombre(self, nombreAula):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from aula where nombreAula = %s'
+            val = (nombreAula,)
+
+            cursor.execute(sql, val)
+
+            objeto = cursor.fetchone()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
         return Aula(objeto)
 
     def listar(self):

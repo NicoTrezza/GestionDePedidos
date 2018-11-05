@@ -1,9 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 class Tutoria(object):
 
     def __init__(self, dao):
         self.idTutoria = int(dao[0])
-        self.motivo = str(dao[2])
-        self.fecha = int(dao[3])
+        self.motivo = u'{}'.format(dao[2])
+        self.fecha = str(dao[3])
         self.personaTutoria = int(dao[4])
 
     """def __init__(self, idTutoria, motivo, fecha, personaTutoria):

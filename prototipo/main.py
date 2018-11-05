@@ -19,6 +19,7 @@ from config import DevelopmentConfig
 from negocio.loginABM import LoginABM
 
 from negocio.aulaABM import AulaABM
+from negocio.personaABM import PersonaABM
 
 from werkzeug.utils import secure_filename
 
@@ -36,6 +37,7 @@ usuariovalido = 'martin'
 @app.before_request
 def before_request():
     pass
+
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
@@ -136,7 +138,8 @@ def crear():
     if request.method == 'POST' and crear_aula.validate():
         if 'usuario' in session:
             if permisos == 1:
-                # abm = AulaABM()
+                aula_abm = AulaABM()
+                persona_abm = PersonaABM()
                 print crear_aula.departamento.data
                 print crear_aula.carrera.data
                 print crear_aula.nombreaula.data
@@ -149,14 +152,43 @@ def crear():
                 print crear_aula.rol.data
                 print crear_aula.descripcion.data
 
+                # guardo en la base de datos
+                aula = ''
+                try:
+                    persona = persona_abm.traerXDni(crear_aula.dni.data)
+                    idpersona = persona.idPersona
+                except:
+                    persona = None
+
+                try:
+                    aula_abm.traerXNombre(crear_aula.nombreaula.data)
+                except:
+                    aula = None
+
+                if aula is None:
+                    if persona is not None:
+                        aula_abm.insertar(crear_aula.nombreaula.data, 'ulr', crear_aula.descripcion.data, crear_aula.carrera.data)
+                        aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
+                    else:
+                        persona_abm.insertar(crear_aula.nombredocente.data, crear_aula.apellidodocente.data,
+                                             crear_aula.dni.data, crear_aula.emailprofesor.data, 1, None)
+                        persona = persona_abm.traerXDni(crear_aula.dni.data)
+                        idpersona = persona.idPersona
+                        aula_abm.insertar(crear_aula.nombreaula.data, 'ulr', crear_aula.descripcion.data, crear_aula.carrera.data)
+                        aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
+                else:
+                    flash('el aula ya existe')
+
+                # creo el pdf
                 crearPdf.crear_aula(crear_aula.departamento.data, crear_aula.carrera.data, crear_aula.nombreaula.data,
                                     crear_aula.nombredirector.data, crear_aula.emaildirector.data,
                                     crear_aula.nombredocente.data, crear_aula.apellidodocente.data, crear_aula.dni.data,
                                     crear_aula.emailprofesor.data, crear_aula.rol.data, crear_aula.descripcion.data)
 
-                #recipients es una lista!!
+                # creo el mail a enviar
                 msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
-                              recipients=[crear_aula.emailprofesor.data])
+                              recipients=[crear_aula.emailprofesor.data])  # recipients es una lista!!
+
                 msg.html = render_template('email.html',
                                            departamento=crear_aula.departamento.data,
                                            carrera=crear_aula.carrera.data,
@@ -169,14 +201,17 @@ def crear():
                                            emailprofesor=crear_aula.emailprofesor.data,
                                            rol=crear_aula.rol.data,
                                            descripcion=crear_aula.descripcion.data)
+                # archivo pdf adjunto
                 with app.open_resource("crear_aula.pdf") as pdf:
                     msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
 
-                mail.send(msg)
+                # envio el mail
+                # mail.send(msg)
+
+                # elimino el pdf despues de enviado el mail
                 os.remove('crear_aula.pdf')
                 usuario = session['usuario']
-                # abm.insertar(crear_aula.dependencia.data, crear_aula.nombreAula.data, crear_aula.nombreprofesor.data,
-                #             crear_aula.email.data)
+
             else:
                 flash('No tiene permisos')
         if usuario == '':
