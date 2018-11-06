@@ -7,6 +7,9 @@ class MicrotallerABM(object):
         
     def insertar(self, nombreMicrotaller, motivoMicrotaller, tipo):
         self.dao.insertar(nombreMicrotaller, motivoMicrotaller, tipo)
+
+    def insertarpersona(self, idMicrotaller, idPersona):
+        self.dao.insertarpersona(idMicrotaller, idPersona)
         
     def modificar(self, m):
         self.dao.modificar(m.getIdMicrotaller(),  m.getNombreMicrotaller(), m.getMotivoMicrotaller())
@@ -19,3 +22,9 @@ class MicrotallerABM(object):
     
     def listar(self):
         return self.dao.listar()
+
+    def listarDocentes(self):
+        return self.dao.listarDocentes()
+
+    def listarEstudiantes(self):
+        return self.dao.listarEstudiantes()

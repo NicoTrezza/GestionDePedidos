@@ -104,6 +104,68 @@
       <div class="row">
           <form method="POST">
               {% from "macro_forms.html" import render_field %}
+
+              <div class="col s12">
+        <div class="card center">
+          <div class="card-content">
+            <span class="card-title">Usted es:</span>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                 <div>
+			          <a id="mostrardocente" onclick="myFunction()" class="btn-small light-blue darken-3">docente</a>
+					  <a id= "mostrarestudiante" onclick="myFunction()" class="btn-small light-blue darken-3">estudiante</a>
+
+                         <script type="text/javascript">
+                             var x = document.getElementById("docente");
+                             var y = document.getElementById("estudiante");
+
+                            function myFunction() {
+                            var x = document.getElementById("docente");
+                             var y = document.getElementById("estudiante");
+                                if (x.style.display === "none") {
+                                    x.style.display = "block";
+                                    y.style.display = "none"
+                                } else {
+                                    x.style.display = "none";
+                                    y.style.display = "block"
+                                }
+                                    }
+
+                         </script>
+
+                     <div style="display:none;" id="docente">
+                     {%for microtaller in microtalleres_docentes%}
+                     <ul>
+                          <li>
+                            <label for={{microtaller.getIdMicrotaller()}}>{{microtaller.getNombreMicrotaller()}}</label>
+                            <input style="opacity: 1; position: relative;" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
+                          </li>
+                    </ul>
+                     {%endfor%}
+                    </div>
+                     <div style="display:none;" id="estudiante">
+                        {%for microtaller in microtalleres_estudiantes%}
+                         <ul>
+                          <li>
+                            <label for={{microtaller.getIdMicrotaller()}}>{{microtaller.getNombreMicrotaller()}}</label>
+                            <input style="opacity: 1; position: relative;" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
+                          </li>
+                    </ul>
+                         {%endfor%}
+                     </div>
+
+			      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <div class="col s12">
         <div class="card center">
 	        <div class="card-content">
@@ -144,25 +206,7 @@
 	      </div>
 	    </div>
 		
-		<div class="col s12">
-        <div class="card center">
-          <div class="card-content">
-            <span class="card-title">Usted es:</span>
-          </div>
-          <div class="card-action">
-            <div class="row">
-              <div class="col s12">
-                <div class="row">
-                 <div>
-			          <a class="btn-small light-blue darken-3">docente</a> 
-					  <a class="btn-small light-blue darken-3">estudiante</a>
-			      </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
         <div class="row center">
 		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
@@ -174,6 +218,7 @@
 
     </div>
     <br><br>
+
   </div>
 
 {% endblock %}

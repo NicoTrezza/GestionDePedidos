@@ -20,6 +20,7 @@ from negocio.loginABM import LoginABM
 
 from negocio.aulaABM import AulaABM
 from negocio.personaABM import PersonaABM
+from negocio.microtallerABM import MicrotallerABM
 
 from werkzeug.utils import secure_filename
 
@@ -171,7 +172,7 @@ def crear():
                         aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
                     else:
                         persona_abm.insertar(crear_aula.nombredocente.data, crear_aula.apellidodocente.data,
-                                             crear_aula.dni.data, crear_aula.emailprofesor.data, 1, None)
+                                             crear_aula.dni.data, crear_aula.emailprofesor.data, 4, None)
                         persona = persona_abm.traerXDni(crear_aula.dni.data)
                         idpersona = persona.idPersona
                         aula_abm.insertar(crear_aula.nombreaula.data, 'ulr', crear_aula.descripcion.data, crear_aula.carrera.data)
@@ -323,6 +324,9 @@ def microtalleres():
     usuario = ''
     ##
     login_abm = LoginABM()
+    microtaller_abm = MicrotallerABM()
+    microtalleres_docentes = microtaller_abm.listarDocentes()
+    microtalleres_estudiantes = microtaller_abm.listarEstudiantes()
     permisos = 0
     try:
         us = login_abm.traerXMail(session['usuario'])
@@ -333,6 +337,7 @@ def microtalleres():
     if request.method == 'POST' and microtalleres.validate():
         if 'usuario' in session:
             if permisos == 1:
+                persona_abm = PersonaABM()
                 print microtalleres.nombre.data
                 print microtalleres.apellido.data
                 print microtalleres.email.data
@@ -341,12 +346,63 @@ def microtalleres():
                 print microtalleres.departamento.data
                 print microtalleres.carrera.data
                 print microtalleres.motivo.data
+                print request.form['microtaller']
+
+                # guardo en la base de datos
+                try:
+                    persona = persona_abm.traerXDni(microtalleres.dni.data)
+                    idpersona = persona.idPersona
+                except:
+                    persona = None
+
+                if persona is not None:
+                    microtaller_abm.insertarpersona(request.form['microtaller'], idpersona)
+                else:
+                    persona_abm.insertar(microtalleres.nombre.data, microtalleres.apellido.data,
+                                         microtalleres.dni.data, microtalleres.email.data, 4, None)
+                    persona = persona_abm.traerXDni(microtalleres.dni.data)
+                    idpersona = persona.idPersona
+                    microtaller_abm.insertarpersona(request.form['microtaller'], idpersona)
+
+                    # creo el pdf
+                    crearPdf.microtaller(microtalleres.nombre.data, microtalleres.apellido.data,
+                                         microtalleres.email.data, microtalleres.telefono.data,
+                                         microtalleres.dni.data,
+                                         microtalleres.departamento.data, microtalleres.carrera.data,
+                                         microtalleres.motivo.data, request.form['microtaller'])
+
+                    # creo el mail a enviar
+                    msg = Message('Microtaller', sender=app.config['MAIL_USERNAME'],
+                                  recipients=[microtalleres.email.data])  # recipients es una lista!!
+
+                    msg.html = render_template('email_microtaller.html',
+                                               nombre=microtalleres.nombre.data,
+                                               apellido=microtalleres.apellido.data,
+                                               email=microtalleres.email.data,
+                                               telefono=microtalleres.telefono.data,
+                                               dni=microtalleres.dni.data,
+                                               departamento=microtalleres.departamento.data,
+                                               carrera=microtalleres.carrera.data,
+                                               motivo=microtalleres.motivo.data,
+                                               microtaller=request.form['microtaller']
+                                               )
+                    # archivo pdf adjunto
+                    with app.open_resource("microtaller.pdf") as pdf:
+                        msg.attach("microtaller.pdf", "documento/pdf", pdf.read())
+
+                    # envio el mail
+                    mail.send(msg)
+
+                    # elimino el pdf despues de enviado el mail
+                    os.remove('microtaller.pdf')
+
                 usuario = session['usuario']
             else:
                 flash('No tiene permisos')
         if usuario == '':
             flash('Necesita estar logueado para pedir microtaller')
-    return render_template('Capacitacion/microtalleres.html', titulo="Microtalleres", form=microtalleres)
+    return render_template('Capacitacion/microtalleres.html', titulo="Microtalleres", form=microtalleres,
+                           microtalleres_docentes=microtalleres_docentes, microtalleres_estudiantes=microtalleres_estudiantes)
 
 
 if __name__ == '__main__':

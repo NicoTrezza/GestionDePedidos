@@ -23,6 +23,21 @@ class MicrotallerDao(Conexion):
         except Error as e:
             print e
 
+    def insertarpersona(self, idMicrotaller, idPersona):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'insert into microtallerpersona (Microtaller_idMicrotaller, Persona_idPersona) values (%s, %s)'
+            val = (idMicrotaller, idPersona)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
     def modificar(self, idMicrotaller, nombreMicrotaller, motivoMicrotaller, tipo):
         try:
             self.conectar()
@@ -92,4 +107,50 @@ class MicrotallerDao(Conexion):
             ob = MicroTaller(objeto)
             lis.append(ob)
             
+        return lis
+
+    def listarDocentes(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from microtaller where tipo = 1'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            ob = MicroTaller(objeto)
+            lis.append(ob)
+
+        return lis
+
+    def listarEstudiantes(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from microtaller where tipo = 2'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            ob = MicroTaller(objeto)
+            lis.append(ob)
+
         return lis
