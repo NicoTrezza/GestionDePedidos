@@ -180,37 +180,38 @@ def crear():
                 else:
                     flash('el aula ya existe')
 
-                # creo el pdf
-                crearPdf.crear_aula(crear_aula.departamento.data, crear_aula.carrera.data, crear_aula.nombreaula.data,
-                                    crear_aula.nombredirector.data, crear_aula.emaildirector.data,
-                                    crear_aula.nombredocente.data, crear_aula.apellidodocente.data, crear_aula.dni.data,
-                                    crear_aula.emailprofesor.data, crear_aula.rol.data, crear_aula.descripcion.data)
+                if aula is None:
+                    # creo el pdf
+                    crearPdf.crear_aula(crear_aula.departamento.data, crear_aula.carrera.data, crear_aula.nombreaula.data,
+                                        crear_aula.nombredirector.data, crear_aula.emaildirector.data,
+                                        crear_aula.nombredocente.data, crear_aula.apellidodocente.data, crear_aula.dni.data,
+                                        crear_aula.emailprofesor.data, crear_aula.rol.data, crear_aula.descripcion.data)
 
-                # creo el mail a enviar
-                msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
-                              recipients=[crear_aula.emailprofesor.data])  # recipients es una lista!!
+                    # creo el mail a enviar
+                    msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
+                                  recipients=[crear_aula.emailprofesor.data])  # recipients es una lista!!
 
-                msg.html = render_template('email.html',
-                                           departamento=crear_aula.departamento.data,
-                                           carrera=crear_aula.carrera.data,
-                                           nombreaula=crear_aula.nombreaula.data,
-                                           nombredirector=crear_aula.nombredirector.data,
-                                           emaildirector=crear_aula.emaildirector.data,
-                                           nombredocente=crear_aula.nombredocente.data,
-                                           apellidodocente=crear_aula.apellidodocente.data,
-                                           dni=crear_aula.dni.data,
-                                           emailprofesor=crear_aula.emailprofesor.data,
-                                           rol=crear_aula.rol.data,
-                                           descripcion=crear_aula.descripcion.data)
-                # archivo pdf adjunto
-                with app.open_resource("crear_aula.pdf") as pdf:
-                    msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
+                    msg.html = render_template('email.html',
+                                               departamento=crear_aula.departamento.data,
+                                               carrera=crear_aula.carrera.data,
+                                               nombreaula=crear_aula.nombreaula.data,
+                                               nombredirector=crear_aula.nombredirector.data,
+                                               emaildirector=crear_aula.emaildirector.data,
+                                               nombredocente=crear_aula.nombredocente.data,
+                                               apellidodocente=crear_aula.apellidodocente.data,
+                                               dni=crear_aula.dni.data,
+                                               emailprofesor=crear_aula.emailprofesor.data,
+                                               rol=crear_aula.rol.data,
+                                               descripcion=crear_aula.descripcion.data)
+                    # archivo pdf adjunto
+                    with app.open_resource("crear_aula.pdf") as pdf:
+                        msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
 
-                # envio el mail
-                # mail.send(msg)
+                    # envio el mail
+                    # mail.send(msg)
 
-                # elimino el pdf despues de enviado el mail
-                os.remove('crear_aula.pdf')
+                    # elimino el pdf despues de enviado el mail
+                    os.remove('crear_aula.pdf')
                 usuario = session['usuario']
 
             else:
