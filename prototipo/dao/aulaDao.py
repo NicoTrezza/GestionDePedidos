@@ -8,13 +8,13 @@ class AulaDao(Conexion):
     def __init__(self):
         super(AulaDao, self).__init__()  	
 
-    def insertar(self, nombreAula, urlAula, descripcion, carreraAula):
+    def insertar(self, nombreAula, descripcion, iddepartamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into aula (nombreAula, urlAula, descripcion, Carrera_idCarrera) values (%s, %s, %s, %s)'
-            val = (nombreAula, urlAula, descripcion, carreraAula)
+            sql = 'insert into aula (nombreAula, descripcion, Departamento_idDepartamento) values (%s, %s, %s)'
+            val = (nombreAula, descripcion, iddepartamento)
     
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -38,13 +38,13 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idAula, nombreAula, urlAula, descripcion, carreraAula):
+    def modificar(self, idAula, nombreAula, descripcion, carreraAula):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update aula set nombreAula = %s, urlAula = %s, descripcion = %s, carreraAula = %s where idAula = %s'
-            val = (nombreAula, urlAula, descripcion, carreraAula, idAula)
+            sql = 'update aula set nombreAula = %s, descripcion = %s, carreraAula = %s where idAula = %s'
+            val = (nombreAula, descripcion, carreraAula, idAula)
             
             cursor.execute(sql, val)
             self.conexion.commit()

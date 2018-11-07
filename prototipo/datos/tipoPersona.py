@@ -2,11 +2,7 @@ class TipoPersona(object):
 
     def __init__(self, dao):
         self.idTipoPersona = int(dao[0])
-        self.rol = str(dao[1])
-
-    """def __init__(self, idTipoPersona, rol):
-        self.idTipoPersona = idTipoPersona
-        self.rol = rol"""
+        self.rol = u'{}'.format(dao[1])
 
     def getIdTipoPersona(self):
         return self.idTipoPersona

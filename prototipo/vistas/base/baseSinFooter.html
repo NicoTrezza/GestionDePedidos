@@ -31,35 +31,49 @@
     });
   	</script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous">
     </script>
 
     <script>
       $(document).ready(function() {
-        $('#foodkind').change(function() {
+        $('#departamento').change(function() {
 
-          var foodkind = $('#foodkind').val();
+          var departamento = $('#departamento').val();
 
           // Make Ajax Request and expect JSON-encoded data
           $.getJSON(
-            '/get_food' + '/' + foodkind,
+            '/get_food' + '/' + departamento,
             function(data) {
 
               // Remove old options
-              $('#food').find('option').remove();
+              $('#carrera').find('option').remove();
 
               // Add new items
               $.each(data, function(key, val) {
-                var option_item = '<option value="' + val + '">' + val + '</option>'
-                $('#food').append(option_item);
+                key = key+1
+                var option_item = '<option value="' + key + '">' + val + '</option>'
+                $('#carrera').append(option_item);
               });
             }
           );
         });
       });
     </script>
+
+    <script type="text/javascript">
+     function show_options() {
+         var d = document.getElementById("departamento");
+         var c = document.getElementById("carrera");
+         var value = d.options[d.selectedIndex].value;
+             if (value == 11){
+                c.style.display = "block";
+             } else{
+                c.style.display = "none";
+             }
+     }
+     </script>
 
 </head>
 <body class="grey lighten-4">

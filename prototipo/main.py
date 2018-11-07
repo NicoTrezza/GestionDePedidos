@@ -38,6 +38,7 @@ mail = Mail()
 
 usuariovalido = 'martin'
 
+
 @app.before_request
 def before_request():
     pass
@@ -48,7 +49,7 @@ def index():
     usuario = ''
     if 'usuario' in session:
         usuario = session['usuario']
-        print usuario
+        # print usuario
     return render_template('index.html', titulo="Campus Gestion", usuario=usuario)
 
 
@@ -97,15 +98,15 @@ def matricular():
     except:
         mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
         flash(mensajeError1)
-    print usuario
-    print permisos
+    # print usuario
+    # print permisos
 
     ########
     if request.method == 'POST' and matricular.validate():
         if 'usuario' in session:
             if permisos == 1:
-                print matricular.departamento.data
-                print matricular.carrera.data
+                # print matricular.departamento.data
+                # print request.form['carrera']
 
                 f = request.files['file']
                 filename = secure_filename(f.filename)
@@ -145,10 +146,8 @@ def crear():
                 aula_abm = AulaABM()
                 persona_abm = PersonaABM()
                 print crear_aula.departamento.data
-                print crear_aula.carrera.data
+                print request.form['carrera']
                 print crear_aula.nombreaula.data
-                print crear_aula.nombredirector.data
-                print crear_aula.emaildirector.data
                 print crear_aula.nombredocente.data
                 print crear_aula.apellidodocente.data
                 print crear_aula.dni.data
@@ -171,24 +170,29 @@ def crear():
 
                 if aula is None:
                     if persona is not None:
-                        aula_abm.insertar(crear_aula.nombreaula.data, 'ulr', crear_aula.descripcion.data, crear_aula.carrera.data)
+                        aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data, crear_aula.departamento.data)
                         aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
                     else:
                         persona_abm.insertar(crear_aula.nombredocente.data, crear_aula.apellidodocente.data,
-                                             crear_aula.dni.data, crear_aula.emailprofesor.data, 4, None)
+                                             crear_aula.dni.data, crear_aula.emailprofesor.data, crear_aula.rol.data, None)
                         persona = persona_abm.traerXDni(crear_aula.dni.data)
                         idpersona = persona.idPersona
-                        aula_abm.insertar(crear_aula.nombreaula.data, 'ulr', crear_aula.descripcion.data, crear_aula.carrera.data)
+                        aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data, crear_aula.departamento.data)
                         aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
                 else:
                     flash('el aula ya existe')
 
                 if aula is None:
                     # creo el pdf
-                    crearPdf.crear_aula(crear_aula.departamento.data, crear_aula.carrera.data, crear_aula.nombreaula.data,
-                                        crear_aula.nombredirector.data, crear_aula.emaildirector.data,
-                                        crear_aula.nombredocente.data, crear_aula.apellidodocente.data, crear_aula.dni.data,
-                                        crear_aula.emailprofesor.data, crear_aula.rol.data, crear_aula.descripcion.data)
+                    crearPdf.crear_aula(crear_aula.departamento.data,
+                                        request.form['carrera'],
+                                        crear_aula.nombreaula.data,
+                                        crear_aula.nombredocente.data,
+                                        crear_aula.apellidodocente.data,
+                                        crear_aula.dni.data,
+                                        crear_aula.emailprofesor.data,
+                                        crear_aula.rol.data,
+                                        crear_aula.descripcion.data)
 
                     # creo el mail a enviar
                     msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
@@ -196,10 +200,8 @@ def crear():
 
                     msg.html = render_template('email.html',
                                                departamento=crear_aula.departamento.data,
-                                               carrera=crear_aula.carrera.data,
+                                               carrera=request.form['carrera'],
                                                nombreaula=crear_aula.nombreaula.data,
-                                               nombredirector=crear_aula.nombredirector.data,
-                                               emaildirector=crear_aula.emaildirector.data,
                                                nombredocente=crear_aula.nombredocente.data,
                                                apellidodocente=crear_aula.apellidodocente.data,
                                                dni=crear_aula.dni.data,
@@ -214,7 +216,7 @@ def crear():
                     # mail.send(msg)
 
                     # elimino el pdf despues de enviado el mail
-                    os.remove('crear_aula.pdf')
+                    # os.remove('crear_aula.pdf')
                 usuario = session['usuario']
 
             else:
@@ -242,11 +244,9 @@ def reutilizar():
         if 'usuario' in session:
             if permisos == 1:
                 print reutilizar_aula.departamento.data
-                print reutilizar_aula.carrera.data
+                print request.form['carrera']
                 print reutilizar_aula.nombreaula.data
                 print reutilizar_aula.direccionulr.data
-                print reutilizar_aula.nombredirector.data
-                print reutilizar_aula.emaildirector.data
                 print reutilizar_aula.nombrenuevo.data
                 print reutilizar_aula.otro.data
                 usuario = session['usuario']
@@ -274,11 +274,9 @@ def eliminar():
         if 'usuario' in session:
             if permisos == 1:
                 print eliminar_aula.departamento.data
-                print eliminar_aula.carrera.data
+                print request.form['carrera']
                 print eliminar_aula.nombreaula.data
                 print eliminar_aula.direccionulr.data
-                print eliminar_aula.nombredirector.data
-                print eliminar_aula.emaildirector.data
                 print eliminar_aula.motivo.data
                 usuario = session['usuario']
             else:
@@ -312,7 +310,7 @@ def tutorias():
                 print tutorias.dni.data
                 print tutorias.fecha.data
                 print tutorias.departamento.data
-                print tutorias.carrera.data
+                print request.form['carrera']
                 print tutorias.rol.data
                 usuario = session['usuario']
             else:
@@ -348,7 +346,7 @@ def microtalleres():
                 print microtalleres.telefono.data
                 print microtalleres.dni.data
                 print microtalleres.departamento.data
-                print microtalleres.carrera.data
+                print request.form['carrera']
                 print microtalleres.motivo.data
                 print request.form['microtaller']
 
@@ -369,11 +367,15 @@ def microtalleres():
                     microtaller_abm.insertarpersona(request.form['microtaller'], idpersona)
 
                     # creo el pdf
-                    crearPdf.microtaller(microtalleres.nombre.data, microtalleres.apellido.data,
-                                         microtalleres.email.data, microtalleres.telefono.data,
+                    crearPdf.microtaller(microtalleres.nombre.data,
+                                         microtalleres.apellido.data,
+                                         microtalleres.email.data,
+                                         microtalleres.telefono.data,
                                          microtalleres.dni.data,
-                                         microtalleres.departamento.data, microtalleres.carrera.data,
-                                         microtalleres.motivo.data, request.form['microtaller'])
+                                         microtalleres.departamento.data,
+                                         request.form['carrera'],
+                                         microtalleres.motivo.data,
+                                         request.form['microtaller'])
 
                     # creo el mail a enviar
                     msg = Message('Microtaller', sender=app.config['MAIL_USERNAME'],
@@ -386,7 +388,7 @@ def microtalleres():
                                                telefono=microtalleres.telefono.data,
                                                dni=microtalleres.dni.data,
                                                departamento=microtalleres.departamento.data,
-                                               carrera=microtalleres.carrera.data,
+                                               carrera=request.form['carrera'],
                                                motivo=microtalleres.motivo.data,
                                                microtaller=request.form['microtaller']
                                                )
@@ -395,10 +397,10 @@ def microtalleres():
                         msg.attach("microtaller.pdf", "documento/pdf", pdf.read())
 
                     # envio el mail
-                    mail.send(msg)
+                    # mail.send(msg)
 
                     # elimino el pdf despues de enviado el mail
-                    os.remove('microtaller.pdf')
+                    # os.remove('microtaller.pdf')
 
                 usuario = session['usuario']
             else:
@@ -408,24 +410,32 @@ def microtalleres():
     return render_template('Capacitacion/microtalleres.html', titulo="Microtalleres", form=microtalleres,
                            microtalleres_docentes=microtalleres_docentes, microtalleres_estudiantes=microtalleres_estudiantes)
 
-carrera_abm = CarreraABM()
-carreras = carrera_abm.listarxdepartamento(1)
-eleccion = [(str(c.getIdCarreraa()), c.getNombreCarrera()) for c in carreras]
 
-food = {
-    '1': eleccion,
-    # '1': ['apple', 'banana', 'cherry'],
-    '2': ['onion', 'cucumber'],
-    '3': ['sausage', 'beef'],
+carrera_abm = CarreraABM()
+carreras = carrera_abm.listarxdepartamento(11)
+eleccion = [(c.getNombreCarrera()) for c in carreras]
+
+carrera = {
+    '1': ['No aplica'],
+    '2': ['No aplica'],
+    '3': ['No aplica'],
+    '4': ['No aplica'],
+    '5': ['No aplica'],
+    '6': ['No aplica'],
+    '7': ['No aplica'],
+    '8': ['No aplica'],
+    '9': ['No aplica'],
+    '10': ['No aplica'],
+    '11': eleccion,
 }
 
 
-@app.route('/get_food/<foodkind>')
-def get_food(foodkind):
-    if foodkind not in food:
+@app.route('/get_food/<departamento>')
+def get_food(departamento):
+    if departamento not in carrera:
         return jsonify([])
     else:
-        return jsonify(food[foodkind])
+        return jsonify(carrera[departamento])
 
 
 if __name__ == '__main__':

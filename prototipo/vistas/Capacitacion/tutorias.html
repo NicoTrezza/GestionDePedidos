@@ -148,8 +148,10 @@
                         {{ render_field(form.dni) }}
 			        </div>
 
-					{{ render_field(form.departamento, class='browser-default') }}
-                      {{ render_field(form.carrera, class='browser-default') }}
+					{{ render_field(form.departamento, onchange="show_options()", class='browser-default') }}
+
+                      <select style="display:none;" class="browser-default" id="carrera" name="carrera">
+				        </select>
                       {{ render_field(form.rol, class='browser-default') }}
 
 					<div class="input-field col s12">
@@ -160,14 +162,15 @@
 	      </div>
 	    </div>
 
-        <div class="row center">
+
+      </div>
+          <div class="row center">
 		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
         </div>
-      </div>
-              <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
-		  </form>
-    </div>
 
+    </div>
+<input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+		  </form>
     </div>
 
     <br><br>

@@ -1,20 +1,21 @@
 from reportlab.pdfgen import canvas
 
 
-def crear_aula(departamento, carrera, nombreaula, nombredirector, emaildirector, nombredocente, apellidodocente,
+def crear_aula(departamento, carrera, nombreaula, nombredocente, apellidodocente,
                dni, emailprofesor, rol, descripcion):
     c = canvas.Canvas("crear_aula.pdf")
     c.drawString(100, 750, departamento)
-    c.drawString(100, 740, carrera)
+    if departamento == '11':
+        c.drawString(100, 740, carrera)
+    else:
+        c.drawString(100, 740, '------------')
     c.drawString(100, 730, nombreaula)
-    c.drawString(100, 720, nombredirector)
-    c.drawString(100, 710, emaildirector)
-    c.drawString(100, 700, nombredocente)
-    c.drawString(100, 690, apellidodocente)
-    c.drawString(100, 680, dni)
-    c.drawString(100, 670, emailprofesor)
-    c.drawString(100, 660, rol)
-    c.drawString(100, 650, descripcion)
+    c.drawString(100, 720, nombredocente)
+    c.drawString(100, 710, apellidodocente)
+    c.drawString(100, 700, dni)
+    c.drawString(100, 690, emailprofesor)
+    c.drawString(100, 680, rol)
+    c.drawString(100, 670, descripcion)
 
     c.save()
 
@@ -33,7 +34,10 @@ def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, mo
     c.drawString(100, 720, telefono)
     c.drawString(100, 710, dni)
     c.drawString(100, 700, departamento)
-    c.drawString(100, 690, carrera)
+    if departamento == '11':
+        c.drawString(100, 690, carrera)
+    else:
+        c.drawString(100, 690, '------------')
     c.drawString(100, 680, motivo)
     c.drawString(100, 690, microtaller)
 

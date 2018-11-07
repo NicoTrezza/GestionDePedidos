@@ -111,19 +111,15 @@
 			    <div class="col s12">
 			      <div class="row">
 			        {% from "macro_forms.html" import render_field %}
-						{{ render_field(form.departamento, class='browser-default') }}
-						{{ render_field(form.carrera, class='browser-default') }}
+						{{ render_field(form.departamento, onchange="show_options()", class='browser-default') }}
+
+                      <select style="display:none;" class="browser-default" id="carrera" name="carrera">
+				        </select>
 			        <div class="input-field col s6">
 						{{ render_field(form.nombreaula) }}
 			        </div>
 					<div class="input-field col s6">
 						{{ render_field(form.direccionulr) }}
-			        </div>
-			        <div class="input-field col s6">
-						{{ render_field(form.nombredirector) }}
-			        </div>
-			        <div class="input-field col s6">
-						{{ render_field(form.emaildirector) }}
 			        </div>
 			    </div>
 			  </div>

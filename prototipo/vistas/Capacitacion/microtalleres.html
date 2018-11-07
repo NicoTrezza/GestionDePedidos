@@ -3,6 +3,37 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
+                        <script type="text/javascript">
+                            function myFunction() {
+                            var x = document.getElementById("docente");
+                             var y = document.getElementById("estudiante");
+                                if (x.style.display === "none") {
+                                    x.style.display = "block";
+                                    y.style.display = "none"
+                                } else {
+                                    x.style.display = "none";
+                                    y.style.display = "block"
+                                }
+                                    }
+
+                         </script>
+                        <script type="text/javascript">
+                            function myFunction2() {
+
+                            var x = document.getElementById("docente");
+                             var y = document.getElementById("estudiante");
+
+                                if (x.style.display == "none") {
+                                    x.style.display = "block";
+                                    y.style.display = "none"
+                                } else {
+                                    x.style.display = "none";
+                                    y.style.display = "block"
+                                }
+                                    }
+
+                         </script>
+
   <nav class="nav-extended light-blue darken-3">
     <div class="nav-wrapper">
       <div class="nav-wrapper container">
@@ -115,33 +146,50 @@
               <div class="col s12">
                 <div class="row">
                  <div>
+                     <!--
 			          <a id="mostrardocente" onclick="myFunction()" class="btn-small light-blue darken-3">docente</a>
 					  <a id= "mostrarestudiante" onclick="myFunction()" class="btn-small light-blue darken-3">estudiante</a>
+                     -->
+                     <!-- Switch -->
+                      <p>
+                      <label>
+                        <input name="group1" id = "docentecheck" type="radio" onchange="myFunction2()" />
+                        <span>Docente</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input name="group1" id = "estudiantecheck" type="radio" onchange="myFunction2()" />
+                        <span>Estudiante</span>
+                      </label>
+                    </p>
 
-                         <script type="text/javascript">
-                             var x = document.getElementById("docente");
-                             var y = document.getElementById("estudiante");
+			      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                            function myFunction() {
-                            var x = document.getElementById("docente");
-                             var y = document.getElementById("estudiante");
-                                if (x.style.display === "none") {
-                                    x.style.display = "block";
-                                    y.style.display = "none"
-                                } else {
-                                    x.style.display = "none";
-                                    y.style.display = "block"
-                                }
-                                    }
 
-                         </script>
-
+              <div class="col s12">
+        <div class="card center">
+          <div class="card-content">
+            <span class="card-title">Microtalleres:</span>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                 <div>
+                    <!--
                      <div style="display:none;" id="docente">
                      {%for microtaller in microtalleres_docentes%}
                      <ul>
                           <li>
                             <label for={{microtaller.getIdMicrotaller()}}>{{microtaller.getNombreMicrotaller()}}</label>
-                            <input style="opacity: 1; position: relative;" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
+                              <input style="opacity: 1; position: relative;" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
                           </li>
                     </ul>
                      {%endfor%}
@@ -156,6 +204,35 @@
                     </ul>
                          {%endfor%}
                      </div>
+                    -->
+
+
+                     <div style="display:none;" id="docente">
+                     {%for microtaller in microtalleres_docentes%}
+                     <ul>
+                          <li>
+                            <label>
+                              <input class="with-gap" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
+                                <span>{{microtaller.getNombreMicrotaller()}}</span>
+                            </label>
+                          </li>
+                    </ul>
+                     {%endfor%}
+                    </div>
+                     <div style="display:none;" id="estudiante">
+                        {%for microtaller in microtalleres_estudiantes%}
+                         <ul>
+                          <li>
+                            <label>
+                                <input class="with-gap" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
+                                <span>{{microtaller.getNombreMicrotaller()}}</span>
+                            </label>
+                          </li>
+                    </ul>
+                         {%endfor%}
+                     </div>
+
+
 
 			      </div>
                 </div>
@@ -164,7 +241,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="col s12">
         <div class="card center">
@@ -193,8 +269,10 @@
                         {{ render_field(form.dni) }}
 			        </div>
 
-					{{ render_field(form.departamento, class='browser-default') }}
-                      {{ render_field(form.carrera, class='browser-default') }}
+					{{ render_field(form.departamento, onchange="show_options()", class='browser-default') }}
+
+                      <select style="display:none;" class="browser-default" id="carrera" name="carrera">
+				        </select>
 
 					<div class="input-field col s12">
                         {{ render_field(form.motivo) }}

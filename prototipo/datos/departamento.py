@@ -2,7 +2,7 @@ class Departamento(object):
 
     def __init__(self, dao):
         self.idDepartamento = int(dao[0])
-        self.nombreDepartamento = str(dao[1])
+        self.nombreDepartamento = u'{}'.format(dao[1])
 
     def getIdDepartamento(self):
         return self.idDepartamento

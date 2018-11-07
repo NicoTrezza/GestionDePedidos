@@ -13,7 +13,7 @@ class CarreraDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into carrera (nombreCarrera, departamento) values (%s, %s)'
+            sql = 'insert into carrera (nombreCarrera, Departamento_idDepartamento) values (%s, %s)'
             val = (nombreCarrera, departamento)
         
             cursor.execute(sql, val)
@@ -99,7 +99,7 @@ class CarreraDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'select * from carrera where departamento = %s'
+            sql = 'select * from carrera where Departamento_idDepartamento = %s'
             val = (iddepartamento, )
 
             cursor.execute(sql, val)

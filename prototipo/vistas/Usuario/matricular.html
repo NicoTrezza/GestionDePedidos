@@ -157,8 +157,10 @@
 	          <p>Indique la procedencia del pedido.</p>
 	        </div>
 	        <div class="card-action">
-	          {{ render_field(form.foodkind, class='browser-default') }}
-				{{ render_field(form.food, class='browser-default') }}
+	          {{ render_field(form.departamento, onchange="show_options()", class='browser-default') }}
+
+                      <select style="display:none;" class="browser-default" id="carrera" name="carrera">
+				        </select>
 
 	        </div>
 	      </div>
