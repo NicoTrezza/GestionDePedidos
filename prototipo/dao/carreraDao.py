@@ -93,3 +93,27 @@ class CarreraDao(Conexion):
             lis.append(ob)
             
         return lis
+
+    def listarxdepartamento(self, iddepartamento):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from carrera where departamento = %s'
+            val = (iddepartamento, )
+
+            cursor.execute(sql, val)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            ob = Carrera(objeto)
+            lis.append(ob)
+
+        return lis

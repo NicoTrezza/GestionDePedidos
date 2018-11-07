@@ -5,6 +5,8 @@ from wtforms import StringField, SelectField, TextAreaField, DateTimeField, Pass
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
 from datetime import datetime
+from negocio.departamentoABM import DepartamentoABM
+
 
 
 class Login(Form):
@@ -195,6 +197,14 @@ class Microtalleres(Form):
 
 
 class Matricular(Form):
+    departamento_abm = DepartamentoABM()
+    departamentos = departamento_abm.listar()
+    eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
+
+    foodkind = SelectField('Departamento', choices=eleccion)
+
+    food = SelectField('Carrera', choices=[])
+
     departamentos = ['departamento 1', 'departamento 2', 'departamento 3']
     carreras = ['carrera 1', 'carrera 2', 'carrera 3']
     # cuando haya una lista de una base de datos usar este metodo

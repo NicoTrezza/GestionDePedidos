@@ -19,3 +19,6 @@ class CarreraABM(object):
     
     def listar(self):
         return self.dao.listar()
+
+    def listarxdepartamento(self, iddepartamento):
+        return self.dao.listarxdepartamento(iddepartamento)

@@ -2,7 +2,7 @@ class Carrera(object):
 
     def __init__(self, dao):
         self.idCarrera = int(dao[0])
-        self.nombreCarrera = str(dao[1])
+        self.nombreCarrera = u'{}'.format(dao[1])
         self.departamento = int(dao[2])
 
     def getIdCarreraa(self):

@@ -11,6 +11,7 @@ from flask import session
 from flask import url_for
 from flask import redirect
 from flask import flash
+from flask import jsonify
 
 from flask_mail import Mail
 from flask_mail import Message
@@ -21,6 +22,8 @@ from negocio.loginABM import LoginABM
 from negocio.aulaABM import AulaABM
 from negocio.personaABM import PersonaABM
 from negocio.microtallerABM import MicrotallerABM
+from negocio.carreraABM import CarreraABM
+
 
 from werkzeug.utils import secure_filename
 
@@ -404,6 +407,25 @@ def microtalleres():
             flash('Necesita estar logueado para pedir microtaller')
     return render_template('Capacitacion/microtalleres.html', titulo="Microtalleres", form=microtalleres,
                            microtalleres_docentes=microtalleres_docentes, microtalleres_estudiantes=microtalleres_estudiantes)
+
+carrera_abm = CarreraABM()
+carreras = carrera_abm.listarxdepartamento(1)
+eleccion = [(str(c.getIdCarreraa()), c.getNombreCarrera()) for c in carreras]
+
+food = {
+    '1': eleccion,
+    # '1': ['apple', 'banana', 'cherry'],
+    '2': ['onion', 'cucumber'],
+    '3': ['sausage', 'beef'],
+}
+
+
+@app.route('/get_food/<foodkind>')
+def get_food(foodkind):
+    if foodkind not in food:
+        return jsonify([])
+    else:
+        return jsonify(food[foodkind])
 
 
 if __name__ == '__main__':
