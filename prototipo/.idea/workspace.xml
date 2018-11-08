@@ -15,7 +15,7 @@
     <session id="334213397">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="30" />
+          <entry key="project.closed" value="31" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.17" value="1" />
@@ -42,7 +42,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="8" />
-          <entry key="html" value="110" />
+          <entry key="html" value="112" />
           <entry key="py" value="196" />
           <entry key="sql" value="1" />
         </counts>
@@ -50,7 +50,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="8" />
-          <entry key="HTML" value="110" />
+          <entry key="HTML" value="112" />
           <entry key="Python" value="196" />
           <entry key="SQL" value="1" />
         </counts>
@@ -59,14 +59,14 @@
         <counts>
           <entry key="css" value="11" />
           <entry key="dummy" value="4" />
-          <entry key="html" value="3474" />
+          <entry key="html" value="3475" />
           <entry key="py" value="10693" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="11" />
-          <entry key="HTML" value="3474" />
+          <entry key="HTML" value="3475" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Python" value="10693" />
         </counts>
@@ -81,11 +81,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="718">
+            <state relative-caret-position="1597">
               <caret line="414" column="46" selection-start-line="414" selection-start-column="46" selection-end-line="414" selection-end-column="46" />
               <folding>
                 <element signature="e#46#55#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vistas/Login/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
@@ -122,7 +131,6 @@
         <option value="$PROJECT_DIR$/vistas/Usuario/macro_select.html" />
         <option value="$PROJECT_DIR$/vistas/macro_select.html" />
         <option value="$PROJECT_DIR$/vistas/macro_forms.html" />
-        <option value="$PROJECT_DIR$/vistas/Login/login.html" />
         <option value="$PROJECT_DIR$/dao/departamentoDao.py" />
         <option value="$PROJECT_DIR$/dao/tipoPersonaDao.py" />
         <option value="$PROJECT_DIR$/dao/conexion.py" />
@@ -163,14 +171,15 @@
         <option value="$PROJECT_DIR$/vistas/Capacitacion/tutorias.html" />
         <option value="$PROJECT_DIR$/vistas/Usuario/matricular.html" />
         <option value="$PROJECT_DIR$/vistas/Capacitacion/microtalleres.html" />
+        <option value="$PROJECT_DIR$/vistas/Login/login.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="150" />
-    <option name="y" value="61" />
-    <option name="width" value="1022" />
-    <option name="height" value="674" />
+    <option name="y" value="60" />
+    <option name="width" value="1023" />
+    <option name="height" value="675" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -195,13 +204,7 @@
               <item name="prototipo" type="b2602c69:ProjectViewProjectNode" />
               <item name="prototipo" type="462c0819:PsiDirectoryNode" />
               <item name="vistas" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="prototipo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prototipo" type="462c0819:PsiDirectoryNode" />
-              <item name="vistas" type="462c0819:PsiDirectoryNode" />
-              <item name="Capacitacion" type="462c0819:PsiDirectoryNode" />
+              <item name="Login" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -336,7 +339,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.34163702" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49920508" weight="0.34163702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -563,13 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vistas/Login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="134" column="41" selection-start-line="134" selection-end-line="135" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/materialize.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -698,9 +694,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vistas/Login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
+        <state relative-caret-position="1597">
           <caret line="414" column="46" selection-start-line="414" selection-start-column="46" selection-end-line="414" selection-end-column="46" />
           <folding>
             <element signature="e#46#55#0" expanded="true" />
