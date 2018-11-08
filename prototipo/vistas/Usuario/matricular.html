@@ -98,6 +98,27 @@
     </div>
   </div>
 
+<style>
+.hs-responsive-embed-youtube {
+
+position: relative;
+
+padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+
+}
+
+.hs-responsive-embed-youtube iframe {
+
+position: absolute;
+
+width: 100%!important;
+
+height: 100%!important;
+
+}
+</style>
+
+
   <div class="container">
     <div class="section">
 
@@ -106,14 +127,17 @@
 		  <form method="POST" enctype="multipart/form-data">
 
       	<div class="col s12">
-	      <div class="card center">
+	      <div class="card">
 	        <div class="card-content">
 	          <span class="card-title">Video explicativo</span>
 	          <p>Instructivo para completar la planilla de matriculación de usuarios.</p>
 	        </div>
 	        <div class="card-action">
-	          <video src=""></video>
-	        </div>
+	          <!--<video src=""></video>-->
+				<div class="hs-responsive-embed-youtube">
+				<iframe src="https://www.youtube.com/embed/e0UWT0dFSQE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	        	</div>
+			</div>
 	      </div>
 	    </div>
 
