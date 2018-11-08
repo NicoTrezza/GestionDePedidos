@@ -9,7 +9,7 @@ class Conexion(object):
 	def conectar(self):
 		try:
 			self.conexion = mysql.connector.connect(host='localhost', database='GestorPedidos', user='root',
-													password='tin102030')
+													password='root')
 		except Error as e:
 			print e
 
