@@ -71,14 +71,3 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
     c.drawString(100, 580, dia3_hora2)
 
     c.save()
-
-
-def matricular(departamento, carrera):
-    c = canvas.Canvas("matricular.pdf")
-    c.drawString(100, 750, departamento)
-    if departamento == '11':
-        c.drawString(100, 740, carrera)
-    else:
-        c.drawString(100, 740, '------------')
-
-    c.save()
