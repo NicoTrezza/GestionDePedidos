@@ -113,28 +113,28 @@ class Tutorias(Form):
                        [validators.required()]
                        )
 
-    dia1_hora1 = StringField('Hora',
+    dia1_hora1 = StringField('Desde',
                              [validators.required()]
                                 )
-    dia1_hora2 = StringField('Hora',
+    dia1_hora2 = StringField('Hasta',
                                [validators.required()]
                                )
     dia2 = StringField(u'Día',
                       [validators.required()]
                       )
-    dia2_hora1 = StringField('Hora',
+    dia2_hora1 = StringField('Desde',
                       [validators.required()]
                       )
-    dia2_hora2 = StringField('Hora',
+    dia2_hora2 = StringField('Hasta',
                                [validators.required()]
                                )
     dia3 = StringField(u'Día',
                       [validators.required()]
                       )
-    dia3_hora1 = StringField('Hora',
+    dia3_hora1 = StringField('Desde',
                       [validators.required()]
                       )
-    dia3_hora2 = StringField('Hora',
+    dia3_hora2 = StringField('Hasta',
                           [validators.required()]
                           )
 

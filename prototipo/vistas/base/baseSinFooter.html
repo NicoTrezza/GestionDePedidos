@@ -24,59 +24,10 @@
       }
     }
     </style>
-  
-    <script type="text/javascript">
-	$(document).ready(function(){
-    $('.collapsible').collapsible();
-	});
-	</script>
 
-    <script type="text/javascript">
-	$(document).ready(function(){
-    $('.sidenav').sidenav();
-	});
-	</script>
-
-    <script type="text/javascript">
-    $(document).ready(function(){
-    $('.modal').modal();
-    });
-  	</script>
-
-    <script type="text/javascript">
-    $(document).ready(function(){
-    $('.tabs').tabs();
-    });
-    </script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous">
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        $('#departamento').change(function() {
-
-          var departamento = $('#departamento').val();
-
-          // Make Ajax Request and expect JSON-encoded data
-          $.getJSON(
-            '/get_food' + '/' + departamento,
-            function(data) {
-
-              // Remove old options
-              $('#carrera').find('option').remove();
-
-              // Add new items
-              $.each(data, function(key, val) {
-                key = key+1
-                var option_item = '<option value="' + key + '">' + val + '</option>'
-                $('#carrera').append(option_item);
-              });
-            }
-          );
-        });
-      });
     </script>
 
     <script type="text/javascript">
@@ -90,24 +41,6 @@
                 c.style.display = "none";
              }
      }
-     </script>
-
-    <script type="text/javascript">
-    $(document).ready(function(){
-    $('.scrollspy').scrollSpy();
-  });
-     </script>
-
-    <script type="text/javascript">
-    $(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
-     </script>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-    $('.timepicker').timepicker();
-  });
      </script>
 
 </head>
@@ -147,6 +80,63 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
   <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+        $('#departamento').change(function() {
+
+          var departamento = $('#departamento').val();
+
+          // Make Ajax Request and expect JSON-encoded data
+          $.getJSON(
+            '/get_food' + '/' + departamento,
+            function(data) {
+
+              // Remove old options
+              $('#carrera').find('option').remove();
+
+              // Add new items
+              $.each(data, function(key, val) {
+                key = key+1
+                var option_item = '<option value="' + key + '">' + val + '</option>'
+                $('#carrera').append(option_item);
+              });
+            }
+          );
+        });
+
+    $('.collapsible').collapsible();
+    $('.sidenav').sidenav();
+    $('.modal').modal();
+    $('.tabs').tabs();
+    $('.scrollspy').scrollSpy();
+
+    $('.datepicker').datepicker({
+    autoClose:true,
+    i18n:{
+        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+        weekdaysAbbrev:['D','L','M','M','J','V','S'],
+        cancel:'Cancelar',
+        done:'Aceptar'
+        }
+    });
+
+    $('.timepicker').timepicker({
+    twelveHour:false,
+    autoClose:true,
+    i18n:{
+        cancel:'Cancelar',
+        done:'Aceptar'
+        }
+    })
+    ;
+
+	});
+	</script>
 
   </body>
 </html>
