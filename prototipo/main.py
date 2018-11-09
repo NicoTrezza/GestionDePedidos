@@ -425,7 +425,7 @@ def microtalleres():
             microtaller_abm.insertarpersona(request.form['microtaller'], idpersona)
         else:
             persona_abm.insertar(microtalleres.nombre.data, microtalleres.apellido.data,
-                                 microtalleres.dni.data, microtalleres.email.data, tutorias.rol.data, None)
+                                 microtalleres.dni.data, microtalleres.email.data, 4, None)
             persona = persona_abm.traerXDni(microtalleres.dni.data)
             idpersona = persona.idPersona
             microtaller_abm.insertarpersona(request.form['microtaller'], idpersona)

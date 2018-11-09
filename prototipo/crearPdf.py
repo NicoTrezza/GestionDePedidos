@@ -39,7 +39,7 @@ def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, mo
     else:
         c.drawString(100, 690, '------------')
     c.drawString(100, 680, motivo)
-    c.drawString(100, 690, microtaller)
+    c.drawString(100, 670, microtaller)
 
     c.save()
 
