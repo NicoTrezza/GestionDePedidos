@@ -8,4 +8,4 @@ class DevelopmentConfig(Config):
     MAIL_USE_SSL = False
     MAIL_USE_TLS = True
     MAIL_USERNAME = 'gestordepedidos1234@gmail.com'
-    MAIL_PASSWORD = 'Daniel_123'
+    MAIL_PASSWORD = ''
