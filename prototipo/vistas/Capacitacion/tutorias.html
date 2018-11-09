@@ -3,6 +3,28 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
+                        <script type="text/javascript">
+                            function mostrar_grupo_individual() {
+
+                            var x = document.getElementById("grupal");
+
+                                if (x.style.display == "block") {
+                                    x.style.display = "none";
+                                }
+                             }
+
+                            function mostrar_grupo_grupal() {
+
+                            var x = document.getElementById("grupal");
+
+                                if (x.style.display == "none") {
+                                    x.style.display = "block";
+                                }
+                            }
+
+                        </script>
+
+
   <nav class="nav-extended light-blue darken-3">
     <div class="nav-wrapper">
       <div class="nav-wrapper container">
@@ -166,22 +188,156 @@
                       <select style="display:none;" class="browser-default" id="carrera" name="carrera">
 				        </select>
                       {{ render_field(form.rol, class='browser-default') }}
-
-					<div class="input-field col s12">
-                        {{ render_field(form.fecha) }}
-			    </div>
 			  </div>
 	        </div>
 	      </div>
 	    </div>
-
-
       </div>
-          <div class="row center">
+    </div>
+
+    <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">La tutoría será:</span>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                    <p>
+                      <label>
+                        <input class="with-gap" name="group1" id = "individual" onchange="mostrar_grupo_individual()" type="radio" />
+                        <span>Individual</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input class="with-gap" name="group1" type="radio" onchange="mostrar_grupo_grupal()" />
+                        <span>Grupal</span>
+                      </label>
+                    </p>
+
+                    <div style="display:none;" id = "grupal" >
+                        {{ render_field(form.grupal) }}
+			        </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+       <div class="col s12">
+        <div class="card center">
+          <div class="card-content">
+            <span class="card-title">Horarios de tutorías:</span>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                    <div id="horarios" class="section scrollspy">
+                    <table class = "striped">
+                        <thead>
+                          <tr>
+                              <th>Día</th>
+                              <th>Horario</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td>Lunes</td>
+                            <td>9 a 18</td>
+                          </tr>
+                          <tr>
+                            <td>Martes</td>
+                            <td>12 a 20</td>
+                          </tr>
+                          <tr>
+                            <td>Miercoles</td>
+                            <td>9 a 18</td>
+                          </tr>
+                          <tr>
+                            <td>Jueves</td>
+                            <td>12 a 18</td>
+                          </tr>
+                        <tr>
+                            <td>Viernes</td>
+                            <td>12 a 18</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+              <div class="col s12">
+        <div class="card center">
+          <div class="card-content">
+            <span class="card-title">Fecha de la Tutoría:</span>
+              <a class="red-text text-darken-2" href="#horarios">Seleccione 3 fechas posibles (de acuerdo al rango horario de tutoría) para realizar la misma</a>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+
+                <div class="input-field col s12">
+                    <div class="input-field col s3">
+                        {{ render_field(form.dia1, class="datepicker") }}
+			        </div>
+                    <div class="input-field col s3">
+                    {{ render_field(form.dia1_hora1, class="timepicker", step="1") }}
+			        </div>
+                    <div class="input-field col s3">
+                    {{ render_field(form.dia1_hora2, class="timepicker") }}
+			        </div>
+			    </div>
+
+                    <div class="input-field col s12">
+                    <div class="input-field col s3">
+                        {{ render_field(form.dia2, class="datepicker") }}
+			        </div>
+                    <div class="input-field col s3">
+                    {{ render_field(form.dia2_hora1, class="timepicker") }}
+			        </div>
+                    <div class="input-field col s3">
+                    {{ render_field(form.dia2_hora2, class="timepicker") }}
+			        </div>
+			    </div>
+
+                    <div class="input-field col s12">
+                    <div class="input-field col s3">
+                        {{ render_field(form.dia3, class="datepicker") }}
+			        </div>
+                    <div class="input-field col s3">
+                    {{ render_field(form.dia3_hora1, class="timepicker") }}
+			        </div>
+                    <div class="input-field col s3">
+                    {{ render_field(form.dia3_hora2, class="timepicker") }}
+			        </div>
+			    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+              <div class="row center">
 		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
         </div>
 
-    </div>
 <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
 		  </form>
     </div>

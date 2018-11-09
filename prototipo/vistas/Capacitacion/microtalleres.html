@@ -3,22 +3,9 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
-                        <script type="text/javascript">
-                            function myFunction() {
-                            var x = document.getElementById("docente");
-                             var y = document.getElementById("estudiante");
-                                if (x.style.display === "none") {
-                                    x.style.display = "block";
-                                    y.style.display = "none"
-                                } else {
-                                    x.style.display = "none";
-                                    y.style.display = "block"
-                                }
-                                    }
 
-                         </script>
                         <script type="text/javascript">
-                            function myFunction2() {
+                            function myFunction1() {
 
                             var x = document.getElementById("docente");
                              var y = document.getElementById("estudiante");
@@ -26,7 +13,15 @@
                                 if (x.style.display == "none") {
                                     x.style.display = "block";
                                     y.style.display = "none"
-                                } else {
+                                }
+                                    }
+
+                            function myFunction2() {
+
+                            var x = document.getElementById("docente");
+                             var y = document.getElementById("estudiante");
+
+                                if (y.style.display == "none") {
                                     x.style.display = "none";
                                     y.style.display = "block"
                                 }
@@ -159,20 +154,15 @@
               <div class="col s12">
                 <div class="row">
                  <div>
-                     <!--
-			          <a id="mostrardocente" onclick="myFunction()" class="btn-small light-blue darken-3">docente</a>
-					  <a id= "mostrarestudiante" onclick="myFunction()" class="btn-small light-blue darken-3">estudiante</a>
-                     -->
-                     <!-- Switch -->
-                      <p>
+                     <p>
                       <label>
-                        <input name="group1" id = "docentecheck" type="radio" onchange="myFunction2()" />
+                        <input class="with-gap" name="group1" id = "docentecheck" type="radio" onchange="myFunction1()" />
                         <span>Docente</span>
                       </label>
                     </p>
                     <p>
                       <label>
-                        <input name="group1" id = "estudiantecheck" type="radio" onchange="myFunction2()" />
+                        <input class="with-gap" name="group1" id = "estudiantecheck" type="radio" onchange="myFunction2()" />
                         <span>Estudiante</span>
                       </label>
                     </p>
