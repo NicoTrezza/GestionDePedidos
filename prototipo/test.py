@@ -3,7 +3,7 @@
 from negocio.departamentoABM import DepartamentoABM
 from negocio.carreraABM import CarreraABM
 from negocio.tipoPersonaABM import TipoPersonaABM
-from negocio.PersonaABM import PersonaABM
+from negocio.personaABM import PersonaABM
 from negocio.loginABM import LoginABM
 from negocio.microtallerABM import MicrotallerABM
 

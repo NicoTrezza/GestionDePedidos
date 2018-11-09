@@ -20,7 +20,7 @@ from config import DevelopmentConfig
 from negocio.loginABM import LoginABM
 
 from negocio.aulaABM import AulaABM
-from negocio.PersonaABM import PersonaABM
+from negocio.personaABM import PersonaABM
 from negocio.microtallerABM import MicrotallerABM
 from negocio.carreraABM import CarreraABM
 from negocio.tutoriaABM import TutoriaABM
