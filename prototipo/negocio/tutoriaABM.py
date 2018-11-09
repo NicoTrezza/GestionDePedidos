@@ -5,11 +5,11 @@ class TutoriaABM(object):
     def __init__(self):
         self.dao = TutoriaDao()
         
-    def insertar(self, motivo, fecha, personaTutoria):
-        self.dao.insertar(motivo, fecha, personaTutoria)
+    def insertar(self, motivo, personaTutoria, departamento):
+        self.dao.insertar(motivo, personaTutoria, departamento)
         
     def modificar(self, t):
-        self.dao.modificar(t.getIdTutoria(), t.getMotivo(), t.getFecha(), t.getPersonaTutoria())
+        self.dao.modificar(t.getIdTutoria(), t.getMotivo(), t.getPersonaTutoria(), t.getDepartamento())
    
     def eliminar(self, idTutoria):
         self.dao.eliminar(idTutoria)

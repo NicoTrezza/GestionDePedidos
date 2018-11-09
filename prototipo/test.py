@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 from negocio.departamentoABM import DepartamentoABM
 from negocio.carreraABM import CarreraABM
-from negocio.tutoriaABM import TutoriaABM
 from negocio.tipoPersonaABM import TipoPersonaABM
-from negocio.personaABM import PersonaABM
+from negocio.PersonaABM import PersonaABM
 from negocio.loginABM import LoginABM
 from negocio.microtallerABM import MicrotallerABM
 
@@ -13,7 +12,6 @@ from negocio.microtallerABM import MicrotallerABM
 def main():
 	departamento_abm = DepartamentoABM()
 	carrera_abm = CarreraABM()
-	tutoria_abm = TutoriaABM()
 	tipo_persona_abm = TipoPersonaABM()
 	persona_abm = PersonaABM()
 	login_abm = LoginABM()
@@ -55,10 +53,6 @@ def main():
 	persona_abm.insertar('martín', 'Lanús', 12345678, 'email@lalal.com', 1, 1)
 	# creo otra persona de prueba y le doy el login de usuario
 	persona_abm.insertar('martín', 'Lanús', 12345687, 'email@lalal.com', 2, 2)
-
-	# creo tutorias
-	tutoria_abm.insertar('lelelelmótívo', '2016-01-01', 2)
-	tutoria_abm.insertar('lalalalmótívo', '2016-01-01', 2)
 
 	# creo microtalleres
 	microtaller_abm.insertar('microtáller1', None, 1)

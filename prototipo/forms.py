@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from wtforms import Form
-from wtforms import StringField, SelectField, TextAreaField, DateTimeField, PasswordField, IntegerField
+from wtforms import StringField, SelectField, TextAreaField, DateTimeField, PasswordField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
 from datetime import datetime
@@ -138,9 +138,9 @@ class Tutorias(Form):
                           [validators.required()]
                           )
 
-#fecha = DateTimeField('Fecha', format="%d/%m/%Y %H:%M:%S", default=datetime.today,
- #                         validators=[validators.DataRequired(message='formato incorrecto')]
-  #                        )
+# fecha = DateTimeField('Fecha', format="%d/%m/%Y %H:%M:%S", default=datetime.today,
+# validators=[validators.DataRequired(message='formato incorrecto')])
+
 
     departamento_abm = DepartamentoABM()
     departamentos = departamento_abm.listar()
@@ -153,7 +153,7 @@ class Tutorias(Form):
     lista_eleccion_roles = [(str(d.getIdTipoPersona()), d.getRol()) for d in listaroles]
     rol = SelectField('rol', choices=lista_eleccion_roles)
 
-    grupal = IntegerField('Cantidad de personas')
+    grupal = StringField('Cantidad de personas')
 
 
 class Microtalleres(Form):

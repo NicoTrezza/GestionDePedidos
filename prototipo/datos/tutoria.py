@@ -7,14 +7,8 @@ class Tutoria(object):
     def __init__(self, dao):
         self.idTutoria = int(dao[0])
         self.motivo = u'{}'.format(dao[2])
-        self.fecha = str(dao[3])
-        self.personaTutoria = int(dao[4])
-
-    """def __init__(self, idTutoria, motivo, fecha, personaTutoria):
-        self.idTutoria = idTutoria
-        self.motivo = motivo
-        self.fecha = fecha
-        self.personaTutoria = personaTutoria"""
+        self.personaTutoria = int(dao[3])
+        self.departamento = int(dao[4])
 
     def getIdTutoria (self):
         return self.idTutoria
@@ -28,11 +22,11 @@ class Tutoria(object):
     def setMotivo(self, motivo):
         self.motivo = motivo
 
-    def getFecha(self):
-        return self.fecha
+    def getDepartamento(self):
+        return self.departamento
 
-    def setFecha(self, fecha):
-        self.fecha = fecha
+    def setDepartamento(self, departamento):
+        self.departamento = departamento
 
     def getPersonaTutoria(self):
         return self.personaTutoria
@@ -41,4 +35,4 @@ class Tutoria(object):
         self.personaTutoria = personaTutoria
 
     def __str__(self):
-        return "Id de la Tutoria: {}, motivo de la Tutoria: {}, fecha de inicio de la Tutoria: {}, usuario de la Tutoria: {}".format(self.idTutoria, self.motivo, self.fecha, self.personaTutoria)
+        return "Id de la Tutoria: {}, motivo de la Tutoria: {}, usuario de la Tutoria: {}, usuario de la Tutoria: {}".format(self.idTutoria, self.motivo, self.personaTutoria, self.departamento)

@@ -8,13 +8,13 @@ class TutoriaDao(Conexion):
     def __init__(self):
         super(TutoriaDao, self).__init__()  		
 
-    def insertar(self, motivo, fecha, personaTutoria):
+    def insertar(self, motivo, personaTutoria, departamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into tutoria (motivo, fecha, personaTutoria) values (%s, %s, %s)'
-            val = (motivo, fecha, personaTutoria)
+            sql = 'insert into tutoria (motivo, personaTutoria, Departamento_idDepartamento) values (%s, %s, %s)'
+            val = (motivo, personaTutoria, departamento)
         
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -23,13 +23,13 @@ class TutoriaDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idTutoria, motivo, fecha, personaTutoria):
+    def modificar(self, idTutoria, motivo, personaTutoria, departamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update tutoria set motivo = %s, fecha = %s, personaTutoria = %s where idTutoria = %s'
-            val = (motivo, fecha, personaTutoria, idTutoria)
+            sql = 'update tutoria set motivo = %s, personaTutoria = %s, Departamento_idDepartamento = %s where idTutoria = %s'
+            val = (motivo, personaTutoria, departamento, idTutoria)
             
             cursor.execute(sql, val)
             self.conexion.commit()
