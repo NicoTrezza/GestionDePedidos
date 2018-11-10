@@ -3,6 +3,28 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
+
+						<script type="text/javascript">
+                            function ocultar_docente() {
+
+                            var x = document.getElementById("docente");
+
+                                if (x.style.display == "block") {
+                                    x.style.display = "none";
+                                }
+                             }
+
+                            function mostrar_docente() {
+
+                            var x = document.getElementById("docente");
+
+                                if (x.style.display == "none") {
+                                    x.style.display = "block";
+                                }
+                            }
+
+                        </script>
+
   <nav class="nav-extended light-blue darken-3">
     <div class="nav-wrapper">
       <div class="nav-wrapper container">
@@ -142,6 +164,72 @@
 	        </div>
 	      </div>
 	    </div>
+
+		<div class="row">
+			<div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title"> Modificar información del Docente: </span>
+	        </div>
+	        <div class="card-action">
+			  <div class="row">
+			    <div class="col s12">
+					<p>¿Desea añadir la información de los docentes en esta planilla?. De no ser así, se utilizarán los mismos docentes. Tenga en cuenta que si elige tildar en sí deberá ingresar la informacion de todos los docentes que participen en el aula.</p>
+					<p>
+					<label>
+			      <input type="radio" class="with-gap" name="respuesta" value="si" onchange="mostrar_docente()">
+						<span>Sí</span>
+						</label>
+					</p>
+					<label>
+						<p>
+					<input type="radio" class="with-gap" name="respuesta" value="no" onchange="ocultar_docente()" checked>
+						<span>No</span>
+						</label>
+					</p>
+			    </div>
+			  </div>
+	        </div>
+	      </div>
+	    </div>
+		</div>
+
+			<div style="display:none;" id="docente">
+				<div class="row">
+			<div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Información del Docente</span>
+	        </div>
+	        <div class="card-action">
+			  <div class="row">
+			    <div class="col s12">
+			      <div class="row">
+			        <div class="input-field col s6">
+						{{ render_field(form.nombredocente) }}
+
+			        </div>
+			        <div class="input-field col s6">
+						{{ render_field(form.apellidodocente) }}
+			        </div>
+			        <div class="input-field col s6">
+						{{ render_field(form.dni) }}
+
+			        </div>
+					<div class="input-field col s6">
+						{{ render_field(form.emailprofesor) }}
+
+			        </div>
+					  {{ render_field(form.rol, class='browser-default') }}
+			      </div>
+			    </div>
+			  </div>
+	        </div>
+	      	</div>
+	    		</div>
+				</div>
+			</div>
+
 	    <div class="row">
       	<div class="col s12">
 	      <div class="card center">
@@ -187,6 +275,7 @@
 	        </div>
 	      </div>
 	    </div>
+
       <div class="row center">
 		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Enviar <i class="material-icons right">send</i> </button>
       </div>

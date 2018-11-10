@@ -264,7 +264,7 @@ def reutilizar():
         permisos = us.getPermisos()
     except:
         mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
-        # flash(mensajeError1)
+        flash(mensajeError1)
     if request.method == 'POST' and reutilizar_aula.validate():
         if 'usuario' in session:
             if permisos == 1:
@@ -272,6 +272,13 @@ def reutilizar():
                 print request.form['carrera']
                 print reutilizar_aula.nombreaula.data
                 print reutilizar_aula.direccionulr.data
+
+                print reutilizar_aula.nombredocente.data
+                print reutilizar_aula.apellidodocente.data
+                print reutilizar_aula.dni.data
+                print reutilizar_aula.emailprofesor.data
+                print reutilizar_aula.rol.data
+
                 print reutilizar_aula.nombrenuevo.data
                 print reutilizar_aula.otro.data
                 usuario = session['usuario']

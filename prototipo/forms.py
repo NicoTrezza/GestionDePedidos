@@ -68,6 +68,15 @@ class ReutilizarAula(Form):
     nombrenuevo = StringField('Nombre nuevo')
     otro = TextAreaField('Otro')
 
+    nombredocente = StringField('Nombre del docente')
+    apellidodocente = StringField('Apellido del docente')
+    dni = StringField('DNI')
+    emailprofesor = EmailField('E-mail del profesor')
+    tipo_persona_abm = TipoPersonaABM()
+    listaroles = tipo_persona_abm.listar()
+    lista_eleccion_roles = [(str(d.getIdTipoPersona()), d.getRol()) for d in listaroles]
+    rol = SelectField('rol', choices=lista_eleccion_roles)
+
 
 class EliminarAula(Form):
 
