@@ -168,25 +168,34 @@ def crear():
     if request.method == 'POST' and crear_aula.validate():
         if 'usuario' in session:
             if permisos == 1:
+
+                cant_docentes = 5  # es uno menos que el numero
                 aula_abm = AulaABM()
                 persona_abm = PersonaABM()
+
                 print crear_aula.departamento.data
                 print request.form['carrera']
                 print crear_aula.nombreaula.data
-                print crear_aula.nombredocente.data
-                print crear_aula.apellidodocente.data
-                print crear_aula.dni.data
-                print crear_aula.emailprofesor.data
-                print crear_aula.rol.data
+
+                for i in range(1, cant_docentes):
+                    print "We're on time %d" % (i)
+                    try:
+
+                        print request.form['nombredocente' + str(i)]
+                        print request.form['apellidodocente' + str(i)]
+                        print request.form['dni' + str(i)]
+                        print request.form['emailprofesor' + str(i)]
+                        print request.form['rol' + str(i)]
+
+                    except:
+                        print 'un error'
+
                 print crear_aula.descripcion.data
 
                 # guardo en la base de datos
                 aula = ''
-                try:
-                    persona = persona_abm.traerXDni(crear_aula.dni.data)
-                    idpersona = persona.idPersona
-                except:
-                    persona = None
+
+                idpersona = []
 
                 try:
                     aula_abm.traerXNombre(crear_aula.nombreaula.data)
@@ -194,19 +203,44 @@ def crear():
                     aula = None
 
                 if aula is None:
+                    for i in range(1, cant_docentes):
+                        try:
+                            print 'intento' + str(i)
+                            persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                            idpersona.append(persona.getIdPersona())
+                        except:
+                            try:
+                                persona_abm.insertar(request.form['nombredocente' + str(i)],
+                                                     request.form['apellidodocente' + str(i)],
+                                                     request.form['dni' + str(i)],
+                                                     request.form['emailprofesor' + str(i)],
+                                                     request.form['rol' + str(i)],
+                                                     None)
+                                print request.form['dni' + str(i)]
+                                persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                                idpersona.append(persona.getIdPersona())
+                            except:
+                                print 'no se ingresaron datos / dni repetido'
+
+                print idpersona
+
+                if aula is None:
                     if persona is not None:
-                        aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data, crear_aula.departamento.data)
-                        aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
-                    else:
-                        persona_abm.insertar(crear_aula.nombredocente.data, crear_aula.apellidodocente.data,
-                                             crear_aula.dni.data, crear_aula.emailprofesor.data, crear_aula.rol.data, None)
-                        persona = persona_abm.traerXDni(crear_aula.dni.data)
-                        idpersona = persona.idPersona
-                        aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data, crear_aula.departamento.data)
-                        aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
+                        aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data,
+                                          crear_aula.departamento.data)
+                        for idp in idpersona:
+                            aula_abm.insertarpersona(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
+                    # else:
+                    #    persona_abm.insertar(crear_aula.nombredocente.data, crear_aula.apellidodocente.data,
+                    #                         crear_aula.dni.data, crear_aula.emailprofesor.data, crear_aula.rol.data, None)
+                    #    persona = persona_abm.traerXDni(crear_aula.dni.data)
+                    #    idpersona = persona.idPersona
+                    #    aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data, crear_aula.departamento.data)
+                    #    aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
                 else:
                     flash('el aula ya existe')
 
+                """
                 if aula is None:
                     # creo el pdf
                     crearPdf.crear_aula(crear_aula.departamento.data,
@@ -242,6 +276,8 @@ def crear():
 
                     # elimino el pdf despues de enviado el mail
                     # os.remove('crear_aula.pdf')
+                """
+
                 usuario = session['usuario']
 
             else:

@@ -29,6 +29,7 @@ class CrearAula(Form):
     nombreaula = StringField('Nombre del aula',
                              [validators.required()]
                              )
+    """
     nombredocente = StringField('Nombre del docente',
                                 [validators.required()]
                                 )
@@ -46,6 +47,7 @@ class CrearAula(Form):
     listaroles = tipo_persona_abm.listar()
     lista_eleccion_roles = [(str(d.getIdTipoPersona()), d.getRol()) for d in listaroles]
     rol = SelectField('rol', choices=lista_eleccion_roles)
+    """
     descripcion = TextAreaField('Descripcion',
                                 [validators.required()]
                                 )

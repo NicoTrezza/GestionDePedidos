@@ -3,6 +3,44 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
+
+
+<script type="text/javascript">
+			  $(document).ready(function(){
+				var next = 1;
+				$(".add-more").click(function(e){
+					e.preventDefault();
+					var addto = "#field" + next;
+					var addRemove = "#field" + (next);
+					next = next + 1;
+
+
+var newIn = '<div id="field' + next + '" class="col s12"> <div class="card center"> <div class="card-content"> <span class="card-title">Información del Docente</span> </div> <div class="card-action"> <div class="row"> <div class="col s12"> <div class="row"> <div class="input-field col s6"> <label for="nombredocente' + next + '"> Nombre del docente </label> <input id="nombredocente' + next + '" name="nombredocente' + next + '" type="text" required> </div>  <div class="input-field col s6"> <label for="apellidodocente' + next + '"> Apellido del docente </label> <input id="apellidodocente' + next + '" name="apellidodocente' + next + '" type="text" required> </div> <div class="input-field col s6"> <label for="dni' + next + '"> DNI </label> <input id="dni' + next + '" name="dni' + next + '" type="text" required> </div> <div class="input-field col s6"> <label for="emailprofesor' + next + '"> E-Mail del profesor </label> <input id="emailprofesor' + next + '" name="emailprofesor' + next + '" type="text" required> </div> <label for="rol' + next + '">rol</label> <select class="browser-default" id="rol' + next + '" name="rol' + next + '"> <option value="1">Docente</option> <option value="2">No docente</option> <option value="3">Estudiante</option> <option value="4">otro</option> </select>  </div> </div> </div> </div> </div> </div>';
+
+
+
+
+					var newInput = $(newIn);
+					var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+					var removeButton = $(removeBtn);
+					$(addto).after(newInput);
+					$(addRemove).after(removeButton);
+					$("#field" + next).attr('data-source',$(addto).attr('data-source'));
+					$("#count").val(next);
+
+						$('.remove-me').click(function(e){
+							e.preventDefault();
+							var fieldNum = this.id.charAt(this.id.length-1);
+							var fieldID = "#field" + fieldNum;
+							$(this).remove();
+							$(fieldID).remove();
+						});
+				});
+
+			});
+</script>
+
+
   <nav class="nav-extended light-blue darken-3">
     <div class="nav-wrapper">
       <div class="nav-wrapper container">
@@ -141,8 +179,10 @@
 	        </div>
 	      </div>
 	    </div>
-		
-	    <div class="col s12">
+
+
+			  <div id="field" >
+	    <div id="field1" class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
 	          <span class="card-title">Información del Docente</span>
@@ -151,28 +191,59 @@
 			  <div class="row">
 			    <div class="col s12">
 			      <div class="row">
-			        <div class="input-field col s6">
-						{{ render_field(form.nombredocente) }}
 
+					  <input type="hidden" name="count" value="1" />
+
+			        <div class="input-field col s6">
+						<label for="nombredocente1"> Nombre del docente </label>
+						<input id="nombredocente1" name="nombredocente1" type="text" required>
 			        </div>
 			        <div class="input-field col s6">
-						{{ render_field(form.apellidodocente) }}
+						<label for="apellidodocente1"> Apellido del docente </label>
+						<input id="apellidodocente1" name="apellidodocente1" type="text" required>
 			        </div>
 			        <div class="input-field col s6">
-						{{ render_field(form.dni) }}
-
+						<label for="dni1"> DNI </label>
+						<input id="dni1" name="dni1" type="text" required>
 			        </div>
 					<div class="input-field col s6">
-						{{ render_field(form.emailprofesor) }}
-
+						<label for="emailprofesor1"> E-Mail del profesor </label>
+						<input id="emailprofesor1" name="emailprofesor1" type="text" required>
 			        </div>
-					  {{ render_field(form.rol, class='browser-default') }}
+					  <label for="rol1">rol</label>
+					  <select class="browser-default" id="rol1" name="rol1">
+						  <option value="1">Docente</option>
+						  <option value="2">No docente</option>
+						  <option value="3">Estudiante</option>
+						  <option value="4">otro</option>
+					  </select>
 			      </div>
 			    </div>
 			  </div>
 	        </div>
 	      </div>
 	    </div>
+			  </div>
+<button id="b1" class="btn add-more" type="button">+</button>
+
+	<!--
+			  <div class="container">
+				<div class="row">
+					<input type="hidden" name="count" value="1" />
+					<div class="control-group" id="fields">
+						<label class="control-label" for="field1">Nice Multiple Form Fields</label>
+						<div class="controls" id="profs">
+								<div id="field">
+									<input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/>
+									<button id="b1" class="btn add-more" type="button">+</button>
+								</div>
+						<br>
+						<small>Press + to add another form field :)</small>
+						</div>
+					</div>
+				</div>
+			</div>
+	-->
 
 	    <div class="col s12">
 	      <div class="card center">
