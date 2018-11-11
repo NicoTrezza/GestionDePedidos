@@ -1,20 +1,50 @@
 from reportlab.pdfgen import canvas
+from negocio.personaABM import PersonaABM
+
 import time
 
 
-def crear_aula(departamento, carrera, nombreaula, nombredocente, apellidodocente,
-               dni, emailprofesor, rol, descripcion):
+def crear_aula(departamento, carrera, nombreaula, idpersona, descripcion):
+    persona_abm = PersonaABM()
+    contador = 0
+    ultimo = 0
+
     c = canvas.Canvas("crear_aula.pdf")
     c.setLineWidth(.3)
     c.setFont('Helvetica', 12)
     c.drawString(85, 630, 'Departameto:')
-    c.drawString(95, 615, departamento)
+    c.drawString(95, 615, departamento.decode("utf-8"))
     if departamento == '11':
         c.drawString(85, 585, 'Carrera:')
-        c.drawString(95, 570, carrera)
+        c.drawString(95, 570, carrera.decode("utf-8"))
     else:
         c.drawString(85, 585, 'Nombre del aula:')
-        c.drawString(95, 570, nombreaula)
+        c.drawString(95, 570, nombreaula.decode("utf-8"))
+
+    """
+    for id in idpersona:
+        c.drawString(95, 345 + contador, str(id))
+        contador = contador + 5
+    """
+
+    for id in idpersona:
+        persona = persona_abm.traer(id)
+        c.drawString(85, 540 + contador, 'Nombre del Docente:')
+        c.drawString(95, 525 + contador, persona.getNombre().decode("utf-8"))
+        c.drawString(85, 495 + contador, 'Apellido del docente:')
+        c.drawString(95, 480 + contador, persona.getApellido().decode("utf-8"))
+        c.drawString(85, 450 + contador, 'Dni:')
+        c.drawString(95, 435 + contador, str(persona.getDni()))
+        c.drawString(85, 405 + contador, 'Email del profesor:')
+        c.drawString(95, 390 + contador, persona.getMail().decode("utf-8"))
+        c.drawString(85, 360 + contador, 'Rol del profesor:')
+        c.drawString(95, 345 + contador, str(persona.getTipoPersona()))
+
+        contador = contador + 195
+        ultimo = 345 + contador
+
+
+    """
     c.drawString(85, 540, 'Nombre del Docente:')
     c.drawString(95, 525, nombredocente)
     c.drawString(85, 495, 'Apellido del docente:')
@@ -25,8 +55,11 @@ def crear_aula(departamento, carrera, nombreaula, nombredocente, apellidodocente
     c.drawString(95, 390, emailprofesor)
     c.drawString(85, 360, 'Rol del profesor:')
     c.drawString(95, 345, rol)
-    c.drawString(85, 315, 'Descripcion:')
-    c.drawString(95, 300, descripcion)
+    """
+
+    c.drawString(85, 315 + ultimo, 'Descripcion:')
+    c.drawString(95, 300 + ultimo, descripcion.decode("utf-8"))
+
     c.drawString(430, 765, time.strftime("%c"))
     c.drawImage("static\silversonic.jpg", 80, 780, 50, 50)
     c.line(60, 760, 535, 760)
@@ -37,12 +70,6 @@ def crear_aula(departamento, carrera, nombreaula, nombredocente, apellidodocente
     c.drawString(170, 800, 'Universidad Tecnologica Nacional')
     c.drawString(200, 720, 'Solicitud: Crear aula')
 
-    c.save()
-
-
-def matricular():
-    c = canvas.Canvas("matricular.pdf")
-    c.drawString(100, 750, "matricular")
     c.save()
 
 

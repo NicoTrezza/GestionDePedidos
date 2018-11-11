@@ -240,19 +240,22 @@ def crear():
                 else:
                     flash('el aula ya existe')
 
-                """
                 if aula is None:
                     # creo el pdf
-                    crearPdf.crear_aula(crear_aula.departamento.data,
+                    """
+                    request.form['nombredocente'],
+                    request.form['apellidodocente'],
+                    request.form['dni'].dni,
+                    request.form['emailprofesor'],
+                    request.form['rol'].rol,
+                    """
+                    crearPdf.crear_aula(request.form['departamento'],
                                         request.form['carrera'],
-                                        crear_aula.nombreaula.data,
-                                        crear_aula.nombredocente.data,
-                                        crear_aula.apellidodocente.data,
-                                        crear_aula.dni.data,
-                                        crear_aula.emailprofesor.data,
-                                        crear_aula.rol.data,
-                                        crear_aula.descripcion.data)
+                                        request.form['nombreaula'],
+                                        idpersona,
+                                        request.form['descripcion'])
 
+                    """
                     # creo el mail a enviar
                     msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
                                   recipients=[crear_aula.emailprofesor.data])  # recipients es una lista!!
@@ -276,8 +279,7 @@ def crear():
 
                     # elimino el pdf despues de enviado el mail
                     # os.remove('crear_aula.pdf')
-                """
-
+                    """
                 usuario = session['usuario']
 
             else:

@@ -43,6 +43,12 @@ class Persona(object):
 	def setDni(self, dni):
 		self.dni = dni
 
+	def getMail(self):
+		return self.mailPersona
+
+	def setMail(self, mailPersona):
+		self.mailPersona = mailPersona
+
 	def getTipoPersona(self):
 		return self.tipoPersona
 
