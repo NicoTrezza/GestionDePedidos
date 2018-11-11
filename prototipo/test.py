@@ -49,9 +49,11 @@ def main():
 	tipo_persona_abm.insertar('Estudiante')
 
 	# creo un tipo de persona para el resto
+	"""
 	tipo_persona_abm.insertar('Docente a cargo')
 	tipo_persona_abm.insertar('Docente')
 	tipo_persona_abm.insertar('Docente Auxiliar')
+	"""
 
 	# creo un login para la persona de prueba con permisos de administrador
 	login_abm.insertar('mailrandom@lalal.com', '1234', 1)
@@ -64,11 +66,9 @@ def main():
 
 	# creo microtalleres
 	microtaller_abm.insertar('Diseño y Gestión del Aula Virtual en Moodle', None, 1)
-	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 2', 'motívo', 1)
-	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 3', 'motivo', 2)
-	# No recuerdo de este O.O
-	microtaller_abm.insertar('microtaller4', None, 2)
-
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 1', None, 2)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 2', None, 2)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 3', None, 2)
 
 	# dejo comentado este traer que funciona, creo
 	# for a in abm.traerPorProfesor('didio'):

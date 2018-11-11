@@ -24,7 +24,7 @@ class CrearAula(Form):
     departamentos = departamento_abm.listar()
     eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
 
-    departamento = SelectField('Departamento', choices=eleccion)
+    departamento = SelectField('Departamento', choices=eleccion, default=2)
 
     nombreaula = StringField('Nombre del aula',
                              [validators.required()]

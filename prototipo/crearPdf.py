@@ -1,11 +1,9 @@
 from reportlab.pdfgen import canvas
-from negocio.personaABM import PersonaABM
 
 import time
 
 
-def crear_aula(departamento, carrera, nombreaula, idpersona, descripcion):
-    persona_abm = PersonaABM()
+def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
     contador = 0
     ultimo = 0
 
@@ -14,7 +12,7 @@ def crear_aula(departamento, carrera, nombreaula, idpersona, descripcion):
     c.setFont('Helvetica', 12)
     c.drawString(85, 630, 'Departameto:')
     c.drawString(95, 615, departamento.decode("utf-8"))
-    if departamento == '11':
+    if departamento == '1':
         c.drawString(85, 585, 'Carrera:')
         c.drawString(95, 570, carrera.decode("utf-8"))
     else:
@@ -27,8 +25,7 @@ def crear_aula(departamento, carrera, nombreaula, idpersona, descripcion):
         contador = contador + 5
     """
 
-    for id in idpersona:
-        persona = persona_abm.traer(id)
+    for persona in lista_personas:
         c.drawString(85, 540 + contador, 'Nombre del Docente:')
         c.drawString(95, 525 + contador, persona.getNombre().decode("utf-8"))
         c.drawString(85, 495 + contador, 'Apellido del docente:')
@@ -94,7 +91,7 @@ def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, mo
     c.drawString(95, 435, dni)
     c.drawString(85, 405, 'Departamento:')
     c.drawString(95, 390, departamento)
-    if departamento == '11':
+    if departamento == '1':
         c.drawString(85, 360, 'Carrera:')
         c.drawString(95, 345, carrera)
     else:
@@ -120,7 +117,7 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
     c.drawString(100, 720, telefono)
     c.drawString(100, 710, dni)
     c.drawString(100, 700, departamento)
-    if departamento == '11':
+    if departamento == '1':
         c.drawString(100, 690, carrera)
     else:
         c.drawString(100, 690, '------------')
@@ -142,7 +139,7 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
 def matricular(departamento, carrera):
     c = canvas.Canvas("matricular.pdf")
     c.drawString(100, 750, departamento)
-    if departamento == '11':
+    if departamento == '1':
         c.drawString(100, 740, carrera)
     else:
         c.drawString(100, 740, '------------')

@@ -173,6 +173,8 @@ def crear():
                 aula_abm = AulaABM()
                 persona_abm = PersonaABM()
 
+                lista_mails = []
+
                 print crear_aula.departamento.data
                 print request.form['carrera']
                 print crear_aula.nombreaula.data
@@ -186,6 +188,7 @@ def crear():
                         print request.form['dni' + str(i)]
                         print request.form['emailprofesor' + str(i)]
                         print request.form['rol' + str(i)]
+                        lista_mails.append(request.form['emailprofesor' + str(i)])
 
                     except:
                         print 'un error'
@@ -249,27 +252,28 @@ def crear():
                     request.form['emailprofesor'],
                     request.form['rol'].rol,
                     """
+                    lista_personas = []
+
+                    for id in idpersona:
+                        lista_personas.append(persona_abm.traer(id))
+
                     crearPdf.crear_aula(request.form['departamento'],
                                         request.form['carrera'],
                                         request.form['nombreaula'],
-                                        idpersona,
+                                        lista_personas,
                                         request.form['descripcion'])
 
-                    """
+
                     # creo el mail a enviar
                     msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
-                                  recipients=[crear_aula.emailprofesor.data])  # recipients es una lista!!
+                                  recipients=lista_mails)  # recipients es una lista!!
 
                     msg.html = render_template('email.html',
-                                               departamento=crear_aula.departamento.data,
+                                               departamento=request.form['departamento'],
                                                carrera=request.form['carrera'],
-                                               nombreaula=crear_aula.nombreaula.data,
-                                               nombredocente=crear_aula.nombredocente.data,
-                                               apellidodocente=crear_aula.apellidodocente.data,
-                                               dni=crear_aula.dni.data,
-                                               emailprofesor=crear_aula.emailprofesor.data,
-                                               rol=crear_aula.rol.data,
-                                               descripcion=crear_aula.descripcion.data)
+                                               nombreaula=request.form['nombreaula'],
+                                               personas=lista_personas,
+                                               descripcion=request.form['descripcion'])
                     # archivo pdf adjunto
                     with app.open_resource("crear_aula.pdf") as pdf:
                         msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
@@ -279,7 +283,7 @@ def crear():
 
                     # elimino el pdf despues de enviado el mail
                     # os.remove('crear_aula.pdf')
-                    """
+
                 usuario = session['usuario']
 
             else:
@@ -540,11 +544,11 @@ def microtalleres():
 
 
 carrera_abm = CarreraABM()
-carreras = carrera_abm.listarxdepartamento(11)
+carreras = carrera_abm.listarxdepartamento(1)
 eleccion = [(c.getNombreCarrera()) for c in carreras]
 
 carrera = {
-    '1': ['No aplica'],
+    '1': eleccion,
     '2': ['No aplica'],
     '3': ['No aplica'],
     '4': ['No aplica'],
@@ -554,7 +558,6 @@ carrera = {
     '8': ['No aplica'],
     '9': ['No aplica'],
     '10': ['No aplica'],
-    '11': eleccion,
 }
 
 

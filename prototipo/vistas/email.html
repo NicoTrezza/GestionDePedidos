@@ -10,11 +10,16 @@
     <p>departamento: {{departamento}}</p>
     <p>carrera: {{carrera}}</p>
     <p>nobmre del aula: {{nombreaula}}</p>
-    <p>nombre del docente: {{nombredocente}}</p>
-    <p>apellido del docente: {{apellidodocente}}</p>
-    <p>DNI: {{dni}}</p>
-    <p>emial del profesor: {{emailprofesor}}</p>
-    <p>rol: {{rol}}</p>
+
+    {% for persona in personas %}
+
+    <p>Nombre del Docente: {{persona.getNombre()}}</p>
+    <p>Apellido del docente: {{persona.getApellido()}}</p>
+    <p>Dni: {{persona.getDni()}}</p>
+    <p>Email del profesor: {{persona.getMail()}}</p>
+    <p>Rol del profesor: {{persona.getTipoPersona()}}</p>
+
+    {% endfor %}
     <p>descripción: {{descripcion}}</p>
 
 </body>
