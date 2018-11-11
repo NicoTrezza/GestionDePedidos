@@ -33,17 +33,25 @@ def main():
 	departamento_abm.insertar('Departamento de Ingeniería Quimica')
 	departamento_abm.insertar('Departamento de Ingeniería en Sistemas de Información')
 	departamento_abm.insertar('Departamento de Ingeniería Textil')
-	departamento_abm.insertar('este es el de las carreras adentro Griss XD')
 
-	carrera_abm.insertar('carrera1', 11)
-	carrera_abm.insertar('carrera2', 11)
-	carrera_abm.insertar('carrera3', 11)
+	carrera_abm.insertar('Física', 1)
+	carrera_abm.insertar('Quimica', 1)
+	carrera_abm.insertar('Ingles', 1)
+	carrera_abm.insertar('Algebra', 1)
+	carrera_abm.insertar('Geogebra', 1)
+	carrera_abm.insertar('Análisis matemático', 1)
+	carrera_abm.insertar('Probabilidad Estadísticas', 1)
 
-	# creo un tipo de persona para probar
+	# creo un tipo de persona especial para Usuario
+	tipo_persona_abm.insertar('Docente a cargo')
 	tipo_persona_abm.insertar('Docente')
-	tipo_persona_abm.insertar('No docente')
+	tipo_persona_abm.insertar('Docente Auxiliar')
 	tipo_persona_abm.insertar('Estudiante')
-	tipo_persona_abm.insertar('otro')
+
+	# creo un tipo de persona para el resto
+	tipo_persona_abm.insertar('Docente a cargo')
+	tipo_persona_abm.insertar('Docente')
+	tipo_persona_abm.insertar('Docente Auxiliar')
 
 	# creo un login para la persona de prueba con permisos de administrador
 	login_abm.insertar('mailrandom@lalal.com', '1234', 1)
@@ -55,9 +63,10 @@ def main():
 	persona_abm.insertar('martín', 'Lanús', 12345687, 'email@lalal.com', 2, 2)
 
 	# creo microtalleres
-	microtaller_abm.insertar('microtáller1', None, 1)
-	microtaller_abm.insertar('micrótaller2', 'motívo', 1)
-	microtaller_abm.insertar('mícrotaller3', 'motivo', 2)
+	microtaller_abm.insertar('Diseño y Gestión del Aula Virtual en Moodle', None, 1)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 2', 'motívo', 1)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 3', 'motivo', 2)
+	# No recuerdo de este O.O
 	microtaller_abm.insertar('microtaller4', None, 2)
 
 
