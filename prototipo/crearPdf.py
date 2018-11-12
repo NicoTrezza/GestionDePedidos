@@ -9,7 +9,19 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
 
     c = canvas.Canvas("crear_aula.pdf")
     c.setLineWidth(.3)
+
+    """c.drawString(430, 765, time.strftime("%c"))
+    c.drawImage("static\silversonic.jpg", 80, 780, 50, 50)
+    c.line(60, 760, 535, 760)
+    c.line(85, 665, 205, 665)
+    c.setFont('Helvetica', 15)
+    c.drawString(85, 670, 'Datos ingresados:')
+    c.setFont('Helvetica', 18)
+    c.drawString(170, 800, 'Universidad Tecnologica Nacional')
+    c.drawString(200, 720, 'Solicitud: Crear aula')"""
     c.setFont('Helvetica', 12)
+    c.drawString(85, 315, 'Descripcion:')
+    c.drawString(95, 300, descripcion.decode("utf-8"))
     c.drawString(85, 630, 'Departameto:')
     c.drawString(95, 615, departamento.decode("utf-8"))
     if departamento == '1':
@@ -26,19 +38,27 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
     """
 
     for persona in lista_personas:
-        c.drawString(85, 540 + contador, 'Nombre del Docente:')
-        c.drawString(95, 525 + contador, persona.getNombre().decode("utf-8"))
-        c.drawString(85, 495 + contador, 'Apellido del docente:')
-        c.drawString(95, 480 + contador, persona.getApellido().decode("utf-8"))
-        c.drawString(85, 450 + contador, 'Dni:')
-        c.drawString(95, 435 + contador, str(persona.getDni()))
-        c.drawString(85, 405 + contador, 'Email del profesor:')
-        c.drawString(95, 390 + contador, persona.getMail().decode("utf-8"))
-        c.drawString(85, 360 + contador, 'Rol del profesor:')
-        c.drawString(95, 345 + contador, str(persona.getTipoPersona()))
-
-        contador = contador + 195
-        ultimo = 345 + contador
+        c.drawString(430, 765, time.strftime("%c"))
+        c.drawImage("static\silversonic.jpg", 80, 780, 50, 50)
+        c.line(60, 760, 535, 760)
+        c.line(85, 665, 205, 665)
+        c.setFont('Helvetica', 15)
+        c.drawString(85, 670, 'Datos ingresados:')
+        c.setFont('Helvetica', 18)
+        c.drawString(170, 800, 'Universidad Tecnologica Nacional')
+        c.drawString(200, 720, 'Solicitud: Crear aula')
+        c.setFont('Helvetica', 12)
+        c.drawString(85, 540, 'Nombre del Docente:')
+        c.drawString(95, 525, persona.getNombre().decode("utf-8"))
+        c.drawString(85, 495, 'Apellido del docente:')
+        c.drawString(95, 480, persona.getApellido().decode("utf-8"))
+        c.drawString(85, 450, 'Dni:')
+        c.drawString(95, 435, str(persona.getDni()))
+        c.drawString(85, 405, 'Email del profesor:')
+        c.drawString(95, 390, persona.getMail().decode("utf-8"))
+        c.drawString(85, 360, 'Rol del profesor:')
+        c.drawString(95, 345, str(persona.getTipoPersona()))
+        c.showPage()
 
 
     """
@@ -53,19 +73,6 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
     c.drawString(85, 360, 'Rol del profesor:')
     c.drawString(95, 345, rol)
     """
-
-    c.drawString(85, 315 + ultimo, 'Descripcion:')
-    c.drawString(95, 300 + ultimo, descripcion.decode("utf-8"))
-
-    c.drawString(430, 765, time.strftime("%c"))
-    c.drawImage("static\silversonic.jpg", 80, 780, 50, 50)
-    c.line(60, 760, 535, 760)
-    c.line(85, 665, 205, 665)
-    c.setFont('Helvetica', 15)
-    c.drawString(85, 670, 'Datos ingresados:')
-    c.setFont('Helvetica', 18)
-    c.drawString(170, 800, 'Universidad Tecnologica Nacional')
-    c.drawString(200, 720, 'Solicitud: Crear aula')
 
     c.save()
 
