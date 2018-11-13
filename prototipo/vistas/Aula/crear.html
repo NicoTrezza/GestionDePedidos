@@ -21,7 +21,7 @@ var newIn = '<div id="field' + next + '" class="col s12"> <div class="card cente
 
 
 					var newInput = $(newIn);
-					var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+					var removeBtn = '<button id="remove' + (next - 1) + '" class="btn-floating btn-small waves-effect waves-light red btn-danger remove-me right" >X</button></div><div id="field">';
 					var removeButton = $(removeBtn);
 					$(addto).after(newInput);
 					$(addRemove).after(removeButton);
@@ -224,7 +224,8 @@ var newIn = '<div id="field' + next + '" class="col s12"> <div class="card cente
 	      </div>
 	    </div>
 			  </div>
-<button id="b1" class="btn add-more" type="button">+</button>
+<!-- <button id="b1" class="btn add-more" type="button">+</button> -->
+			  <button id="b1" class="btn-floating add-more btn-large waves-effect waves-blue darken-3 right" type="button">+</button>
 
 	<!--
 			  <div class="container">

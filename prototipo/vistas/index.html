@@ -5,8 +5,7 @@
 {% block contenido %}
 
   <nav class="light-blue darken-3 " role="navigation">
-
-	<div class="nav-wrapper container ">
+	<div class="navbar-fixed container ">
 	
 	<ul id="slide-out" class="sidenav">
 		<div class="nav-title"><img src="\static\silversonic.jpg"width="250" height="200" ></div>
@@ -101,17 +100,18 @@
 		</li>
 
 	</ul>
-	
+
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-	  <a id="logo-container" class="brand-logo">Gestión</a>
+	  <!--<a id="logo-container" class="truncate">Dirección Educación a Distancia | Gestor de Pedidos</a> -->
+	   <a id="logo-container" class="brand-logo">Gestión</a>
 
 		{% if usuario == '' %}
 		<a href="login/login"><i class="material-icons right">account_circle</i></a>
 		{% else %}
 		<a href="/logout"><i class="material-icons right">directions_run</i></a>
 		{% endif %}
-    </div>
+		</div>
   </nav>
 
 	<!--

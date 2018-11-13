@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from reportlab.pdfgen import canvas
 
 import time
@@ -48,14 +51,17 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
         c.drawString(170, 800, 'Universidad Tecnologica Nacional')
         c.drawString(200, 720, 'Solicitud: Crear aula')
         c.setFont('Helvetica', 12)
+
+        #nombrepersona = unicode(persona.getNombre(), 'latin-1')
+
         c.drawString(85, 540, 'Nombre del Docente:')
-        c.drawString(95, 525, persona.getNombre().decode("utf-8"))
+        c.drawString(95, 525, persona.getNombre().encode("utf-8"))
         c.drawString(85, 495, 'Apellido del docente:')
-        c.drawString(95, 480, persona.getApellido().decode("utf-8"))
+        c.drawString(95, 480, persona.getApellido().encode("utf-8"))
         c.drawString(85, 450, 'Dni:')
         c.drawString(95, 435, str(persona.getDni()))
         c.drawString(85, 405, 'Email del profesor:')
-        c.drawString(95, 390, persona.getMail().decode("utf-8"))
+        c.drawString(95, 390, persona.getMail().encode("utf-8"))
         c.drawString(85, 360, 'Rol del profesor:')
         c.drawString(95, 345, str(persona.getTipoPersona()))
         c.showPage()
