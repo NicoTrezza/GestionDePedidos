@@ -306,7 +306,7 @@ def reutilizar():
         permisos = us.getPermisos()
     except:
         mensajeError1 = u'usuario no valido'  # este es para el usuario no valido
-        flash(mensajeError1)
+        # flash(mensajeError1)
     if request.method == 'POST' and reutilizar_aula.validate():
         if 'usuario' in session:
             if permisos == 1:

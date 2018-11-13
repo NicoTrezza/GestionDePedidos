@@ -29,10 +29,10 @@
     <div class="nav-wrapper">
       <div class="nav-wrapper container">
       <a id="logo-container" href="/" class="brand-logo">Gestión</a>
-         
+
       <ul id="slide-out" class="sidenav sidenav-fixed">
   <div class="nav-title"><img src="\static\silversonic.jpg"width="250" height="200" ></div>
-    
+
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
@@ -68,7 +68,7 @@
           </li>
         </ul>
     </li>
-    
+
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
@@ -76,17 +76,17 @@
             <div class="collapsible-body">
               <ul>
                 <li>
-        <a href="../capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
+        <a href="../capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Capacitación</p></a>
         </li>
         <li>
-        <a href="../capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Microtalleres</p></a>
+        <a href="../capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Curso y Talleres</p></a>
         </li>
               </ul>
             </div>
           </li>
         </ul>
     </li>
-    
+
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
@@ -106,17 +106,17 @@
     </li>
 
   </ul>
-	
+
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-      
+
     </div>
     <div class="row">
       <div class="col s12">
       <div class="nav-content">
         <ul class="tabs tabs-transparent">
-            <li class="tab col s6 active"><a class="active" href="../capacitacion/tutorias" target="_self">Tutoría / Capacitación</a></li>
-            <li class="tab col s6"><a href="../capacitacion/microtalleres" target="_self">Microtalleres</a></li>
+            <li class="tab col s6 active"><a class="active" href="../capacitacion/tutorias" target="_self">Capacitación</a></li>
+            <li class="tab col s6"><a href="../capacitacion/microtalleres" target="_self">Cursos y Talleres</a></li>
         </ul>
       </div>
       </div>
@@ -126,7 +126,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Solicitud de turnos de tutoría / Capacitación</h1>
+      <h1 class="header center orange-text">Solicitud de turnos de Capacitación</h1>
       <br><br>
     </div>
   </div>
@@ -165,7 +165,7 @@
 			  <div class="row">
 			    <div class="col s12">
 			      <div class="row">
-			        
+
 			        <div class="input-field col s6">
                         {{ render_field(form.nombre) }}
 
@@ -198,7 +198,7 @@
     <div class="col s12">
         <div class="card">
           <div class="card-content">
-            <span class="card-title">La tutoría será:</span>
+            <span class="card-title">La Capacitación será:</span>
           </div>
           <div class="card-action">
             <div class="row">
@@ -232,44 +232,65 @@
        <div class="col s12">
         <div class="card center">
           <div class="card-content">
-            <span class="card-title">Horarios de tutorías:</span>
+            <span class="card-title">Horarios de Capacitaciónes:</span>
           </div>
           <div class="card-action">
             <div class="row">
               <div class="col s12">
                 <div class="row">
                     <div id="horarios" class="section scrollspy">
-                    <table class = "striped">
-                        <thead>
-                          <tr>
-                              <th>Día</th>
-                              <th>Horario</th>
-                          </tr>
-                        </thead>
+                    <table class="striped">
+                            <thead>
+                              <tr>
+                                  <th>DÍAS</th>
+                                  <th>HORARIOS</th>
+                                  <th>LUGAR</th>
+                              </tr>
+                            </thead>
 
-                        <tbody>
-                          <tr>
-                            <td>Lunes</td>
-                            <td>9 a 18</td>
-                          </tr>
-                          <tr>
-                            <td>Martes</td>
-                            <td>12 a 20</td>
-                          </tr>
-                          <tr>
-                            <td>Miercoles</td>
-                            <td>9 a 18</td>
-                          </tr>
-                          <tr>
-                            <td>Jueves</td>
-                            <td>12 a 18</td>
-                          </tr>
-                        <tr>
-                            <td>Viernes</td>
-                            <td>12 a 18</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                            <tbody>
+                              <tr>
+                                <td><strong>Lunes</strong></td>
+                                <td>18 a 21</td>
+                                <td>Medrano, Secretaría Académica</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Martes</strong></td>
+                                <td>17 a 19</td>
+                                <td>Campus, Sala de Profesores - (<strong>martes por medio, consultar</strong>)</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>18 a 21</td>
+                                <td>Medrano, Secretaría Académica</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Miércoles</strong></td>
+                                <td>12 a 16</td>
+                                <td>Campus, Sala de Profesores</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>18 a 21</td>
+                                <td>Medrano, Secretaría Académica</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Jueves</strong></td>
+                                <td>18 a 21</td>
+                                <td>Posgrado, Primer Piso (<strong>consultar</strong>) / Medrano, Secretaría Académica</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Viernes</strong></td>
+                                <td>17 a 19</td>
+                                <td>Campus, Sala de Profesores</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>18 a 21</td>
+                                <td>Medrano, Secretaría Académica</td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                 </div>
               </div>
@@ -282,7 +303,7 @@
               <div class="col s12">
         <div class="card center">
           <div class="card-content">
-            <span class="card-title">Fecha de la Tutoría:</span>
+            <span class="card-title">Fecha de la Capacitación:</span>
               <a class="red-text text-darken-2" href="#horarios">Seleccione 3 fechas posibles (de acuerdo al rango horario de tutoría) para realizar la misma</a>
           </div>
           <div class="card-action">
@@ -327,7 +348,7 @@
 			    </div>
 
                     <p>Importante: el equipo de Capacitación del Campus Virtual se pondrá en contacto por correo
-                        electrónico para acordar el horario de su tutoría</p>
+                        electrónico para acordar el horario de su Capacitación</p>
 
                 </div>
               </div>
