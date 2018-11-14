@@ -59,7 +59,7 @@ class ReutilizarAula(Form):
     departamentos = departamento_abm.listar()
     eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
 
-    departamento = SelectField('Departamento', choices=eleccion)
+    departamento = SelectField('Departamento', choices=eleccion, default=2)
 
     nombreaula = StringField('Nombre del aula',
                              [validators.required()]
@@ -70,15 +70,6 @@ class ReutilizarAula(Form):
     nombrenuevo = StringField('Nombre nuevo')
     otro = TextAreaField('Otro')
 
-    nombredocente = StringField('Nombre del docente')
-    apellidodocente = StringField('Apellido del docente')
-    dni = StringField('DNI')
-    emailprofesor = EmailField('E-mail del profesor')
-    tipo_persona_abm = TipoPersonaABM()
-    listaroles = tipo_persona_abm.listar()
-    lista_eleccion_roles = [(str(d.getIdTipoPersona()), d.getRol()) for d in listaroles]
-    rol = SelectField('rol', choices=lista_eleccion_roles)
-
 
 class EliminarAula(Form):
 
@@ -86,7 +77,7 @@ class EliminarAula(Form):
     departamentos = departamento_abm.listar()
     eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
 
-    departamento = SelectField('Departamento', choices=eleccion)
+    departamento = SelectField('Departamento', choices=eleccion, default=2)
 
     nombreaula = StringField('Nombre del aula',
                              [validators.required()]
@@ -157,7 +148,7 @@ class Tutorias(Form):
     departamentos = departamento_abm.listar()
     eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
 
-    departamento = SelectField('Departamento', choices=eleccion)
+    departamento = SelectField('Departamento', choices=eleccion, default=2)
 
     tipo_persona_abm = TipoPersonaABM()
     listaroles = tipo_persona_abm.listar()
@@ -189,7 +180,7 @@ class Microtalleres(Form):
     departamentos = departamento_abm.listar()
     eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
 
-    departamento = SelectField('Departamento', choices=eleccion)
+    departamento = SelectField('Departamento', choices=eleccion, default=2)
 
     motivo = TextAreaField('Motivo',
                            [validators.required()]
@@ -201,5 +192,5 @@ class Matricular(Form):
     departamentos = departamento_abm.listar()
     eleccion = [(str(d.getIdDepartamento()), d.getNombreDepartamento()) for d in departamentos]
 
-    departamento = SelectField('Departamento', choices=eleccion)
+    departamento = SelectField('Departamento', choices=eleccion, default=2)
     #carrera = SelectField(coerce=int)

@@ -310,16 +310,24 @@ def reutilizar():
     if request.method == 'POST' and reutilizar_aula.validate():
         if 'usuario' in session:
             if permisos == 1:
+                cant_docentes = 5  # es uno menos que el numero
                 print reutilizar_aula.departamento.data
                 print request.form['carrera']
                 print reutilizar_aula.nombreaula.data
                 print reutilizar_aula.direccionulr.data
 
-                print reutilizar_aula.nombredocente.data
-                print reutilizar_aula.apellidodocente.data
-                print reutilizar_aula.dni.data
-                print reutilizar_aula.emailprofesor.data
-                print reutilizar_aula.rol.data
+                for i in range(1, cant_docentes):
+                    print "We're on time %d" % (i)
+                    try:
+
+                        print request.form['nombredocente' + str(i)]
+                        print request.form['apellidodocente' + str(i)]
+                        print request.form['dni' + str(i)]
+                        print request.form['emailprofesor' + str(i)]
+                        print request.form['rol' + str(i)]
+
+                    except:
+                        print 'un error'
 
                 print reutilizar_aula.nombrenuevo.data
                 print reutilizar_aula.otro.data
