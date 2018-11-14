@@ -7,7 +7,7 @@ class Aula(object):
             self.descripcion = str(dao[2])
         except:
             self.descripcion = None
-        self.carreraAula = int(dao[3])
+        self.departamentoAula = int(dao[3])
 
     def getIdAula(self):
         return self.idAula
@@ -27,11 +27,11 @@ class Aula(object):
     def setDescripcion(self, descripcion):
         self.descripcion = descripcion
 
-    def getCarreraAula(self):
-        return self.carreraAula
+    def getDepartamentoAula(self):
+        return self.departamentoAula
 
-    def setCarreraAula(self, carreraAula):
-        self.carreraAula = carreraAula
+    def setDepartamentoAula(self, departamentoAula):
+        self.departamentoAula = departamentoAula
 
     def __str__(self):
         return "Id del aula: {}, nombre del Aula: {}, descripcion del Aula: {}".format(self.idAula, self.nombreAula, self.descripcion)

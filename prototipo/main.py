@@ -25,6 +25,8 @@ from negocio.microtallerABM import MicrotallerABM
 from negocio.carreraABM import CarreraABM
 from negocio.tutoriaABM import TutoriaABM
 
+from datos.aula import Aula
+
 from werkzeug.utils import secure_filename
 
 import forms
@@ -205,6 +207,7 @@ def crear():
                 except:
                     aula = None
 
+                # el insert de la tabla persona
                 if aula is None:
                     for i in range(1, cant_docentes):
                         try:
@@ -227,6 +230,7 @@ def crear():
 
                 print idpersona
 
+                # el insert de la tabla intermedia y del aula
                 if aula is None:
                     if persona is not None:
                         aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data,
@@ -310,7 +314,13 @@ def reutilizar():
     if request.method == 'POST' and reutilizar_aula.validate():
         if 'usuario' in session:
             if permisos == 1:
+
                 cant_docentes = 5  # es uno menos que el numero
+                aula_abm = AulaABM()
+                persona_abm = PersonaABM()
+                persona = None
+                cant_personas = 0
+
                 print reutilizar_aula.departamento.data
                 print request.form['carrera']
                 print reutilizar_aula.nombreaula.data
@@ -325,12 +335,75 @@ def reutilizar():
                         print request.form['dni' + str(i)]
                         print request.form['emailprofesor' + str(i)]
                         print request.form['rol' + str(i)]
+                        if request.form['nombredocente' + str(i)] != '':
+                            cant_personas = cant_personas + 1
 
                     except:
                         print 'un error'
 
                 print reutilizar_aula.nombrenuevo.data
                 print reutilizar_aula.otro.data
+
+                # modifico en la base de datos ----------------------------------------------------------
+                print 'cantidad de personas: '+str(cant_personas)
+                idpersona = [] # voy a usar esta lista para guardar todas las personas
+                id_persona_aula = []
+
+                try:
+                    aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
+                except:
+                    aula = None
+
+
+                # el insert de la tabla persona
+                if cant_personas > 0:
+                    if aula is not None:
+                        for i in range(1, cant_docentes):
+                            try:
+                                print 'intento' + str(i)
+                                persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                                idpersona.append(persona.getIdPersona())
+                            except:
+                                try:
+                                    persona_abm.insertar(request.form['nombredocente' + str(i)],
+                                                         request.form['apellidodocente' + str(i)],
+                                                         request.form['dni' + str(i)],
+                                                         request.form['emailprofesor' + str(i)],
+                                                         request.form['rol' + str(i)],
+                                                         None)
+                                    print request.form['dni' + str(i)]
+                                    persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                                    idpersona.append(persona.getIdPersona())
+                                except:
+                                    print 'no se ingresaron datos / dni repetido'
+
+                print idpersona
+                # el modificacion de la tabla intermedia y del aula
+
+                if aula is not None:
+                    print 'lallala'
+                    aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
+                    print 'lelele'
+                    aula.setDepartamentoAula(reutilizar_aula.departamento.data)
+
+                    if reutilizar_aula.nombrenuevo.data != '':
+                        aula.setNombreAula(reutilizar_aula.nombrenuevo.data)
+
+                    aula_abm.modificar(aula)
+
+                    if cant_personas > 0:
+                        if reutilizar_aula.nombrenuevo.data != '':
+                            aula_abm.eliminar_personaaula(aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula())
+                            for idp in idpersona:
+                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula())
+                        else:
+                            aula_abm.eliminar_personaaula(aula_abm.traerXNombre(reutilizar_aula.nombreaula.data).getIdAula())
+                            for idp in idpersona:
+                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(reutilizar_aula.nombreaula.data).getIdAula())
+                    
+                else:
+                    flash('el aula no existe')
+
                 usuario = session['usuario']
             else:
                 flash('No tiene permisos')

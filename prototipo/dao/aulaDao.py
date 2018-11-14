@@ -38,17 +38,32 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
-    def modificar(self, idAula, nombreAula, descripcion, carreraAula):
+    def modificar(self, idAula, nombreAula, descripcion, id_departamento):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update aula set nombreAula = %s, descripcion = %s, carreraAula = %s where idAula = %s'
-            val = (nombreAula, descripcion, carreraAula, idAula)
+            sql = 'update aula set nombreAula = %s, descripcion = %s, Departamento_idDepartamento = %s where idAula = %s'
+            val = (nombreAula, descripcion, id_departamento, idAula)
             
             cursor.execute(sql, val)
             self.conexion.commit()
         
+            self.desconectar()
+        except Error as e:
+            print e
+
+    def modificarpersona(self, idpersona, idaula):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'update personaaula set Persona_idPersona = %s where Aula_idAula = %s;'
+            val = (idpersona, idaula)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
             self.desconectar()
         except Error as e:
             print e
@@ -64,6 +79,21 @@ class AulaDao(Conexion):
             cursor.execute(sql, val)
             self.conexion.commit()
         
+            self.desconectar()
+        except Error as e:
+            print e
+
+    def eliminar_personaaula(self, idAula):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'delete from personaaula where Aula_idAula = %s'
+            val = (idAula,)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
             self.desconectar()
         except Error as e:
             print e
@@ -85,6 +115,30 @@ class AulaDao(Conexion):
             print e
             
         return Aula(objeto)
+
+    def traer_personasXAula(self, idAula):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select idpersonaaula from personaaula where Aula_idAula = %s'
+            val = (idAula,)
+
+            cursor.execute(sql, val)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            ob = Aula(objeto)
+            lis.append(ob)
+
+        return lis
 
     def traerXNombre(self, nombreAula):
         try:
