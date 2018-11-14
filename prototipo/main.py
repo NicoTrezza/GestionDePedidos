@@ -267,7 +267,6 @@ def crear():
                                         lista_personas,
                                         request.form['descripcion'])
 
-
                     # creo el mail a enviar
                     msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
                                   recipients=lista_mails)  # recipients es una lista!!
@@ -354,7 +353,6 @@ def reutilizar():
                 except:
                     aula = None
 
-
                 # el insert de la tabla persona
                 if cant_personas > 0:
                     if aula is not None:
@@ -381,9 +379,7 @@ def reutilizar():
                 # el modificacion de la tabla intermedia y del aula
 
                 if aula is not None:
-                    print 'lallala'
                     aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
-                    print 'lelele'
                     aula.setDepartamentoAula(reutilizar_aula.departamento.data)
 
                     if reutilizar_aula.nombrenuevo.data != '':
@@ -403,6 +399,44 @@ def reutilizar():
                     
                 else:
                     flash('el aula no existe')
+
+                if aula is not None:
+                    # creo el pdf----------------------------------------------------------
+
+                    lista_personas = []
+
+                    for id in idpersona:
+                        lista_personas.append(persona_abm.traer(id))
+
+                    crearPdf.modificar_aula(reutilizar_aula.departamento.data,
+                                        request.form['carrera'],
+                                        reutilizar_aula.nombreaula.data,
+                                        reutilizar_aula.direccionulr.data,
+                                        lista_personas,
+                                        reutilizar_aula.nombrenuevo.data,
+                                        reutilizar_aula.otro.data)
+
+                    # creo el mail a enviar
+                    msg = Message('Reutilizar aula', sender=app.config['MAIL_USERNAME'],
+                                  recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
+
+                    msg.html = render_template('email_aula_reutilizar.html',
+                                               departamento=request.form['departamento'],
+                                               carrera=request.form['carrera'],
+                                               nombreaula=reutilizar_aula.nombreaula.data,
+                                               direccionulr=reutilizar_aula.direccionulr.data,
+                                               personas=lista_personas,
+                                               nombre_nuevo=reutilizar_aula.nombrenuevo.data,
+                                               otro=reutilizar_aula.otro.data)
+                    # archivo pdf adjunto
+                    with app.open_resource("modificar_aula.pdf") as pdf:
+                        msg.attach("modificar_aula.pdf", "documento/pdf", pdf.read())
+
+                    # envio el mail
+                    # mail.send(msg)
+
+                    # elimino el pdf despues de enviado el mail
+                    # os.remove('modificar_aula.pdf')
 
                 usuario = session['usuario']
             else:
@@ -428,11 +462,58 @@ def eliminar():
     if request.method == 'POST' and eliminar_aula.validate():
         if 'usuario' in session:
             if permisos == 1:
+                aula_abm = AulaABM()
+
                 print eliminar_aula.departamento.data
                 print request.form['carrera']
                 print eliminar_aula.nombreaula.data
                 print eliminar_aula.direccionulr.data
                 print eliminar_aula.motivo.data
+
+                # elimino en la base de datos ----------------------------------------------------------
+                try:
+                    aula = aula_abm.traerXNombre(eliminar_aula.nombreaula.data)
+                except:
+                    aula = None
+
+                # el eliminar de la tabla intermedia y del aula
+
+                if aula is not None:
+                    aula = aula_abm.traerXNombre(eliminar_aula.nombreaula.data)
+                    aula_abm.eliminar_personaaula(aula.getIdAula())
+                    aula_abm.eliminar(aula.getIdAula())
+                else:
+                    flash('el aula no existe')
+
+                if aula is not None:
+                    # creo el pdf----------------------------------------------------------
+
+                    crearPdf.eliminar_aula(eliminar_aula.departamento.data,
+                                        request.form['carrera'],
+                                        eliminar_aula.nombreaula.data,
+                                        eliminar_aula.direccionulr.data,
+                                        eliminar_aula.motivo.data)
+
+                    # creo el mail a enviar
+                    msg = Message('Eliminar aula', sender=app.config['MAIL_USERNAME'],
+                                  recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
+
+                    msg.html = render_template('email_aula_eliminar.html',
+                                               departamento=request.form['departamento'],
+                                               carrera=request.form['carrera'],
+                                               nombreaula=eliminar_aula.nombreaula.data,
+                                               direccionulr=eliminar_aula.direccionulr.data,
+                                               motivo=eliminar_aula.motivo.data)
+                    # archivo pdf adjunto
+                    with app.open_resource("eliminar_aula.pdf") as pdf:
+                        msg.attach("eliminar_aula.pdf", "documento/pdf", pdf.read())
+
+                    # envio el mail
+                    mail.send(msg)
+
+                    # elimino el pdf despues de enviado el mail
+                    os.remove('eliminar_aula.pdf')
+
                 usuario = session['usuario']
             else:
                 flash('No tiene permisos')

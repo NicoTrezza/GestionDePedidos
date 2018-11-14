@@ -83,6 +83,104 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
     c.save()
 
 
+def modificar_aula(departamento, carrera, nombreaula, direccion, lista_personas, nuevonombre, otros):
+
+    c = canvas.Canvas("modificar_aula.pdf")
+    c.setLineWidth(.3)
+
+    """c.drawString(430, 765, time.strftime("%c"))
+    c.drawImage("static\silversonic.jpg", 80, 780, 50, 50)
+    c.line(60, 760, 535, 760)
+    c.line(85, 665, 205, 665)
+    c.setFont('Helvetica', 15)
+    c.drawString(85, 670, 'Datos ingresados:')
+    c.setFont('Helvetica', 18)
+    c.drawString(170, 800, 'Universidad Tecnologica Nacional')
+    c.drawString(200, 720, 'Solicitud: Crear aula')"""
+    c.setFont('Helvetica', 12)
+    c.drawString(85, 315, 'Direccion ULR:')
+    c.drawString(95, 300, direccion.decode("utf-8"))
+    c.drawString(85, 630, 'Departameto:')
+    c.drawString(95, 615, departamento.decode("utf-8"))
+    if departamento == '1':
+        c.drawString(85, 585, 'Carrera:')
+        c.drawString(95, 570, carrera.decode("utf-8"))
+    else:
+        c.drawString(85, 585, 'Nombre del aula:')
+        c.drawString(95, 570, nombreaula.decode("utf-8"))
+
+    """
+    for id in idpersona:
+        c.drawString(95, 345 + contador, str(id))
+        contador = contador + 5
+    """
+
+    for persona in lista_personas:
+        c.drawString(430, 765, time.strftime("%c"))
+        c.drawImage("static\silversonic.jpg", 80, 780, 50, 50)
+        c.line(60, 760, 535, 760)
+        c.line(85, 665, 205, 665)
+        c.setFont('Helvetica', 15)
+        c.drawString(85, 670, 'Datos ingresados:')
+        c.setFont('Helvetica', 18)
+        c.drawString(170, 800, 'Universidad Tecnologica Nacional')
+        c.drawString(200, 720, 'Solicitud: Crear aula')
+        c.setFont('Helvetica', 12)
+
+        #nombrepersona = unicode(persona.getNombre(), 'latin-1')
+
+        c.drawString(85, 540, 'Nombre del Docente:')
+        c.drawString(95, 525, persona.getNombre().encode("utf-8"))
+        c.drawString(85, 495, 'Apellido del docente:')
+        c.drawString(95, 480, persona.getApellido().encode("utf-8"))
+        c.drawString(85, 450, 'Dni:')
+        c.drawString(95, 435, str(persona.getDni()))
+        c.drawString(85, 405, 'Email del profesor:')
+        c.drawString(95, 390, persona.getMail().encode("utf-8"))
+        c.drawString(85, 360, 'Rol del profesor:')
+        c.drawString(95, 345, str(persona.getTipoPersona()))
+        c.showPage()
+
+
+    """
+    c.drawString(85, 540, 'Nombre del Docente:')
+    c.drawString(95, 525, nombredocente)
+    c.drawString(85, 495, 'Apellido del docente:')
+    c.drawString(95, 480, apellidodocente)
+    c.drawString(85, 450, 'Dni:')
+    c.drawString(95, 435, dni)
+    c.drawString(85, 405, 'Email del profesor:')
+    c.drawString(95, 390, emailprofesor)
+    c.drawString(85, 360, 'Rol del profesor:')
+    c.drawString(95, 345, rol)
+    """
+
+    c.save()
+
+
+def eliminar_aula(departamento, carrera, nombreaula, direccion, motivo):
+
+    c = canvas.Canvas("eliminar_aula.pdf")
+    c.setLineWidth(.3)
+
+    c.setFont('Helvetica', 12)
+    c.drawString(85, 315, 'Direccion ULR:')
+    c.drawString(95, 300, direccion.decode("utf-8"))
+    c.drawString(85, 630, 'Departameto:')
+    c.drawString(95, 615, departamento.decode("utf-8"))
+    if departamento == '1':
+        c.drawString(85, 585, 'Carrera:')
+        c.drawString(95, 570, carrera.decode("utf-8"))
+    else:
+        c.drawString(85, 585, 'Nombre del aula:')
+        c.drawString(95, 570, nombreaula.decode("utf-8"))
+
+    c.drawString(85, 400, 'Motivo:')
+    c.drawString(95, 405, motivo.decode("utf-8"))
+
+    c.save()
+
+
 def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, motivo, microtaller):
     c = canvas.Canvas("microtaller.pdf")
     c.setLineWidth(.3)

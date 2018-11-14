@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reutilizar</title>
+</head>
+<body>
+    <h1>Aula {{nombreaula}} creada</h1>
+    <p>datos:</p>
+    <p>departamento: {{departamento}}</p>
+    <p>carrera: {{carrera}}</p>
+    <p>nobmre del aula: {{nombreaula}}</p>
+    <p>direccion ULR: {{direccionulr}}</p>
+
+
+    {% for persona in personas %}
+
+        <p>Nombre del Docente: {{persona.getNombre()}}</p>
+        <p>Apellido del docente: {{persona.getApellido()}}</p>
+        <p>Dni: {{persona.getDni()}}</p>
+        <p>Email del profesor: {{persona.getMail()}}</p>
+        <p>Rol del profesor: {{persona.getTipoPersona()}}</p>
+
+    {% endfor %}
+    <p>nombre nuevo del aula: {{nombre_nuevo}}</p>
+    <p>otro: {{otro}}</p>
+
+</body>
+</html>
