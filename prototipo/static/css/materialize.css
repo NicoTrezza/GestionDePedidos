@@ -5540,6 +5540,10 @@ button.btn-floating {
   display: block;
 }
 
+.separador {
+  padding-bottom: 10px;
+}
+
 .dropdown-content {
   background-color: #fff;
   margin: 0;

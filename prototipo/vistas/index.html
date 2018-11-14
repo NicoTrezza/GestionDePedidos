@@ -5,6 +5,7 @@
 {% block contenido %}
 
   <nav class="light-blue darken-3 " role="navigation">
+
 	<div class="nav-wrapper container ">
 	
 	<ul id="slide-out" class="sidenav">
@@ -70,10 +71,10 @@
             <div class="collapsible-body">
               <ul>
                 <li>
-				<a href="capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Capacitación</p></a>
+				<a href="capacitacion/tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
 				</li>
 				<li>
-				<a href="capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Curso y Talleres</p></a>
+				<a href="capacitacion/microtalleres"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Microtalleres</p></a>
 				</li>
               </ul>
             </div>
@@ -100,18 +101,17 @@
 		</li>
 
 	</ul>
-
+	
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-	  <!--<a id="logo-container" class="truncate">Dirección Educación a Distancia | Gestor de Pedidos</a> -->
-	   <a id="logo-container" class="brand-logo">Gestión</a>
+	  <a id="logo-container" class="brand-logo">Gestión</a>
 
 		{% if usuario == '' %}
 		<a href="login/login"><i class="material-icons right">account_circle</i></a>
 		{% else %}
 		<a href="/logout"><i class="material-icons right">directions_run</i></a>
 		{% endif %}
-		</div>
+    </div>
   </nav>
 
 	<!--
@@ -151,7 +151,7 @@
 	          <p>Formularios para la gestión de usuarios en las aulas virtuales.</p>
 	        </div>
 	        <div class="card-action">
-	          <a href="usuario/matricular" class="btn-small light-blue darken-3">Matricular</a>
+	          <a href="usuario/matricular" class="btn-small btn-block light-blue darken-3">Matricular</a>
 	        </div>
 	      </div>
 	    </div>
@@ -163,10 +163,12 @@
 	          <span class="card-title">Aulas</span>
 	          <p>Contempla los pasos administrativos para la gestión de un espacio curricular en una aula virtual.</p>
 	        </div>
-	        <div class="card-action">
-	          <a href="aula/crear" class="btn-small light-blue darken-3">Crear</a>
-			  <a href="aula/reutilizar" class="btn-small light-blue darken-3">Reutilizar</a>
-			  <a href="aula/eliminar" class="btn-small light-blue darken-3">Eliminar</a>
+	        <div class="card-action ">
+	          <a href="aula/crear" class="btn-small btn-block light-blue darken-3">Crear</a>
+              <div class="separador"></div>
+			  <a href="aula/reutilizar" class="btn-small btn-block light-blue darken-3">Reutilizar</a>
+			  <div class="separador"></div>
+              <a href="aula/eliminar" class="btn-small btn-block light-blue darken-3">Eliminar</a>
 			</div>
 	      </div>
 	    </div>
@@ -179,8 +181,9 @@
 	          <p>El Campus Virtual brinda capacitación constante a la comunidad educativa de la UNLa.</p>
 	        </div>
 	        <div class="card-action">
-	          <a href="capacitacion/tutorias" class="btn-small light-blue darken-3">Capacitación</a>
-			  <a href="capacitacion/microtalleres" class="btn-small light-blue darken-3">Curso y Talleres</a>
+	          <a href="capacitacion/tutorias" class="btn-small btn-block light-blue darken-3">Tutoría / Capacitación</a>
+              <div class="separador"></div>
+			  <a href="capacitacion/microtalleres" class="btn-small btn-block light-blue darken-3">Microtalleres</a>
 			</div>
 	      </div>
 	    </div>
@@ -193,8 +196,9 @@
 	          <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p>
 	        </div>
 	        <div class="card-action">
-	          <a href="#" class="btn-small light-blue darken-3">Solicitud de virtualizacion</a>
-			  <a href="#" class="btn-small light-blue darken-3">Actualizacion (U.C)</a>
+	          <a href="#" class="btn-small btn-block light-blue darken-3">Solicitud de virtualizacion</a>
+              <div class="separador"></div>
+			  <a href="#" class="btn-small btn-block light-blue darken-3">Actualizacion (U.C)</a>
 			</div>
 	      </div>
 	    </div>
