@@ -306,10 +306,11 @@ def matricular(departamento, carrera):
             carrera_nombre = 'no tiene'
 
     c = canvas.Canvas("matricular.pdf")
-    c.drawString(100, 750, departamento_nombre.encode("utf-8"))
+
+    c.drawString(85, 630, 'Departameto:')
+    c.drawString(95, 615, departamento_nombre.encode("utf-8"))
     if departamento == '1':
-        c.drawString(100, 740, carrera_nombre.encode("utf-8"))
-    else:
-        c.drawString(100, 740, '------------')
+        c.drawString(85, 585, 'Carrera:')
+        c.drawString(95, 570, carrera_nombre.encode("utf-8"))
 
     c.save()

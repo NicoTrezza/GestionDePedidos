@@ -108,16 +108,22 @@ def matricular():
     if request.method == 'POST' and matricular.validate():
         if 'usuario' in session:
             if permisos == 1:
+                carrera = ''
+
+                if matricular.departamento.data == '1':
+                    carrera = request.form['carrera']
+
                 print matricular.departamento.data
-                print request.form['carrera']
+                print carrera
 
                 f = request.files['file']
                 filename = secure_filename(f.filename)
                 f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/' + filename)
+                #f.save('C:/Users/Trezza/Documents/Git/GestorDePedidos/prototipo/' + filename)
 
                 # creo el pdf
                 crearPdf.matricular(matricular.departamento.data,
-                                    request.form['carrera'])
+                                    carrera)
 
                 # creo el mail a enviar
                 msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
@@ -125,7 +131,7 @@ def matricular():
 
                 msg.html = render_template('email_matricular.html',
                                            departamento=matricular.departamento.data,
-                                           carrera=request.form['carrera']
+                                           carrera=carrera
                                            )
                 # archivo pdf adjunto
                 with app.open_resource("matricular.pdf") as pdf:
