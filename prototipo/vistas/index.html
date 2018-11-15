@@ -103,33 +103,17 @@
 	</ul>
 	
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-	  <a id="logo-container" class="brand-logo">Gestión</a>
+	  <!--	<a id="logo-container" class="brand-logo center">GESTOR DE PEDIDOS</a> -->
+		<h6 id="logo-container" class="brand-logo truncate center">GESTOR DE PEDIDOS</h6>
 
 		{% if usuario == '' %}
-		<a href="login/login"><i class="material-icons right">account_circle</i></a>
+		<a class="hide-on-small-only right">Entrar</a><a href="login/login"><i class="material-icons right">account_circle</i></a>
 		{% else %}
-		<a href="/logout"><i class="material-icons right">directions_run</i></a>
+		<a class="hide-on-small-only right">Salir</a><a href="/logout"><i class="material-icons right">directions_run</i></a>
 		{% endif %}
     </div>
   </nav>
 
-	<!--
-	<div class="col s12">
-	      <div class="card right">
-	        <div class="card-content">
-	          <span class="card-title"><i class="material-icons center s12">account_circle</i></span>
-	        </div>
-	        <div class="card-action">
-			      <div class="row">
-			        <div class="input-field col s6">
-                        {{ usuario }}
-			        </div>
-			      </div>
-	        </div>
-	      </div>
-	    </div>
-	-->
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <h1 class="header center orange-text">Campus Virtual</h1>
@@ -181,7 +165,7 @@
 	          <p>El Campus Virtual brinda capacitación constante a la comunidad educativa de la UNLa.</p>
 	        </div>
 	        <div class="card-action">
-	          <a href="capacitacion/tutorias" class="btn-small btn-block light-blue darken-3">Tutoría / Capacitación</a>
+	          <a href="capacitacion/tutorias" class="btn-small btn-block light-blue darken-3">Tutorías</a>
               <div class="separador"></div>
 			  <a href="capacitacion/microtalleres" class="btn-small btn-block light-blue darken-3">Microtalleres</a>
 			</div>
@@ -196,9 +180,9 @@
 	          <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p>
 	        </div>
 	        <div class="card-action">
-	          <a href="#" class="btn-small btn-block light-blue darken-3">Solicitud de virtualizacion</a>
+	          <a href="#" class="btn-small btn-block light-blue darken-3">Vrtualización</a>
               <div class="separador"></div>
-			  <a href="#" class="btn-small btn-block light-blue darken-3">Actualizacion (U.C)</a>
+			  <a href="#" class="btn-small btn-block light-blue darken-3">Actualización(U.C)</a>
 			</div>
 	      </div>
 	    </div>
