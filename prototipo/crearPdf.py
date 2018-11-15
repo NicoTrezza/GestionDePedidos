@@ -2,13 +2,22 @@
 # -*- coding: utf-8 -*-
 
 from reportlab.pdfgen import canvas
+from negocio.departamentoABM import DepartamentoABM
+from negocio.carreraABM import CarreraABM
 
 import time
 
 
 def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
-    contador = 0
-    ultimo = 0
+    carrera_nombre = 'no'
+    departamento_abm = DepartamentoABM()
+    carrera_abm = CarreraABM()
+    departamento_nombre = departamento_abm.traer(departamento).getNombreDepartamento()
+    if departamento == '1':
+        try:
+            carrera_nombre = carrera_abm.traer(carrera).getNombreCarrera()
+        except:
+            carrera_nombre = 'no tiene'
 
     c = canvas.Canvas("crear_aula.pdf")
     c.setLineWidth(.3)
@@ -24,15 +33,15 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
     c.drawString(200, 720, 'Solicitud: Crear aula')"""
     c.setFont('Helvetica', 12)
     c.drawString(85, 315, 'Descripcion:')
-    c.drawString(95, 300, descripcion.decode("utf-8"))
+    c.drawString(95, 300, descripcion.encode("utf-8"))
     c.drawString(85, 630, 'Departameto:')
-    c.drawString(95, 615, departamento.decode("utf-8"))
+    c.drawString(95, 615, departamento_nombre.encode("utf-8"))
     if departamento == '1':
         c.drawString(85, 585, 'Carrera:')
-        c.drawString(95, 570, carrera.decode("utf-8"))
+        c.drawString(95, 570, carrera_nombre.encode("utf-8"))
     else:
         c.drawString(85, 585, 'Nombre del aula:')
-        c.drawString(95, 570, nombreaula.decode("utf-8"))
+        c.drawString(95, 570, nombreaula.encode("utf-8"))
 
     """
     for id in idpersona:
@@ -84,6 +93,15 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
 
 
 def modificar_aula(departamento, carrera, nombreaula, direccion, lista_personas, nuevonombre, otros):
+    departamento_abm = DepartamentoABM()
+    carrera_abm = CarreraABM()
+    departamento_nombre = departamento_abm.traer(departamento).getNombreDepartamento()
+    carrera_nombre = 'no tiene'
+    if departamento == '1':
+        try:
+            carrera_nombre = carrera_abm.traer(carrera).getNombreCarrera()
+        except:
+            carrera_nombre = 'no tiene'
 
     c = canvas.Canvas("modificar_aula.pdf")
     c.setLineWidth(.3)
@@ -101,13 +119,13 @@ def modificar_aula(departamento, carrera, nombreaula, direccion, lista_personas,
     c.drawString(85, 315, 'Direccion ULR:')
     c.drawString(95, 300, direccion.decode("utf-8"))
     c.drawString(85, 630, 'Departameto:')
-    c.drawString(95, 615, departamento.decode("utf-8"))
+    c.drawString(95, 615, departamento_nombre.encode("utf-8"))
     if departamento == '1':
         c.drawString(85, 585, 'Carrera:')
-        c.drawString(95, 570, carrera.decode("utf-8"))
+        c.drawString(95, 570, carrera_nombre.encode("utf-8"))
     else:
         c.drawString(85, 585, 'Nombre del aula:')
-        c.drawString(95, 570, nombreaula.decode("utf-8"))
+        c.drawString(95, 570, nombreaula.encode("utf-8"))
 
     """
     for id in idpersona:
@@ -159,29 +177,48 @@ def modificar_aula(departamento, carrera, nombreaula, direccion, lista_personas,
 
 
 def eliminar_aula(departamento, carrera, nombreaula, direccion, motivo):
+    departamento_abm = DepartamentoABM()
+    carrera_abm = CarreraABM()
+    departamento_nombre = departamento_abm.traer(departamento).getNombreDepartamento()
+    carrera_nombre = 'no tiene'
+    if departamento == '1':
+        try:
+            carrera_nombre = carrera_abm.traer(carrera).getNombreCarrera()
+        except:
+            carrera_nombre = 'no tiene'
 
     c = canvas.Canvas("eliminar_aula.pdf")
     c.setLineWidth(.3)
 
     c.setFont('Helvetica', 12)
     c.drawString(85, 315, 'Direccion ULR:')
-    c.drawString(95, 300, direccion.decode("utf-8"))
+    c.drawString(95, 300, direccion.encode("utf-8"))
     c.drawString(85, 630, 'Departameto:')
-    c.drawString(95, 615, departamento.decode("utf-8"))
+    c.drawString(95, 615, departamento_nombre.encode("utf-8"))
     if departamento == '1':
         c.drawString(85, 585, 'Carrera:')
-        c.drawString(95, 570, carrera.decode("utf-8"))
+        c.drawString(95, 570, carrera_nombre.encode("utf-8"))
     else:
         c.drawString(85, 585, 'Nombre del aula:')
-        c.drawString(95, 570, nombreaula.decode("utf-8"))
+        c.drawString(95, 570, nombreaula.encode("utf-8"))
 
     c.drawString(85, 400, 'Motivo:')
-    c.drawString(95, 405, motivo.decode("utf-8"))
+    c.drawString(95, 405, motivo.encode("utf-8"))
 
     c.save()
 
 
 def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, motivo, microtaller):
+    departamento_abm = DepartamentoABM()
+    carrera_abm = CarreraABM()
+    departamento_nombre = departamento_abm.traer(departamento).getNombreDepartamento()
+    carrera_nombre = 'no tiene'
+    if departamento == '1':
+        try:
+            carrera_nombre = carrera_abm.traer(carrera).getNombreCarrera()
+        except:
+            carrera_nombre = 'no tiene'
+
     c = canvas.Canvas("microtaller.pdf")
     c.setLineWidth(.3)
     c.setFont('Helvetica', 18)
@@ -201,10 +238,10 @@ def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, mo
     c.drawString(85, 450, 'Dni:')
     c.drawString(95, 435, dni)
     c.drawString(85, 405, 'Departamento:')
-    c.drawString(95, 390, departamento)
+    c.drawString(95, 390, departamento_nombre.encode("utf-8"))
     if departamento == '1':
         c.drawString(85, 360, 'Carrera:')
-        c.drawString(95, 345, carrera)
+        c.drawString(95, 345, carrera_nombre.encode("utf-8"))
     else:
         c.drawString(85, 360, 'Microtaller:')
         c.drawString(95, 345, microtaller)
@@ -220,6 +257,16 @@ def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, mo
 
 def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrera, rol, cant_personas,
             dia1, dia1_hora1, dia1_hora2, dia2, dia2_hora1, dia2_hora2, dia3, dia3_hora1, dia3_hora2,):
+    departamento_abm = DepartamentoABM()
+    carrera_abm = CarreraABM()
+    departamento_nombre = departamento_abm.traer(departamento).getNombreDepartamento()
+    carrera_nombre = 'no tiene'
+    if departamento == '1':
+        try:
+            carrera_nombre = carrera_abm.traer(carrera).getNombreCarrera()
+        except:
+            carrera_nombre = 'no tiene'
+
     c = canvas.Canvas("tutoria.pdf")
     c.drawString(100, 760, motivo)
     c.drawString(100, 750, nombre)
@@ -227,9 +274,9 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
     c.drawString(100, 730, email)
     c.drawString(100, 720, telefono)
     c.drawString(100, 710, dni)
-    c.drawString(100, 700, departamento)
+    c.drawString(100, 700, departamento_nombre.encode("utf-8"))
     if departamento == '1':
-        c.drawString(100, 690, carrera)
+        c.drawString(100, 690, carrera_nombre.encode("utf-8"))
     else:
         c.drawString(100, 690, '------------')
     c.drawString(100, 680, rol)
@@ -248,10 +295,20 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
 
 
 def matricular(departamento, carrera):
-    c = canvas.Canvas("matricular.pdf")
-    c.drawString(100, 750, departamento)
+    departamento_abm = DepartamentoABM()
+    carrera_abm = CarreraABM()
+    departamento_nombre = departamento_abm.traer(departamento).getNombreDepartamento()
+    carrera_nombre = 'no tiene'
     if departamento == '1':
-        c.drawString(100, 740, carrera)
+        try:
+            carrera_nombre = carrera_abm.traer(carrera).getNombreCarrera()
+        except:
+            carrera_nombre = 'no tiene'
+
+    c = canvas.Canvas("matricular.pdf")
+    c.drawString(100, 750, departamento_nombre.encode("utf-8"))
+    if departamento == '1':
+        c.drawString(100, 740, carrera_nombre.encode("utf-8"))
     else:
         c.drawString(100, 740, '------------')
 
