@@ -87,9 +87,11 @@ def logout():
         session.pop('usuario')
     return redirect(url_for('index'))
 
+
 @app.route('/administrador/admin', methods=['GET', 'POST'])
 def admin():
     return render_template('Administrador/admin.html', titulo="Estadisticas", form=admin)
+
 
 @app.route('/usuario/matricular', methods=['GET', 'POST'])
 def matricular():
