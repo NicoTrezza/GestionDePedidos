@@ -107,9 +107,10 @@
 		<h6 id="logo-container" class="brand-logo truncate center">GESTOR DE PEDIDOS</h6>
 
 		{% if usuario == '' %}
-		<a class="hide-on-small-only right">Entrar</a><a href="login/login"><i class="material-icons right">account_circle</i></a>
+		<a class="hide-on-small-only right" href="login/login">Entrar<i class="material-icons right">account_circle</i></a>
 		{% else %}
-		<a class="hide-on-small-only right">Salir</a><a href="/logout"><i class="material-icons right">directions_run</i></a>
+		<a class="hide-on-small-only right" href="/logout">Salir<i class="material-icons right">directions_run</i></a>
+		<a class="hide-on-small-only right" href="administrador/admin">Estadisticas<i class="material-icons right">settings</i></a>
 		{% endif %}
     </div>
   </nav>

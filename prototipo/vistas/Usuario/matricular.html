@@ -3,7 +3,7 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
-
+	<nav class="nav-extended light-blue darken-3">
 	<div class="row">
 	  <div class="col s12">
 	  <div class="nav-content">
@@ -23,27 +23,6 @@
     </div>
   </div>
 
-<style>
-.hs-responsive-embed-youtube {
-
-position: relative;
-
-padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-
-}
-
-.hs-responsive-embed-youtube iframe {
-
-position: absolute;
-
-width: 100%!important;
-
-height: 100%!important;
-
-}
-</style>
-
-
   <div class="container">
     <div class="section">
 
@@ -59,7 +38,7 @@ height: 100%!important;
 	        </div>
 	        <div class="card-action">
 	          <!--<video src=""></video>-->
-				<div class="hs-responsive-embed-youtube">
+				<div class="video-container">
 				<iframe src="https://www.youtube.com/embed/e0UWT0dFSQE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	        	</div>
 			</div>
