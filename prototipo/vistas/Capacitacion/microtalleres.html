@@ -256,11 +256,11 @@
 			      <div class="row">
 
 			        <div class="input-field col s6">
-                        {{ render_field(form.nombre) }}
+                        {{ render_field(form.nombre, onkeypress="return validaTexto(event)") }}
 
 			        </div>
 					<div class="input-field col s6">
-                        {{ render_field(form.apellido) }}
+                        {{ render_field(form.apellido, onkeypress="return validaTexto(event)") }}
 			        </div>
 					<div class="input-field col s6">
                         {{ render_field(form.email) }}
@@ -269,7 +269,7 @@
                         {{ render_field(form.telefono) }}
 			        </div>
 			        <div class="input-field col s12">
-                        {{ render_field(form.dni) }}
+                        {{ render_field(form.dni, onkeypress="return validaNumeros(event)") }}
 			        </div>
 
 					{{ render_field(form.departamento, onchange="show_options()", class='browser-default') }}
