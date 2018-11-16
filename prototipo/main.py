@@ -59,11 +59,18 @@ def before_request():
 
 @app.route('/')  # rutas a las que el usuario puede entrar
 def index():
+    login_abm = LoginABM()
+    permiso_usuario = 0
+    try:
+        usuario = login_abm.traerXMail(session['usuario'])
+        permiso_usuario = usuario.getPermisos()
+    except:
+        print 'no hay usuario logueado'
     usuario = ''
     if 'usuario' in session:
         usuario = session['usuario']
         # print usuario
-    return render_template('index.html', titulo="Campus Gestion", usuario=usuario)
+    return render_template('index.html', titulo="Campus Gestion", usuario=usuario, permiso_usuario=permiso_usuario)
 
 
 @app.route('/login/login', methods=['GET', 'POST'])
