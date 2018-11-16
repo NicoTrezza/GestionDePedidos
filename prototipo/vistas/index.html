@@ -99,22 +99,20 @@
           </li>
         </ul>
 		</li>
-
 	</ul>
-	
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+		<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 	  <!--	<a id="logo-container" class="brand-logo center">GESTOR DE PEDIDOS</a> -->
-		<h6 id="logo-container" class="brand-logo truncate center">GESTOR DE PEDIDOS</h6>
+		<h6 id="logo-container" class="hide-on-small-only brand-logo truncate center">GESTOR DE PEDIDOS</h6>
 
 		{% if usuario == '' %}
-		<a class="hide-on-small-only right" href="login/login">Entrar<i class="material-icons right">account_circle</i></a>
+		<a class="right" href="login/login">Entrar<i class="material-icons right">account_circle</i></a>
 		{% else %}
-		<a class="hide-on-small-only right" href="/logout">Salir<i class="material-icons right">directions_run</i></a>
+		<a class="right" href="/logout">Salir<i class="material-icons right">directions_run</i></a>
 		{% endif %}
 		{% if permiso_usuario == 1 or permiso_usuario == 2 %}
-		<a class="hide-on-small-only right" href="administrador/admin">Estadisticas<i class="material-icons right">settings</i></a>
+		<a class="right" href="administrador/admin">Estadisticas<i class="material-icons right">settings</i></a>
 		{% endif %}
-
     </div>
   </nav>
 

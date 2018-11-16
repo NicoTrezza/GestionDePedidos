@@ -61,11 +61,11 @@ def main():
 	login_abm.insertar('mail@lalal.com', '1234', 3)
 
 	# creo una persona de prueba y le doy el login de administrador
-	persona_abm.insertar('martín', 'Lanús', 12345678, 'mailrandom@lalal.com', 1, 1)
+	persona_abm.insertar('Martín', 'Lanús', 12345678, 'mailrandom@lalal.com', 1, 1)
 	# creo otra persona de prueba y le doy el login de usuario con permisos
-	persona_abm.insertar('martín', 'Lanús', 12345687, 'otromail@lalal.com', 2, 2)
+	persona_abm.insertar('Nico', 'Boca', 12345687, 'otromail@lalal.com', 2, 2)
 	# creo otra persona de prueba y le doy el login de usuario comun
-	persona_abm.insertar('martín', 'Lanús', 12345689, 'mail@lalal.com', 3, 3)
+	persona_abm.insertar('Griss', 'River', 12345689, 'mail@lalal.com', 3, 3)
 
 	# creo microtalleres
 	microtaller_abm.insertar('Diseño y Gestión del Aula Virtual en Moodle', None, 1)
