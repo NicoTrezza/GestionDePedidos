@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from wtforms import Form
 from wtforms import StringField, SelectField, TextAreaField, DateTimeField, PasswordField
-from wtforms.fields.html5 import EmailField
+from wtforms.fields.html5 import EmailField, IntegerField
 from wtforms import validators
 from datetime import datetime
 from negocio.departamentoABM import DepartamentoABM
@@ -107,7 +107,7 @@ class Tutorias(Form):
     telefono = StringField('Telefono',
                            [validators.required()]
                            )
-    dni = StringField('DNI',
+    dni = IntegerField('DNI',
                       [validators.required()]
                       )
 
@@ -172,7 +172,7 @@ class Microtalleres(Form):
     telefono = StringField('Telefono',
                            [validators.required()]
                            )
-    dni = StringField('DNI',
+    dni = IntegerField('DNI',
                       [validators.required()]
                       )
 

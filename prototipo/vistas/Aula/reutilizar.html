@@ -13,7 +13,7 @@
 					next = next + 1;
 
 
-var newIn = '<div id="field' + next + '" class="col s12"> <div class="card center"> <div class="card-content"> <span class="card-title">Información del Docente</span> </div> <div class="card-action"> <div class="row"> <div class="col s12"> <div class="row"> <div class="input-field col s6"> <label for="nombredocente' + next + '"> Nombre del docente </label> <input id="nombredocente' + next + '" name="nombredocente' + next + '" type="text" onkeypress="return validaTexto(event)" required> </div>  <div class="input-field col s6"> <label for="apellidodocente' + next + '"> Apellido del docente </label> <input id="apellidodocente' + next + '" name="apellidodocente' + next + '" type="text" onkeypress="return validaTexto(event)" required> </div> <div class="input-field col s6"> <label for="dni' + next + '"> DNI </label> <input id="dni' + next + '" name="dni' + next + '" type="text" onkeypress="return validaNumeros(event)" required> </div> <div class="input-field col s6"> <label for="emailprofesor' + next + '"> E-Mail del profesor </label> <input id="emailprofesor' + next + '" name="emailprofesor' + next + '" type="email" required> </div> <label for="rol' + next + '">rol</label> <select class="browser-default" id="rol' + next + '" name="rol' + next + '"> <option value="1">Docente a cargo</option> <option value="2">Docente</option> <option value="3">Docente Auxiliar</option> </select>  </div> </div> </div> </div> </div> </div>';
+var newIn = '<div id="field' + next + '" class="col s12"> <div class="card center"> <div class="card-content"> <span class="card-title">Información del Docente</span> </div> <div class="card-action"> <div class="row"> <div class="col s12"> <div class="row"> <div class="input-field col s6"> <label for="nombredocente' + next + '"> Nombre del docente </label> <input id="nombredocente' + next + '" name="nombredocente' + next + '" type="text" onkeypress="return validaTexto(event)" pattern="[A-Z a-z .áéíóúÁÉÍÓÚ]+" title="Solo letras" required> </div>  <div class="input-field col s6"> <label for="apellidodocente' + next + '"> Apellido del docente </label> <input id="apellidodocente' + next + '" name="apellidodocente' + next + '" type="text" onkeypress="return validaTexto(event)" pattern="[A-Z a-z .áéíóúÁÉÍÓÚ]+" title="Solo letras" required> </div> <div class="input-field col s6"> <label for="dni' + next + '"> DNI </label> <input id="dni' + next + '" name="dni' + next + '" type="number" onkeypress="return validaNumeros(event)" required> </div> <div class="input-field col s6"> <label for="emailprofesor' + next + '"> E-Mail del profesor </label> <input id="emailprofesor' + next + '" name="emailprofesor' + next + '" type="email" required> </div> <label for="rol' + next + '">rol</label> <select class="browser-default" id="rol' + next + '" name="rol' + next + '"> <option value="1">Docente a cargo</option> <option value="2">Docente</option> <option value="3">Docente Auxiliar</option> </select>  </div> </div> </div> </div> </div> </div>';
 
 
 
@@ -247,15 +247,15 @@ var newIn = '<div id="field' + next + '" class="col s12"> <div class="card cente
 
 			        <div class="input-field col s6">
 						<label for="nombredocente1"> Nombre del docente </label>
-						<input id="nombredocente1" name="nombredocente1" onkeypress="return validaTexto(event)" type="text">
+						<input id="nombredocente1" name="nombredocente1" pattern="[A-Z a-z .áéíóúÁÉÍÓÚ]+" title="Solo letras" onkeypress="return validaTexto(event)" type="text">
 			        </div>
 			        <div class="input-field col s6">
 						<label for="apellidodocente1"> Apellido del docente </label>
-						<input id="apellidodocente1" name="apellidodocente1" onkeypress="return validaTexto(event)" type="text">
+						<input id="apellidodocente1" name="apellidodocente1" pattern="[A-Z a-z .áéíóúÁÉÍÓÚ]+" title="Solo letras" onkeypress="return validaTexto(event)" type="text">
 			        </div>
 			        <div class="input-field col s6">
 						<label for="dni1"> DNI </label>
-						<input id="dni1" name="dni1" type="text" onkeypress="return validaNumeros(event)">
+						<input id="dni1" name="dni1" type="number" onkeypress="return validaNumeros(event)">
 			        </div>
 					<div class="input-field col s6">
 						<label for="emailprofesor1"> E-Mail del profesor </label>
