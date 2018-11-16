@@ -28,9 +28,6 @@
     <div class="section">
 
       <div class="row">
-		  {% from "macro_forms.html" import render_field %}
-		  <form method="POST" enctype="multipart/form-data">
-
       	<div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
@@ -41,30 +38,24 @@
 	          <table id="example" class="display">
 				<thead>
 				    <tr>
-				        <th>Animal</th>
-				        <th>Descripcion</th>
+				        <th>Nombre</th>
+				        <th>Apellido</th>
 				    </tr>
 				</thead>
 				<tbody>
-				    <tr>
-				        <td>Gato</td>
-				        <td>Lindo</td>
+
+				{%for persona in personas%}
+					<tr>
+						<td>{{persona.getNombre()}}</td>
+				        <td>{{persona.getApellido()}}</td>
 				    </tr>
-				    <tr>
-				        <td>Perro</td>
-				        <td>Feo</td>
-				    </tr>
+				{%endfor%}
 				</tbody>
 			  </table>
 	        </div>
 	      </div>
 	    </div>
 
-	    <div class="row center">
-		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Buscar <i class="material-icons right">send</i> </button>
-		</div>
-			  <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
-		  </form>
 	</div>
   	</div>
   </div>

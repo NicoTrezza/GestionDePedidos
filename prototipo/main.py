@@ -44,7 +44,17 @@ usuariovalido = 'martin'
 
 @app.before_request
 def before_request():
-    pass
+    login_abm = LoginABM()
+    permiso_usuario=0
+    try:
+        usuario = login_abm.traerXMail(session['usuario'])
+        permiso_usuario = usuario.getPermisos()
+    except:
+        print 'no hay usuario logueado'
+
+    if request.endpoint == 'admin':
+        if permiso_usuario != 1 and permiso_usuario != 2:
+            return redirect(url_for('index'))
 
 
 @app.route('/')  # rutas a las que el usuario puede entrar
@@ -90,7 +100,9 @@ def logout():
 
 @app.route('/administrador/admin', methods=['GET', 'POST'])
 def admin():
-    return render_template('Administrador/admin.html', titulo="Estadisticas", form=admin)
+    persona_abm = PersonaABM()
+    personas = persona_abm.listar()
+    return render_template('Administrador/admin.html', titulo="Estadisticas", personas=personas)
 
 
 @app.route('/usuario/matricular', methods=['GET', 'POST'])

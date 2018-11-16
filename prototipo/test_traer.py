@@ -17,10 +17,9 @@ def main():
     persona_abm = PersonaABM()
     login_abm = LoginABM()
 
-    login = login_abm.traerXMail('mailrandom@lalal.com')
+    login_abm.insertar('mail@lalal.com', '1234', 3)
 
-    for a in persona_abm.listar():
-        print u'{}'.format(a)
+    persona_abm.insertar('martín', 'Lanús', 12345689, 'mail@lalal.com', 3, 3)
 
 
 if __name__ == '__main__':
