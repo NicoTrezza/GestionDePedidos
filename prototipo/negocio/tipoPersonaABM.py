@@ -19,3 +19,6 @@ class TipoPersonaABM(object):
     
     def listar(self):
         return self.dao.listar()
+
+    def listar_sin_estudiante(self):
+        return self.dao.listar_sin_estudiante()

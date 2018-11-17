@@ -93,3 +93,26 @@ class TipoPersonaDao(Conexion):
             lis.append(ob)
             
         return lis
+
+    def listar_sin_estudiante(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from tipoPersona where rol != "Estudiante"'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            ob = TipoPersona(objeto)
+            lis.append(ob)
+
+        return lis

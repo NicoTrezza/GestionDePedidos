@@ -24,6 +24,7 @@ from negocio.personaABM import PersonaABM
 from negocio.microtallerABM import MicrotallerABM
 from negocio.carreraABM import CarreraABM
 from negocio.tutoriaABM import TutoriaABM
+from negocio.tipoPersonaABM import TipoPersonaABM
 
 from datos.aula import Aula
 
@@ -131,7 +132,7 @@ def matricular():
     ########
     if request.method == 'POST' and matricular.validate():
         if 'usuario' in session:
-            if permisos == 1:
+            if permisos == 1 or permisos == 2 or permisos == 3:
                 carrera = ''
 
                 if matricular.departamento.data == '1':
@@ -199,7 +200,7 @@ def crear():
         # flash(mensajeError1)
     if request.method == 'POST' and crear_aula.validate():
         if 'usuario' in session:
-            if permisos == 1:
+            if permisos == 1 or permisos == 2 or permisos == 3:
 
                 cant_docentes = 5  # es uno menos que el numero
                 aula_abm = AulaABM()
@@ -323,8 +324,9 @@ def crear():
                 flash('No tiene permisos')
         if usuario == '':
             flash('Necesita estar logueado para crear aula')
-
-    return render_template('Aula/crear.html', titulo="Crear aula", form=crear_aula)
+    tipo_persona_abm = TipoPersonaABM()
+    roles = tipo_persona_abm.listar_sin_estudiante()
+    return render_template('Aula/crear.html', titulo="Crear aula", form=crear_aula, roles=roles)
 
 
 @app.route('/aula/reutilizar', methods=['GET', 'POST'])
@@ -342,7 +344,7 @@ def reutilizar():
         # flash(mensajeError1)
     if request.method == 'POST' and reutilizar_aula.validate():
         if 'usuario' in session:
-            if permisos == 1:
+            if permisos == 1 or permisos == 2 or permisos == 3:
 
                 cant_docentes = 5  # es uno menos que el numero
                 aula_abm = AulaABM()
@@ -473,7 +475,9 @@ def reutilizar():
                 flash('No tiene permisos')
         if usuario == '':
             flash('Necesita estar logueado para reutilizar aula')
-    return render_template('Aula/reutilizar.html', titulo="Reutilizar aula", form=reutilizar_aula)
+    tipo_persona_abm = TipoPersonaABM()
+    roles = tipo_persona_abm.listar_sin_estudiante()
+    return render_template('Aula/reutilizar.html', titulo="Reutilizar aula", form=reutilizar_aula, roles=roles)
 
 
 @app.route('/aula/eliminar', methods=['GET', 'POST'])
@@ -491,7 +495,7 @@ def eliminar():
         # flash(mensajeError1)
     if request.method == 'POST' and eliminar_aula.validate():
         if 'usuario' in session:
-            if permisos == 1:
+            if permisos == 1 or permisos == 2 or permisos == 3:
                 aula_abm = AulaABM()
 
                 print eliminar_aula.departamento.data
