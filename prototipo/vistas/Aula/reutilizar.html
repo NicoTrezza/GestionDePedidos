@@ -36,30 +36,40 @@ var newIn = '<div id="field' + next + '" class="col s12"> <div class="card cente
 				});
 
 			});
+
+
+			function ocultar_docente() {
+
+			var x = document.getElementById("docente");
+			var nombredocente1 = document.getElementById("nombredocente1");
+			var apellidodocente1 = document.getElementById("apellidodocente1");
+			var dni1 = document.getElementById("dni1");
+			var emailprofesor1 = document.getElementById("emailprofesor1");
+
+				if (x.style.display == "block") {
+					x.style.display = "none";
+					nombredocente1.required = false;
+					apellidodocente1.required = false;
+					dni1.required = false;
+					emailprofesor1.required = false;
+				}
+			}
+
+			function mostrar_docente() {
+
+			var x = document.getElementById("docente");
+			var nombredocente1 = document.getElementById("nombredocente1");
+
+				if (x.style.display == "none") {
+					x.style.display = "block";
+					nombredocente1.required = true;
+					apellidodocente1.required = true;
+					dni1.required = true;
+					emailprofesor1.required = true;
+				}
+			}
+
 </script>
-
-
-
-						<script type="text/javascript">
-                            function ocultar_docente() {
-
-                            var x = document.getElementById("docente");
-
-                                if (x.style.display == "block") {
-                                    x.style.display = "none";
-                                }
-                             }
-
-                            function mostrar_docente() {
-
-                            var x = document.getElementById("docente");
-
-                                if (x.style.display == "none") {
-                                    x.style.display = "block";
-                                }
-                            }
-
-                        </script>
 
   <nav class="nav-extended light-blue darken-3">
     <div class="row">

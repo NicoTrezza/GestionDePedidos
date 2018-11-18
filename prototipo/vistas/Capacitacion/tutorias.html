@@ -6,22 +6,27 @@
                         <script type="text/javascript">
                             function mostrar_grupo_individual() {
 
-                            var x = document.getElementById("grupal");
+                            var x = document.getElementById("grupal2");
+                            var g = document.getElementById("grupal");
 
                                 if (x.style.display == "block") {
                                     x.style.display = "none";
+                                    g.value="1"
+                                    g.required = false;
                                 }
                              }
 
                             function mostrar_grupo_grupal() {
 
-                            var x = document.getElementById("grupal");
+                            var x = document.getElementById("grupal2");
+                            var g = document.getElementById("grupal");
 
                                 if (x.style.display == "none") {
                                     x.style.display = "block";
+                                    g.value=""
+                                    g.required = true;
                                 }
                             }
-
                         </script>
 
    <nav class="nav-extended light-blue darken-3">
@@ -131,7 +136,7 @@
                       </label>
                     </p>
 
-                    <div style="display:none;" id = "grupal" >
+                    <div style="display:none;" id = "grupal2" >
                         {{ render_field(form.grupal) }}
 			        </div>
 
