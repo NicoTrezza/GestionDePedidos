@@ -86,7 +86,7 @@ def login():
             usuario = login_abm.traerXMail(mail)
             if usuario.getContrasenia() == contrasenia:
                 mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
-                flash(mensajeBienvenida)
+                # flash(mensajeBienvenida)
                 session['usuario'] = login.usuario.data
                 return redirect(url_for('index'))
             else:
@@ -166,11 +166,11 @@ def matricular():
                     msg.attach("Formulario_de_matriculacion.xlsx", "documento/xlsx", excel.read())
 
                 # envio el mail
-                mail.send(msg)
+                # mail.send(msg)
 
                 # elimino el pdf despues de enviado el mail
-                os.remove('matricular.pdf')
-                os.remove('Formulario_de_matriculacion.xlsx')
+                # os.remove('matricular.pdf')
+                # os.remove('Formulario_de_matriculacion.xlsx')
 
                 usuario = session['usuario']
             else:
@@ -268,13 +268,7 @@ def crear():
                                           crear_aula.departamento.data)
                         for idp in idpersona:
                             aula_abm.insertarpersona(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
-                    # else:
-                    #    persona_abm.insertar(crear_aula.nombredocente.data, crear_aula.apellidodocente.data,
-                    #                         crear_aula.dni.data, crear_aula.emailprofesor.data, crear_aula.rol.data, None)
-                    #    persona = persona_abm.traerXDni(crear_aula.dni.data)
-                    #    idpersona = persona.idPersona
-                    #    aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data, crear_aula.departamento.data)
-                    #    aula_abm.insertarpersona(idpersona, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
+
                 else:
                     flash('el aula ya existe')
 
@@ -543,10 +537,10 @@ def eliminar():
                         msg.attach("eliminar_aula.pdf", "documento/pdf", pdf.read())
 
                     # envio el mail
-                    mail.send(msg)
+                    # mail.send(msg)
 
                     # elimino el pdf despues de enviado el mail
-                    os.remove('eliminar_aula.pdf')
+                    # os.remove('eliminar_aula.pdf')
 
                 usuario = session['usuario']
             else:
