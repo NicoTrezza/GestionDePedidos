@@ -310,7 +310,10 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
     c.drawString(85, 315, 'Rol:')
     c.drawString(95, 300, str(rol))
     c.drawString(85, 270, 'Cantidad de personas:')
-    c.drawString(95, 255, str(cant_personas))
+    if cant_personas != 1:
+        c.drawString(95, 255, str(cant_personas))
+    else:
+        c.drawString(95, 255, '1')
     c.drawString(85, 225, 'Dias y horarios seleccionados:')
     c.drawString(95, 210, 'Dia:')
     c.drawString(120, 210, dia1)

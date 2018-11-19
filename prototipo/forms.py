@@ -155,7 +155,7 @@ class Tutorias(Form):
     lista_eleccion_roles = [(str(d.getIdTipoPersona()), d.getRol()) for d in listaroles]
     rol = SelectField('rol', choices=lista_eleccion_roles)
 
-    grupal = StringField('Cantidad de personas')
+    grupal = IntegerField('Cantidad de personas')
 
 
 class Microtalleres(Form):
