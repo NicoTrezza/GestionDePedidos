@@ -17,6 +17,12 @@ class AulaABM(object):
     def insertarpersona_crear(self, idpersona, idaula, descipcion, idtipo):
         self.dao.insertarpersona_crear(idpersona, idaula, descipcion, idtipo)
 
+    def insertarpersona_modificar(self, idpersona, idaula, url, nombre_anterior, otros, idtipo):
+        self.dao.insertarpersona_modificar(idpersona, idaula, url, nombre_anterior, otros, idtipo)
+
+    def insertarpersona_eliminar(self, idaula, url, motivo, idtipo):
+        self.dao.insertarpersona_eliminar(idaula, url, motivo, idtipo)
+
     def modificar(self, a):
         self.dao.modificar(a.getIdAula(), a.getNombreAula(), a.getDescripcion(), a.getDepartamentoAula())
 

@@ -56,9 +56,9 @@ def main():
 	"""
 
 	# creo un login para la persona de prueba con permisos de administrador
-	login_abm.insertar('mailrandom@lalal.com', '1234', 1)
-	login_abm.insertar('otromail@lalal.com', '1234', 2)
-	login_abm.insertar('mail@lalal.com', '1234', 3)
+	login_abm.insertar('mailrandom@lalal.com', '1234', 1, 1)
+	login_abm.insertar('otromail@lalal.com', '1234', 2, 1)
+	login_abm.insertar('mail@lalal.com', '1234', 3, 1)
 
 	# creo una persona de prueba y le doy el login de administrador
 	persona_abm.insertar('Martín', 'Lanús', 12345678, 'mailrandom@lalal.com', 1, 1)

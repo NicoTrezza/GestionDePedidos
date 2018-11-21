@@ -5,6 +5,7 @@ class Login(object):
         self.mail = str(dao[1])
         self.contrasenia = str(dao[2])
         self.permisos = int(dao[3])  # 1= administrador, 2= usuario
+        self.estado = int(dao[4])    # 0= solicitado, 1= activo
 
     def getIdLogin(self):
         return self.idLogin
@@ -29,6 +30,12 @@ class Login(object):
 
     def setPermisos(self, permisos):
         self.permisos = permisos
+
+    def getEstado(self):
+        return self.estado
+
+    def setEstado(self, estado):
+        self.estado = estado
 
     def __str__(self):
         return "Id del login: {}, mail del login: {}, contrasenia del login: {}, permisos del login: {}".format(self.idLogin, self.mail, self.contrasenia, self.permisos)

@@ -5,8 +5,8 @@ class LoginABM(object):
     def __init__(self):
         self.dao = LoginDao()
         
-    def insertar(self, mail, contrasenia, permisos):
-        self.dao.insertar(mail, contrasenia, permisos)
+    def insertar(self, mail, contrasenia, permisos, estado):
+        self.dao.insertar(mail, contrasenia, permisos, estado)
         
     def modificar(self, l):
         self.dao.modificar(l.getIdLogin(), l.getMail(), l.getContrasenia(), l.getPermisos())

@@ -9,13 +9,13 @@ class LoginDao(Conexion):
     def __init__(self):
         super(LoginDao, self).__init__()  		
 
-    def insertar(self, mail, contrasenia, permisos):
+    def insertar(self, mail, contrasenia, permisos, estado):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into login (mail, contrasenia, permisos) values (%s, %s, %s)'
-            val = (mail, contrasenia, permisos)
+            sql = 'insert into login (mail, contrasenia, permisos, estado) values (%s, %s, %s, %s)'
+            val = (mail, contrasenia, permisos, estado)
         
             cursor.execute(sql, val)
             self.conexion.commit()

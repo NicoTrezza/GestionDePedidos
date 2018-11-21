@@ -53,6 +53,36 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
+    def insertarpersona_modificar(self, idpersona, idaula, url, nombre_anterior, otros, idtipo):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, url, nombreAnterior, otrosReutilizar, tipo) values (%s, %s, %s, %s, %s, %s)'
+            val = (idpersona, idaula, url, nombre_anterior, otros, idtipo)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+    def insertarpersona_eliminar(self, idaula, url, motivo, idtipo):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'insert into personaaula (Aula_idAula, url, motivoEliminacion, tipo) values (%s, %s, %s, %s)'
+            val = (idaula, url, motivo, idtipo)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
     def insertaraula_personaaula(self, idaula, idtipo):
         try:
             self.conectar()

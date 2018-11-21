@@ -396,7 +396,7 @@ def reutilizar():
 
                 print idpersona
 
-                # el insert de la tabla intermedia y del aula
+                # el insert de la tabla intermedia
                 if aula is not None:
                     aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
                     aula.setDepartamentoAula(reutilizar_aula.departamento.data)
@@ -407,19 +407,39 @@ def reutilizar():
                     if cant_personas > 0:
                         if reutilizar_aula.nombrenuevo.data != '':
                             for idp in idpersona:
-                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(
-                                    reutilizar_aula.nombrenuevo.data).getIdAula(), 2)
+                                aula_abm.insertarpersona_modificar(idp,
+                                                                   aula_abm.traerXNombre(
+                                                                       reutilizar_aula.nombrenuevo.data).getIdAula(),
+                                                                   reutilizar_aula.direccionulr.data,
+                                                                   reutilizar_aula.nombreaula.data,
+                                                                   reutilizar_aula.otro.data,
+                                                                   2)
                         else:
                             for idp in idpersona:
-                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(
-                                    reutilizar_aula.nombreaula.data).getIdAula(), 2)
+                                aula_abm.insertarpersona_modificar(idp,
+                                                                   aula_abm.traerXNombre(
+                                                                       reutilizar_aula.nombreaula.data).getIdAula(),
+                                                                   reutilizar_aula.direccionulr.data,
+                                                                   None,
+                                                                   reutilizar_aula.otro.data,
+                                                                   2)
                     else:
                         if reutilizar_aula.nombrenuevo.data != '':
-                            aula_abm.insertaraula_personaaula(aula_abm.traerXNombre(
-                                reutilizar_aula.nombrenuevo.data).getIdAula(), 2)
+                            aula_abm.insertarpersona_modificar(None,
+                                                               aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula(),
+                                                               reutilizar_aula.direccionulr.data,
+                                                               reutilizar_aula.nombreaula.data,
+                                                               reutilizar_aula.otro.data,
+                                                               2)
                         else:
-                            aula_abm.insertaraula_personaaula(aula_abm.traerXNombre(
-                                reutilizar_aula.nombreaula.data).getIdAula(), 2)
+                            aula_abm.insertarpersona_modificar(None,
+                                                               aula_abm.traerXNombre(
+                                                                   reutilizar_aula.nombreaula.data).getIdAula(),
+                                                               reutilizar_aula.direccionulr.data,
+                                                               None,
+                                                               reutilizar_aula.otro.data,
+                                                               2)
+
                 else:
                     flash('el aula no existe')
 
@@ -495,7 +515,7 @@ def eliminar():
                 print eliminar_aula.direccionulr.data
                 print eliminar_aula.motivo.data
 
-                # elimino en la base de datos ----------------------------------------------------------
+                # creo solicitud de eliminacion en la base de datos ----------------------------------------
                 aula = ''
 
                 idpersona = []
@@ -507,8 +527,10 @@ def eliminar():
 
                 # el insert de la tabla intermedia y del aula
                 if aula is not None:
-                    aula_abm.insertaraula_personaaula(aula_abm.traerXNombre(eliminar_aula.nombreaula.data).idAula, 3)
-
+                    aula_abm.insertarpersona_eliminar(aula_abm.traerXNombre(eliminar_aula.nombreaula.data).idAula,
+                                                      eliminar_aula.direccionulr.data,
+                                                      eliminar_aula.motivo.data,
+                                                      3)
                 else:
                     flash('el aula no existe')
 
