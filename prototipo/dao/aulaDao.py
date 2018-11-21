@@ -23,13 +23,43 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
-    def insertarpersona(self, idpersona, idaula):
+    def insertarpersona(self, idpersona, idaula, idtipo):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula) values (%s, %s)'
-            val = (idpersona, idaula)
+            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, tipo) values (%s, %s, %s)'
+            val = (idpersona, idaula, idtipo)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+    def insertarpersona_crear(self, idpersona, idaula, descipcion, idtipo):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, descripcion, tipo) values (%s, %s, %s, %s)'
+            val = (idpersona, idaula, descipcion, idtipo)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+    def insertaraula_personaaula(self, idaula, idtipo):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'insert into personaaula (Aula_idAula, tipo) values (%s, %s)'
+            val = (idaula, idtipo)
 
             cursor.execute(sql, val)
             self.conexion.commit()

@@ -267,20 +267,14 @@ def crear():
                         aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data,
                                           crear_aula.departamento.data)
                         for idp in idpersona:
-                            aula_abm.insertarpersona(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula)
+                            aula_abm.insertarpersona_crear(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula, crear_aula.descripcion.data, 1)
 
                 else:
                     flash('el aula ya existe')
 
                 if aula is None:
                     # creo el pdf
-                    """
-                    request.form['nombredocente'],
-                    request.form['apellidodocente'],
-                    request.form['dni'].dni,
-                    request.form['emailprofesor'],
-                    request.form['rol'].rol,
-                    """
+
                     lista_personas = []
 
                     for id in idpersona:
@@ -370,59 +364,62 @@ def reutilizar():
                 print reutilizar_aula.otro.data
 
                 # modifico en la base de datos ----------------------------------------------------------
-                print 'cantidad de personas: '+str(cant_personas)
-                idpersona = [] # voy a usar esta lista para guardar todas las personas
-                id_persona_aula = []
+                aula = ''
+
+                idpersona = []
 
                 try:
-                    aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
+                    aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
                 except:
                     aula = None
 
                 # el insert de la tabla persona
-                if cant_personas > 0:
-                    if aula is not None:
-                        for i in range(1, cant_docentes):
+                if aula is not None:
+                    for i in range(1, cant_docentes):
+                        try:
+                            print 'intento' + str(i)
+                            persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                            idpersona.append(persona.getIdPersona())
+                        except:
                             try:
-                                print 'intento' + str(i)
+                                persona_abm.insertar(request.form['nombredocente' + str(i)],
+                                                     request.form['apellidodocente' + str(i)],
+                                                     request.form['dni' + str(i)],
+                                                     request.form['emailprofesor' + str(i)],
+                                                     request.form['rol' + str(i)],
+                                                     None)
+                                print request.form['dni' + str(i)]
                                 persona = persona_abm.traerXDni(request.form['dni' + str(i)])
                                 idpersona.append(persona.getIdPersona())
                             except:
-                                try:
-                                    persona_abm.insertar(request.form['nombredocente' + str(i)],
-                                                         request.form['apellidodocente' + str(i)],
-                                                         request.form['dni' + str(i)],
-                                                         request.form['emailprofesor' + str(i)],
-                                                         request.form['rol' + str(i)],
-                                                         None)
-                                    print request.form['dni' + str(i)]
-                                    persona = persona_abm.traerXDni(request.form['dni' + str(i)])
-                                    idpersona.append(persona.getIdPersona())
-                                except:
-                                    print 'no se ingresaron datos / dni repetido'
+                                print 'no se ingresaron datos / dni repetido'
 
                 print idpersona
-                # el modificacion de la tabla intermedia y del aula
 
+                # el insert de la tabla intermedia y del aula
                 if aula is not None:
                     aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
                     aula.setDepartamentoAula(reutilizar_aula.departamento.data)
-
                     if reutilizar_aula.nombrenuevo.data != '':
                         aula.setNombreAula(reutilizar_aula.nombrenuevo.data)
-
                     aula_abm.modificar(aula)
 
                     if cant_personas > 0:
                         if reutilizar_aula.nombrenuevo.data != '':
-                            aula_abm.eliminar_personaaula(aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula())
                             for idp in idpersona:
-                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula())
+                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(
+                                    reutilizar_aula.nombrenuevo.data).getIdAula(), 2)
                         else:
-                            aula_abm.eliminar_personaaula(aula_abm.traerXNombre(reutilizar_aula.nombreaula.data).getIdAula())
                             for idp in idpersona:
-                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(reutilizar_aula.nombreaula.data).getIdAula())
-                    
+                                aula_abm.insertarpersona(idp, aula_abm.traerXNombre(
+                                    reutilizar_aula.nombreaula.data).getIdAula(), 2)
+                    else:
+                        if reutilizar_aula.nombrenuevo.data != '':
+                            aula_abm.insertaraula_personaaula(aula_abm.traerXNombre(
+                                reutilizar_aula.nombrenuevo.data).getIdAula(), 2)
+                        else:
+                            aula_abm.insertaraula_personaaula(aula_abm.traerXNombre(
+                                reutilizar_aula.nombreaula.data).getIdAula(), 2)
                 else:
                     flash('el aula no existe')
 
@@ -499,17 +496,19 @@ def eliminar():
                 print eliminar_aula.motivo.data
 
                 # elimino en la base de datos ----------------------------------------------------------
+                aula = ''
+
+                idpersona = []
+
                 try:
-                    aula = aula_abm.traerXNombre(eliminar_aula.nombreaula.data)
+                    aula_abm.traerXNombre(eliminar_aula.nombreaula.data)
                 except:
                     aula = None
 
-                # el eliminar de la tabla intermedia y del aula
-
+                # el insert de la tabla intermedia y del aula
                 if aula is not None:
-                    aula = aula_abm.traerXNombre(eliminar_aula.nombreaula.data)
-                    aula_abm.eliminar_personaaula(aula.getIdAula())
-                    aula_abm.eliminar(aula.getIdAula())
+                    aula_abm.insertaraula_personaaula(aula_abm.traerXNombre(eliminar_aula.nombreaula.data).idAula, 3)
+
                 else:
                     flash('el aula no existe')
 

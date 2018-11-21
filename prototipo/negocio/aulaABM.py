@@ -8,8 +8,14 @@ class AulaABM(object):
     def insertar(self, nombreAula, descripcion, iddepartamento):
         self.dao.insertar(nombreAula, descripcion, iddepartamento)
 
-    def insertarpersona(self, idpersona, idaula):
-        self.dao.insertarpersona(idpersona, idaula)
+    def insertaraula_personaaula(self, idaula, idtipo):
+        self.dao.insertaraula_personaaula(idaula, idtipo)
+
+    def insertarpersona(self, idpersona, idaula, idtipo):
+        self.dao.insertarpersona(idpersona, idaula, idtipo)
+
+    def insertarpersona_crear(self, idpersona, idaula, descipcion, idtipo):
+        self.dao.insertarpersona_crear(idpersona, idaula, descipcion, idtipo)
 
     def modificar(self, a):
         self.dao.modificar(a.getIdAula(), a.getNombreAula(), a.getDescripcion(), a.getDepartamentoAula())

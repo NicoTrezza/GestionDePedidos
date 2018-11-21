@@ -34,7 +34,7 @@
       <div class="col s12">
 		<div class="nav-content">
 		  <ul class="tabs tabs-transparent">
-      	    <li class="tab col s6"><a href="../capacitacion/tutorias" target="_self">Capacitación</a></li>
+      	    <li class="tab col s6"><a href="../capacitacion/tutorias" target="_self">Tutorías</a></li>
     	    <li class="tab col s6 active"><a class="active" href="../capacitacion/microtalleres" target="_self">Cursos y Talleres</a></li>
 		  </ul>
 		</div>
@@ -101,29 +101,6 @@
               <div class="col s12">
                 <div class="row">
                  <div>
-                    <!--
-                     <div style="display:none;" id="docente">
-                     {%for microtaller in microtalleres_docentes%}
-                     <ul>
-                          <li>
-                            <label for={{microtaller.getIdMicrotaller()}}>{{microtaller.getNombreMicrotaller()}}</label>
-                              <input style="opacity: 1; position: relative;" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
-                          </li>
-                    </ul>
-                     {%endfor%}
-                    </div>
-                     <div style="display:none;" id="estudiante">
-                        {%for microtaller in microtalleres_estudiantes%}
-                         <ul>
-                          <li>
-                            <label for={{microtaller.getIdMicrotaller()}}>{{microtaller.getNombreMicrotaller()}}</label>
-                            <input style="opacity: 1; position: relative;" type="radio" id={{microtaller.getIdMicrotaller()}} name="microtaller" value={{microtaller.getIdMicrotaller()}} >
-                          </li>
-                    </ul>
-                         {%endfor%}
-                     </div>
-                    -->
-
 
                      <div style="display:none;" id="docente">
                      {%for microtaller in microtalleres_docentes%}
@@ -149,9 +126,6 @@
                     </ul>
                          {%endfor%}
                      </div>
-
-
-
 			      </div>
                 </div>
               </div>
