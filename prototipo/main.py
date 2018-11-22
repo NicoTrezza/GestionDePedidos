@@ -110,7 +110,19 @@ def logout():
 def admin():
     persona_abm = PersonaABM()
     personas = persona_abm.listar()
-    return render_template('Administrador/admin.html', titulo="Estadisticas", personas=personas)
+    return render_template('Administrador/admin.html', titulo="Admin", personas=personas)
+
+@app.route('/administrador/tablas', methods=['GET', 'POST'])
+def tablas():
+    persona_abm = PersonaABM()
+    personas = persona_abm.listar()
+    return render_template('Administrador/tablas.html', titulo="Tablas", personas=personas)
+
+@app.route('/administrador/graficos', methods=['GET', 'POST'])
+def graficos():
+    persona_abm = PersonaABM()
+    personas = persona_abm.listar()
+    return render_template('Administrador/graficos.html', titulo="Graficos", personas=personas)
 
 
 @app.route('/usuario/matricular', methods=['GET', 'POST'])
