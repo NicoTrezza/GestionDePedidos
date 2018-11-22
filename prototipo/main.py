@@ -125,6 +125,22 @@ def graficos():
     return render_template('Administrador/graficos.html', titulo="Graficos", personas=personas)
 
 
+@app.route('/administrador/altausuarios', methods=['GET', 'POST'])
+def altausuarios():
+    altausuarios = forms.Altausuarios(request.form)
+
+    print altausuarios.nombredocente.data
+    print altausuarios.apellidodocente.data
+    print altausuarios.dni.data
+    print altausuarios.emailprofesor.data
+    print altausuarios.rol.data
+    print altausuarios.usuario.data
+    print altausuarios.contrasenia.data
+    print altausuarios.permisos.data
+
+    return render_template('Administrador/altausuarios.html', titulo="Alta de usuarios", form=altausuarios)
+
+
 @app.route('/usuario/matricular', methods=['GET', 'POST'])
 def matricular():
     matricular = forms.Matricular(request.form)
