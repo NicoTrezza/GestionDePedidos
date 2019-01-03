@@ -13,16 +13,16 @@
   <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-    <script type="text/javascript">
-	$(document).ready(function(){
-    $('.collapsible').collapsible();
-	});
+  <script type="text/javascript">
+		$(document).ready(function(){
+		  $('.collapsible').collapsible();
+		});
 	</script>
 
-    <script type="text/javascript">
-	$(document).ready(function(){
-    $('.sidenav').sidenav();
-	});
+  <script type="text/javascript">
+		$(document).ready(function(){
+		   $('.sidenav').sidenav();
+		});
 	</script>
   
 </head>
@@ -32,20 +32,11 @@
 	{% endblock %}
 
   <footer class="page-footer light-blue darken-3">
-    <div class="container" style="margin-left: 40px;">
-        <div class="col l2 s12">
-          <h6 class="white-text">Desarrolladores:</h6>
-          <p class="grey-text text-lighten-4">Benítez Griselda, Lucero José, Olmos Martín, Trezza Nicolás - Proyecto Software - Lic. en Sistemas - UNLa</p>
-
-        </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container" style="margin-left: 40px;margin-right: 40px;">
-      	<p>UTN.FRBA - Secretaría Académica - Dirección de Educación a Distancia - 2018 - Medrano 951 - (C1179AAQ) - Ciudad Autónoma de Buenos Aires, Argentina</p>
-      </div>
-    </div>
-  </footer>
-
+  	<div class="row">
+      <p class="grey-text text-lighten-4">Desarrolladores: Benítez Griselda, Lucero José, Olmos Martín, Trezza Nicolás - Proyecto Software - Lic. en Sistemas - UNLa</p>
+    	<p>UTN.FRBA - Secretaría Académica - Dirección de Educación a Distancia - 2018 - Medrano 951 - (C1179AAQ) - Ciudad Autónoma de Buenos Aires, Argentina</p>
+  	</div>
+ 	</footer>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
