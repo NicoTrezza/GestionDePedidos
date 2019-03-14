@@ -6,6 +6,7 @@ from negocio.tipoPersonaABM import TipoPersonaABM
 from negocio.personaABM import PersonaABM
 from negocio.loginABM import LoginABM
 from negocio.microtallerABM import MicrotallerABM
+from negocio.tutoriaABM import TutoriaABM
 
 
 
@@ -16,6 +17,7 @@ def main():
 	persona_abm = PersonaABM()
 	login_abm = LoginABM()
 	microtaller_abm = MicrotallerABM()
+	tutoria_abm = TutoriaABM()
 
 	# departamento_abm.eliminar(1)
 	# departamento_abm.eliminar(2)
@@ -77,6 +79,8 @@ def main():
 	# for a in abm.traerPorProfesor('didio'):
 	#	print a
 
+	# tutorias para probar
+	# tutoria_abm.insertar('asdf', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '1', '1', '2019-03-13 00:00:00')
 
 if __name__ == '__main__':
 	main()

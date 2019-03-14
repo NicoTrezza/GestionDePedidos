@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+import time
 
 from flask import Flask
 from flask import render_template
@@ -638,14 +639,27 @@ def tutorias():
             persona = None
 
         if persona is not None:
-            tutorias_abm.insertar(tutorias.motivo.data, idpersona, tutorias.departamento.data)
+            tutorias_abm.insertar(tutorias.motivo.data, tutorias.dia1.data + ' ' + tutorias.dia1_hora1.data + ':00', tutorias.dia1.data + ' ' + tutorias.dia1_hora2.data + ':00'
+                                  , tutorias.dia2.data + ' ' + tutorias.dia2_hora1.data + ':00', tutorias.dia2.data + ' ' + tutorias.dia2_hora2.data + ':00'
+                                  , tutorias.dia3.data + ' ' + tutorias.dia3_hora1.data + ':00', tutorias.dia3.data + ' ' + tutorias.dia3_hora2.data + ':00'
+                                  , idpersona, tutorias.departamento.data
+                                  , time.strftime("%Y-%m-%d %H:%M:%S"))
+
+            # tutoria_abm.insertar('asdf', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '1', '1', '2019-03-13 00:00:00')
+
         else:
             persona_abm.insertar(tutorias.nombre.data, tutorias.apellido.data,
                                  tutorias.dni.data, tutorias.email.data, tutorias.rol.data, None)
             persona = persona_abm.traerXDni(tutorias.dni.data)
             idpersona = persona.idPersona
-            tutorias_abm.insertar(tutorias.motivo.data, idpersona, tutorias.departamento.data)
-
+            tutorias_abm.insertar(tutorias.motivo.data, tutorias.dia1.data + ' ' + tutorias.dia1_hora1.data + ':00',
+                                  tutorias.dia1.data + ' ' + tutorias.dia1_hora2.data + ':00'
+                                  , tutorias.dia2.data + ' ' + tutorias.dia2_hora1.data + ':00',
+                                  tutorias.dia2.data + ' ' + tutorias.dia2_hora2.data + ':00'
+                                  , tutorias.dia3.data + ' ' + tutorias.dia3_hora1.data + ':00',
+                                  tutorias.dia3.data + ' ' + tutorias.dia3_hora2.data + ':00'
+                                  , idpersona, tutorias.departamento.data
+                                  , time.strftime("%Y-%m-%d %H:%M:%S"))
         # creo el pdf
         crearPdf.tutoria(tutorias.motivo.data,
                          tutorias.nombre.data,
@@ -811,4 +825,4 @@ def get_food(departamento):
 if __name__ == '__main__':
     csrf.init_app(app)
     mail.init_app(app)
-    app.run(port=8000)  # ejecuta el server
+    app.run(port=8000, threaded=True)  # ejecuta el server

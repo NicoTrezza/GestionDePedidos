@@ -7,7 +7,7 @@ from negocio.aulaABM import AulaABM
 from negocio.tipoPersonaABM import TipoPersonaABM
 from negocio.personaABM import PersonaABM
 from negocio.loginABM import LoginABM
-
+import time
 
 def main():
     departamento_abm = DepartamentoABM()
@@ -17,9 +17,7 @@ def main():
     persona_abm = PersonaABM()
     login_abm = LoginABM()
 
-    login_abm.insertar('mail@lalal.com', '1234', 3)
-
-    persona_abm.insertar('martín', 'Lanús', 12345689, 'mail@lalal.com', 3, 3)
+    print (time.strftime("%Y-%m-%d %H:%M:%S"))
 
 
 if __name__ == '__main__':

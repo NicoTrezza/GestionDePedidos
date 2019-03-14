@@ -8,13 +8,13 @@ class TutoriaDao(Conexion):
     def __init__(self):
         super(TutoriaDao, self).__init__()  		
 
-    def insertar(self, motivo, personaTutoria, departamento):
+    def insertar(self, motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, departamento, fechaactual):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
             
-            sql = 'insert into tutoria (motivo, personaTutoria, Departamento_idDepartamento) values (%s, %s, %s)'
-            val = (motivo, personaTutoria, departamento)
+            sql = 'insert into tutoria (motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, Departamento_idDepartamento, fechaactual) values (%s, %s, %s, %s, %s, %s, %s, %s,%s,%s)'
+            val = (motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, departamento, fechaactual)
         
             cursor.execute(sql, val)
             self.conexion.commit()
