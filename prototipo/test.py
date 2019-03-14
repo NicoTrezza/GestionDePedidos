@@ -58,16 +58,23 @@ def main():
 	"""
 
 	# creo un login para la persona de prueba con permisos de administrador
-	login_abm.insertar('mailrandom@lalal.com', '1234', 1, 1)
-	login_abm.insertar('otromail@lalal.com', '1234', 2, 1)
-	login_abm.insertar('mail@lalal.com', '1234', 3, 1)
+	login_abm.insertar('martin', '1234', 1, 1)
+	login_abm.insertar('nico', '1234', 2, 1)
+	login_abm.insertar('gris', '1234', 3, 1)
+	login_abm.insertar('jose', '1234', 3, 1)
+	login_abm.insertar('Dario', '1234', 1, 1)
 
 	# creo una persona de prueba y le doy el login de administrador
-	persona_abm.insertar('Martín', 'Lanús', 12345678, 'mailrandom@lalal.com', 1, 1)
+	persona_abm.insertar('Martín', 'Lanús', 12345678, 'martin', 1, 1)
 	# creo otra persona de prueba y le doy el login de usuario con permisos
-	persona_abm.insertar('Nico', 'Boca', 12345687, 'otromail@lalal.com', 2, 2)
+	persona_abm.insertar('Nico', 'Boca', 12345687, 'nico', 2, 2)
 	# creo otra persona de prueba y le doy el login de usuario comun
-	persona_abm.insertar('Griss', 'River', 12345689, 'mail@lalal.com', 3, 3)
+	persona_abm.insertar('Gris', 'River', 12345689, 'gris', 3, 3)
+	# creo otra persona de prueba y le doy el login de usuario comun
+	persona_abm.insertar('Jose', 'River', 12345610, 'jose', 3, 4)
+	# creo otra persona de prueba y le doy el otro login de administrador
+	persona_abm.insertar('Dario', 'Rodríguez', 12345611, 'Dario', 1, 5)
+	#Permiso, id (no lo borren -.- este comentario)
 
 	# creo microtalleres
 	microtaller_abm.insertar('Diseño y Gestión del Aula Virtual en Moodle', None, 1)
