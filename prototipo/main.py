@@ -100,6 +100,22 @@ def login():
     return render_template('Login/login.html', titulo="Login", form=login)
 
 
+@app.route('/login/solicitudcuenta', methods=['GET', 'POST'])
+def solicitudcuenta():
+
+    solicitud=forms.Solicitudcuenta(request.form)
+
+    print solicitud.nombredocente.data
+    print solicitud.apellidodocente.data
+    print solicitud.dni.data
+    print solicitud.emailprofesor.data
+    print solicitud.rol.data
+    print solicitud.usuario.data
+    print solicitud.contrasenia.data
+
+    return render_template('Login/solicitudcuenta.html', titulo="Solicitud", form=solicitud)
+
+
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     if 'usuario' in session:

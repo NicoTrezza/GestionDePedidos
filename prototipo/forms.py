@@ -18,6 +18,34 @@ class Login(Form):
                               )
 
 
+class Solicitudcuenta(Form):
+
+    nombredocente = StringField('Nombre del docente',
+                                [validators.required()]
+                                )
+    apellidodocente = StringField('Apellido del docente',
+                                  [validators.required()]
+                                  )
+    dni = StringField('DNI',
+                      [validators.required()]
+                      )
+    emailprofesor = EmailField('E-mail del docente',
+                               [validators.required(),
+                                validators.email()]
+                               )
+    tipo_persona_abm = TipoPersonaABM()
+    listaroles = tipo_persona_abm.listar()
+    lista_eleccion_roles = [(str(d.getIdTipoPersona()), d.getRol()) for d in listaroles]
+    rol = SelectField('rol', choices=lista_eleccion_roles)
+
+    usuario = StringField('Usuario',
+                      [validators.required()]
+                      )
+    contrasenia = StringField('Contrasenia',
+                      [validators.required()]
+                      )
+
+
 class Altausuarios(Form):
 
     nombredocente = StringField('Nombre del docente',
