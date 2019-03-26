@@ -4,7 +4,7 @@ class Login(object):
         self.idLogin = int(dao[0])
         self.mail = str(dao[1])
         self.contrasenia = str(dao[2])
-        self.permisos = int(dao[3])  # 1= administrador, 2= usuario
+        self.permisos = int(dao[3])  # 1= administrador principal, 2= estadisticas, 3= usuarios
         self.estado = int(dao[4])    # 0= solicitado, 1= activo
 
     def getIdLogin(self):

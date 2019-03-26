@@ -102,16 +102,47 @@ def login():
 
 @app.route('/login/solicitudcuenta', methods=['GET', 'POST'])
 def solicitudcuenta():
-
+    idlogin=0
     solicitud=forms.Solicitudcuenta(request.form)
+    persona_abm = PersonaABM()
+    login_abm = LoginABM()
 
-    print solicitud.nombredocente.data
-    print solicitud.apellidodocente.data
-    print solicitud.dni.data
-    print solicitud.emailprofesor.data
-    print solicitud.rol.data
-    print solicitud.usuario.data
-    print solicitud.contrasenia.data
+    if request.method == 'POST' and solicitud.validate():
+        print solicitud.nombredocente.data
+        print solicitud.apellidodocente.data
+        print solicitud.dni.data
+        print solicitud.emailprofesor.data
+        print solicitud.rol.data
+        print solicitud.usuario.data
+        print solicitud.contrasenia.data
+
+        try:
+            login = login_abm.traerXMail(solicitud.usuario.data)
+        except:
+            login = None
+
+        if login is None:
+            login_abm.insertar(solicitud.usuario.data, solicitud.contrasenia.data, 3, 0)  #cuenta inactiva
+            idlogin = login_abm.traerXMail(solicitud.usuario.data).getIdLogin()
+
+            try:
+                persona = persona_abm.traerXDni(solicitud.dni.data)
+                print persona.getNombre()
+            except:
+                try:
+                    print idlogin
+                    persona_abm.insertar(solicitud.nombredocente.data,
+                                         solicitud.apellidodocente.data,
+                                         solicitud.dni.data,
+                                         solicitud.emailprofesor.data,
+                                         solicitud.rol.data,
+                                         idlogin)
+                    print idlogin
+                except:
+                    print 'no se ingresaron datos'
+
+        else:
+            flash('Usuario en uso')
 
     return render_template('Login/solicitudcuenta.html', titulo="Solicitud", form=solicitud)
 
@@ -129,11 +160,13 @@ def admin():
     personas = persona_abm.listar()
     return render_template('Administrador/admin.html', titulo="Admin", personas=personas)
 
+
 @app.route('/administrador/tablas', methods=['GET', 'POST'])
 def tablas():
     persona_abm = PersonaABM()
     personas = persona_abm.listar()
     return render_template('Administrador/tablas.html', titulo="Tablas", personas=personas)
+
 
 @app.route('/administrador/graficos', methods=['GET', 'POST'])
 def graficos():

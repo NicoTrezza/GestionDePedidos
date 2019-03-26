@@ -13,23 +13,23 @@ class Login(Form):
     usuario = StringField('Usuario',
                           [validators.required()]
                           )
-    contrasenia = PasswordField('Contrasenia',
+    contrasenia = PasswordField(u'Contraseña',
                               [validators.required()]
                               )
 
 
 class Solicitudcuenta(Form):
 
-    nombredocente = StringField('Nombre del docente',
+    nombredocente = StringField('Nombre',
                                 [validators.required()]
                                 )
-    apellidodocente = StringField('Apellido del docente',
+    apellidodocente = StringField('Apellido',
                                   [validators.required()]
                                   )
     dni = StringField('DNI',
                       [validators.required()]
                       )
-    emailprofesor = EmailField('E-mail del docente',
+    emailprofesor = EmailField('E-mail',
                                [validators.required(),
                                 validators.email()]
                                )
@@ -41,7 +41,7 @@ class Solicitudcuenta(Form):
     usuario = StringField('Usuario',
                       [validators.required()]
                       )
-    contrasenia = StringField('Contrasenia',
+    contrasenia = StringField(u'Contraseña',
                       [validators.required()]
                       )
 
