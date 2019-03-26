@@ -13,7 +13,10 @@ class PersonaABM(object):
         
     def modificar(self, u):
         self.dao.modificar(u.getIdPersona(), u.getNombre(), u.getApellido(), u.getDni(), u.getEmailPersona, u.getTipoPersona(), u.getCarrera(), u.getLogin())
-   
+
+    def modificarLogin(self, idPersona, login):
+        self.dao.modificarLogin(idPersona, login)
+
     def eliminar(self, idPersona):
         self.dao.eliminar(idPersona)
         

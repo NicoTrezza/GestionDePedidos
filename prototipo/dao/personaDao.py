@@ -31,7 +31,7 @@ class PersonaDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
         
-            sql = 'update persona set nombre = %s, apellido = %s, dni = %s, emailPersona = %s, tipoPersona = %s, login = %s where idUsuario = %s'
+            sql = 'update persona set nombre = %s, apellido = %s, dni = %s, emailPersona = %s, tipoPersona = %s, login = %s where idPersona = %s'
             val = (nombre, apellido, dni, emailPersona, tipoPersona, login, idPersona)
             
             cursor.execute(sql, val)
@@ -40,7 +40,22 @@ class PersonaDao(Conexion):
             self.desconectar()
         except Error as e:
             print e
-    
+
+    def modificarLogin(self, idPersona, login):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'update persona set login = %s where idPersona = %s'
+            val = (login, idPersona)
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
     def eliminar(self, idPersona):
         try:
             self.conectar()

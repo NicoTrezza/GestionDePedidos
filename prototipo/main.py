@@ -85,7 +85,7 @@ def login():
 
         try:
             usuario = login_abm.traerXMail(mail)
-            if usuario.getContrasenia() == contrasenia:
+            if usuario.getContrasenia() == contrasenia and usuario.getPermisos() == 1:
                 mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
                 # flash(mensajeBienvenida)
                 session['usuario'] = login.usuario.data
@@ -122,15 +122,21 @@ def solicitudcuenta():
             login = None
 
         if login is None:
-            login_abm.insertar(solicitud.usuario.data, solicitud.contrasenia.data, 3, 0)  #cuenta inactiva
-            idlogin = login_abm.traerXMail(solicitud.usuario.data).getIdLogin()
-
             try:
                 persona = persona_abm.traerXDni(solicitud.dni.data)
-                print persona.getNombre()
+                if persona.getLogin() is None:
+                    login_abm.insertar(solicitud.usuario.data, solicitud.contrasenia.data, 3, 0)  # cuenta inactiva
+                    idlogin = login_abm.traerXMail(solicitud.usuario.data).getIdLogin()
+                    idpersona = persona.getIdPersona()
+                    persona.setLogin(idlogin)
+                    persona_abm.modificarLogin(idpersona, idlogin)
+                else:
+                    flash ('La persona ya tiene cuenta')
             except:
                 try:
-                    print idlogin
+                    login_abm.insertar(solicitud.usuario.data, solicitud.contrasenia.data, 3, 0)  # cuenta inactiva
+                    idlogin = login_abm.traerXMail(solicitud.usuario.data).getIdLogin()
+
                     persona_abm.insertar(solicitud.nombredocente.data,
                                          solicitud.apellidodocente.data,
                                          solicitud.dni.data,
@@ -177,16 +183,56 @@ def graficos():
 
 @app.route('/administrador/altausuarios', methods=['GET', 'POST'])
 def altausuarios():
+    idlogin = 0
     altausuarios = forms.Altausuarios(request.form)
+    persona_abm = PersonaABM()
+    login_abm = LoginABM()
 
-    print altausuarios.nombredocente.data
-    print altausuarios.apellidodocente.data
-    print altausuarios.dni.data
-    print altausuarios.emailprofesor.data
-    print altausuarios.rol.data
-    print altausuarios.usuario.data
-    print altausuarios.contrasenia.data
-    print altausuarios.permisos.data
+    if request.method == 'POST' and altausuarios.validate():
+        print altausuarios.nombredocente.data
+        print altausuarios.apellidodocente.data
+        print altausuarios.dni.data
+        print altausuarios.emailprofesor.data
+        print altausuarios.rol.data
+        print altausuarios.usuario.data
+        print altausuarios.contrasenia.data
+        print altausuarios.permisos.data
+
+        try:
+            login = login_abm.traerXMail(altausuarios.usuario.data)
+        except:
+            login = None
+
+        if login is None:
+            try:
+                persona = persona_abm.traerXDni(altausuarios.dni.data)
+                if persona.getLogin() is None:
+                    login_abm.insertar(altausuarios.usuario.data, altausuarios.contrasenia.data,
+                                       altausuarios.permisos.data, 1)
+                    idlogin = login_abm.traerXMail(altausuarios.usuario.data).getIdLogin()
+                    idpersona = persona.getIdPersona()
+                    persona.setLogin(idlogin)
+                    persona_abm.modificarLogin(idpersona, idlogin)
+                else:
+                    flash ('La persona ya tiene cuenta')
+            except:
+                try:
+                    login_abm.insertar(altausuarios.usuario.data, altausuarios.contrasenia.data,
+                                       altausuarios.permisos.data, 1)
+                    idlogin = login_abm.traerXMail(altausuarios.usuario.data).getIdLogin()
+
+                    persona_abm.insertar(altausuarios.nombredocente.data,
+                                         altausuarios.apellidodocente.data,
+                                         altausuarios.dni.data,
+                                         altausuarios.emailprofesor.data,
+                                         altausuarios.rol.data,
+                                         idlogin)
+                    print idlogin
+                except:
+                    print 'no se ingresaron datos'
+
+        else:
+            flash('Usuario en uso')
 
     return render_template('Administrador/altausuarios.html', titulo="Alta de usuarios", form=altausuarios)
 
