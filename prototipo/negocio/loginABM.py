@@ -22,3 +22,6 @@ class LoginABM(object):
     
     def listar(self):
         return self.dao.listar()
+
+    def listarSolicitados(self):
+        return self.dao.listarSolicitados()

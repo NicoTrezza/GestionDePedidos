@@ -9,18 +9,18 @@
 	  <div class="col s12">
 	  <div class="nav-content">
 	    <ul class="tabs tabs-transparent">
-	      <li class="tab col s6 active"><a class="active" href="../administrador/tablas" target="_self">Tablas</a></li>
-	      <li class="tab col s6"><a href="../administrador/graficos" target="_self">Graficos</a></li>
+			<li class="tab col s6 "><a  href="../administrador/altausuarios" target="_self">Crear</a></li>
+			<li class="tab col s6 active"><a class="active" href="../administrador/solicitudespendientes" target="_self">Solicitudes</a></li>
 	    </ul>
 	  </div>
 	  </div>
 	</div>
 	</nav>
-	
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center blue-text text-darken-2">Solicitud de Estadisticas</h1>
+      <h1 class="header center blue-text text-darken-2">Solicitudes pendientes</h1>
       <br><br>
     </div>
   </div>
@@ -29,26 +29,33 @@
     <div class="section">
       <div class="row">
 
-      	<div class="col s12">
+        <div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
-	          <span class="card-title">Tabla de algo</span>
-	          <p>Aca como podras ver es una tabla.</p>
+	          <span class="card-title">Tabla de solicitudes</span>
+	          <p>Aca como podran ver es otra tabla.</p>
 	        </div>
 	        <div class="card-action">
 	          <table id="example" class="display">
 				<thead>
 				    <tr>
-				        <th>Nombre</th>
-				        <th>Apellido</th>
+				        <th>Confirmar</th>
+                        <th>ID</th>
 				    </tr>
 				</thead>
 				<tbody>
 
-				{%for persona in personas%}
+				{%for solicitud in solicitudes%}
 					<tr>
-						<td>{{persona.getNombre()}}</td>
-				        <td>{{persona.getApellido()}}</td>
+                        <td>
+                        <label>
+                        <input type="checkbox" name="{{solicitud.getMail()}}" value="{{solicitud.getIdLogin()}}">
+                            <span>{{solicitud.getMail()}}</span>
+                        </label>
+                        </td>
+                        <td>
+                            {{solicitud.getIdLogin()}}
+                        </td>
 				    </tr>
 				{%endfor%}
 				</tbody>

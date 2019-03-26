@@ -112,3 +112,28 @@ class LoginDao(Conexion):
             lis.append(ob)
             
         return lis
+
+    def listarSolicitados(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            #  sql = 'SELECT * FROM login inner join persona where persona.login = login.idLogin and login.estado = 0'
+
+            sql = 'select * from login where estado = 0'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            ob = Login(objeto)
+            lis.append(ob)
+
+        return lis

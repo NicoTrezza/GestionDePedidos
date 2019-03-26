@@ -86,6 +86,7 @@ def login():
         try:
             usuario = login_abm.traerXMail(mail)
             if usuario.getContrasenia() == contrasenia and usuario.getPermisos() == 1:
+
                 mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
                 # flash(mensajeBienvenida)
                 session['usuario'] = login.usuario.data
@@ -179,6 +180,17 @@ def graficos():
     persona_abm = PersonaABM()
     personas = persona_abm.listar()
     return render_template('Administrador/graficos.html', titulo="Graficos", personas=personas)
+
+
+@app.route('/administrador/solicitudespendientes', methods=['GET', 'POST'])
+def solicitudespendientes():
+    login_abm = LoginABM()
+    solicitudes = login_abm.listarSolicitados()
+
+    for solicitud in solicitudes:
+        print solicitud
+
+    return render_template('Administrador/solicitudespendientes.html', titulo="Solicitudes pendientes", solicitudes=solicitudes)
 
 
 @app.route('/administrador/altausuarios', methods=['GET', 'POST'])
