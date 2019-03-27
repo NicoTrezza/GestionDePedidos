@@ -85,7 +85,7 @@ def login():
 
         try:
             usuario = login_abm.traerXMail(mail)
-            if usuario.getContrasenia() == contrasenia and usuario.getPermisos() == 1:
+            if usuario.getContrasenia() == contrasenia and usuario.getEstado() == 1:
 
                 mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
                 # flash(mensajeBienvenida)
@@ -187,8 +187,8 @@ def solicitudespendientes():
     login_abm = LoginABM()
     solicitudes = login_abm.listarSolicitados()
 
-    for solicitud in solicitudes:
-        print solicitud
+    for log, per in solicitudes:
+        print log, per
 
     return render_template('Administrador/solicitudespendientes.html', titulo="Solicitudes pendientes", solicitudes=solicitudes)
 

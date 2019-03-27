@@ -2,6 +2,7 @@ from conexion import Conexion
 from mysql.connector import Error
 
 from datos.login import Login
+from datos.persona import Persona
 
 
 class LoginDao(Conexion):
@@ -118,9 +119,9 @@ class LoginDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
 
-            #  sql = 'SELECT * FROM login inner join persona where persona.login = login.idLogin and login.estado = 0'
+            sql = 'SELECT * FROM login inner join persona where persona.login = login.idLogin and login.estado = 0'
 
-            sql = 'select * from login where estado = 0'
+            #sql = 'select * from login where estado = 0'
 
             cursor.execute(sql)
 
@@ -133,7 +134,9 @@ class LoginDao(Conexion):
         lis = []
 
         for objeto in lista:
-            ob = Login(objeto)
-            lis.append(ob)
+            l = Login(objeto[:5])
+            p = Persona(objeto[5:])
+
+            lis.append((l, p))
 
         return lis

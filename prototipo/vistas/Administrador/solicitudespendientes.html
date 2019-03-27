@@ -40,21 +40,29 @@
 				<thead>
 				    <tr>
 				        <th>Confirmar</th>
-                        <th>ID</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
 				    </tr>
 				</thead>
 				<tbody>
 
-				{%for solicitud in solicitudes%}
+				{%for log, per in solicitudes%}
 					<tr>
                         <td>
                         <label>
-                        <input type="checkbox" name="{{solicitud.getMail()}}" value="{{solicitud.getIdLogin()}}">
-                            <span>{{solicitud.getMail()}}</span>
+                        <input type="checkbox" name="{{log.getMail()}}" value="{{log.getIdLogin()}}">
+                            <span>{{log.getMail()}}</span>
                         </label>
                         </td>
                         <td>
-                            {{solicitud.getIdLogin()}}
+                            {{log.getIdLogin()}}
+                        </td>
+                        <td>
+                            {{per.getNombre()}}
+                        </td>
+                        <td>
+                            {{per.getApellido()}}
                         </td>
 				    </tr>
 				{%endfor%}
