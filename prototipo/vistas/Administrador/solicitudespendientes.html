@@ -29,6 +29,8 @@
     <div class="section">
       <div class="row">
 
+		<form method="POST">
+
         <div class="col s12">
 	      <div class="card center">
 	        <div class="card-content">
@@ -51,7 +53,7 @@
 					<tr>
                         <td>
                         <label>
-                        <input type="checkbox" name="{{log.getMail()}}" value="{{log.getIdLogin()}}">
+                        <input type="checkbox" name="solicitud" value={{log.getIdLogin()}}>
                             <span>{{log.getMail()}}</span>
                         </label>
                         </td>
@@ -71,6 +73,13 @@
 	        </div>
 	      </div>
 	    </div>
+
+			<div class="row center">
+		  <button id="boton" type="submit" value="submit" class="btn-small light-blue darken-3"> Confirmar <i class="material-icons right">send</i> </button>
+        </div>
+
+<input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+		  </form>
 
 	</div>
   	</div>

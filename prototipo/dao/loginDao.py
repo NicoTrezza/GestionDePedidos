@@ -39,6 +39,21 @@ class LoginDao(Conexion):
             self.desconectar()
         except Error as e:
             print e
+
+    def confirmarcuenta(self, idLogin):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'update login set estado = 1 where idLogin = %s'
+            val = (idLogin, )
+
+            cursor.execute(sql, val)
+            self.conexion.commit()
+
+            self.desconectar()
+        except Error as e:
+            print e
     
     def eliminar(self, idLogin):
         try:

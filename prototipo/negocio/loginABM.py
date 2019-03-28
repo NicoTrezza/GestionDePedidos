@@ -10,6 +10,9 @@ class LoginABM(object):
         
     def modificar(self, l):
         self.dao.modificar(l.getIdLogin(), l.getMail(), l.getContrasenia(), l.getPermisos())
+
+    def confirmarcuenta(self, idLogin):
+        self.dao.confirmarcuenta(idLogin)
    
     def eliminar(self, idLogin):
         self.dao.eliminar(idLogin)

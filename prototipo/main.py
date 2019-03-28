@@ -187,8 +187,13 @@ def solicitudespendientes():
     login_abm = LoginABM()
     solicitudes = login_abm.listarSolicitados()
 
-    for log, per in solicitudes:
-        print log, per
+    if request.method == 'POST':
+        #  print request.form.getlist('solicitud')
+        for id in request.form.getlist('solicitud'):
+            login_abm.confirmarcuenta(id)
+
+    #for log, per in solicitudes:
+    #    print log, per
 
     return render_template('Administrador/solicitudespendientes.html', titulo="Solicitudes pendientes", solicitudes=solicitudes)
 
