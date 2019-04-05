@@ -198,6 +198,29 @@ def solicitudespendientes():
     return render_template('Administrador/solicitudespendientes.html', titulo="Solicitudes pendientes", solicitudes=solicitudes)
 
 
+@app.route('/administrador/modificarpersonas', methods=['GET', 'POST'])
+def modificarpersonas():
+    personas_abm = PersonaABM()
+    personas = personas_abm.listar()
+
+    if request.method == 'POST':
+        print request.form.getlist('idpersona')
+        print request.form.getlist('personanombre')
+        print request.form.getlist('personaapellido')
+        print request.form.getlist('dni')
+        print request.form.getlist('mail')
+        i = 0
+        for id in request.form.getlist('idpersona'):
+            p = personas_abm.traer(int(id))
+            print u'{}'.format(p)
+            p.setNombre(request.form.getlist('personanombre')[i])
+            p.setApellido(request.form.getlist('personaapellido')[i])
+            personas_abm.modificar(p)
+            i = i+1
+
+    return render_template('Administrador/modificarpersonas.html', titulo="Modificar personas", personas=personas)
+
+
 @app.route('/administrador/altausuarios', methods=['GET', 'POST'])
 def altausuarios():
     idlogin = 0

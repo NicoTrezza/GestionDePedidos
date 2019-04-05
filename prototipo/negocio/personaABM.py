@@ -12,7 +12,7 @@ class PersonaABM(object):
         self.dao.insertar(nombre, apellido, dni, emailPersona, tipoPersona, login)
         
     def modificar(self, u):
-        self.dao.modificar(u.getIdPersona(), u.getNombre(), u.getApellido(), u.getDni(), u.getEmailPersona, u.getTipoPersona(), u.getCarrera(), u.getLogin())
+        self.dao.modificar(u.getIdPersona(), u.getNombre(), u.getApellido(), u.getDni(), u.getMailPersona(), u.getTipoPersona(), u.getLogin())
 
     def modificarLogin(self, idPersona, login):
         self.dao.modificarLogin(idPersona, login)
