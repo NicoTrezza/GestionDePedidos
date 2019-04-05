@@ -192,6 +192,7 @@ def solicitudespendientes():
         for id in request.form.getlist('solicitud'):
             login_abm.confirmarcuenta(id)
 
+        return redirect(url_for('solicitudespendientes'))
     #for log, per in solicitudes:
     #    print log, per
 
@@ -212,12 +213,14 @@ def modificarpersonas():
         i = 0
         for id in request.form.getlist('idpersona'):
             p = personas_abm.traer(int(id))
-            print u'{}'.format(p)
+            #  print u'{}'.format(p)
             p.setNombre(request.form.getlist('personanombre')[i])
             p.setApellido(request.form.getlist('personaapellido')[i])
+            p.setDni(request.form.getlist('dni')[i])
+            p.setMailPersona(request.form.getlist('mail')[i])
             personas_abm.modificar(p)
             i = i+1
-
+        return redirect(url_for('modificarpersonas'))
     return render_template('Administrador/modificarpersonas.html', titulo="Modificar personas", personas=personas)
 
 
