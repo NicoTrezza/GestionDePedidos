@@ -38,4 +38,4 @@ class Login(object):
         self.estado = estado
 
     def __str__(self):
-        return "Id del login: {}, mail del login: {}, contrasenia del login: {}, permisos del login: {}".format(self.idLogin, self.mail, self.contrasenia, self.permisos)
+        return u'Id del login: {}, mail del login: {}, contrasenia del login: {}, permisos del login: {}'.format(self.idLogin, self.mail, self.contrasenia, self.permisos)

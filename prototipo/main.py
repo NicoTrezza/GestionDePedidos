@@ -163,9 +163,8 @@ def logout():
 
 @app.route('/administrador/admin', methods=['GET', 'POST'])
 def admin():
-    persona_abm = PersonaABM()
-    personas = persona_abm.listar()
-    return render_template('Administrador/admin.html', titulo="Admin", personas=personas)
+
+    return render_template('Administrador/admin.html', titulo="Admin")
 
 
 @app.route('/administrador/tablas', methods=['GET', 'POST'])
@@ -197,6 +196,47 @@ def solicitudespendientes():
     #    print log, per
 
     return render_template('Administrador/solicitudespendientes.html', titulo="Solicitudes pendientes", solicitudes=solicitudes)
+
+
+@app.route('/control', methods=['GET', 'POST'])
+def control():
+    personas_abm = PersonaABM()
+    login_abm = LoginABM()
+
+    usuarioPersona = login_abm.traePersonaLoginXMail(session['usuario'])
+    usuarioLogin = login_abm.traerXMail(session['usuario'])
+    print u'{}'.format(usuarioPersona)
+    print u'{}'.format(usuarioLogin)
+
+    if request.method == 'POST':
+        print request.form['nombre']
+        print request.form['apellido']
+        print request.form['dni']
+        print request.form['mail']
+        print request.form['contrasenia']
+        print request.form['password']
+        print request.form['password2']
+
+        p = personas_abm.traer(usuarioPersona.getIdPersona())
+        p.setNombre(request.form['nombre'])
+        p.setApellido(request.form['apellido'])
+        p.setDni(request.form['dni'])
+        p.setMailPersona(request.form['mail'])
+        personas_abm.modificar(p)
+
+        if request.form['password'] != request.form['password2']:
+            flash(u'La nueva contraseña no coincide')
+        if request.form['contrasenia'] != "" and request.form['contrasenia'] != usuarioLogin.getContrasenia():
+            flash(u'La contraseña actual es incorrecta')
+
+        if request.form['password'] == request.form['password2'] and request.form['contrasenia'] != "" and request.form['contrasenia'] == usuarioLogin.getContrasenia():
+            l = login_abm.traerXMail(session['usuario'])
+            l.setContrasenia(request.form['password2'])
+            login_abm.modificar(l)
+
+        return redirect(url_for('control'))
+
+    return render_template('control.html', titulo="Panel de control", persona=usuarioPersona, login=usuarioLogin)
 
 
 @app.route('/administrador/modificarpersonas', methods=['GET', 'POST'])

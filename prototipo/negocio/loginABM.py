@@ -22,6 +22,9 @@ class LoginABM(object):
 
     def traerXMail(self, mail):
         return self.dao.traerXMail(mail)
+
+    def traePersonaLoginXMail(self, mail):
+        return self.dao.traePersonaLoginXMail(mail)
     
     def listar(self):
         return self.dao.listar()

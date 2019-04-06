@@ -106,6 +106,30 @@ class LoginDao(Conexion):
 
         return Login(objeto)
 
+    def traePersonaLoginXMail(self, mail):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'SELECT * FROM gestorpedidos.login inner join gestorpedidos.persona where ' \
+                  'persona.login = login.idLogin and login.mail = %s'
+            val = (mail,)
+
+            cursor.execute(sql, val)
+
+            objeto = cursor.fetchone()
+
+            # -----------
+            l = Login(objeto[:5])
+            p = Persona(objeto[5:])
+            # -----------
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        return p
+
     def listar(self):
         try:
             self.conectar()
