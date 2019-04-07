@@ -111,7 +111,7 @@ class LoginDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'SELECT * FROM gestorpedidos.login inner join gestorpedidos.persona where ' \
+            sql = 'SELECT * FROM login inner join persona where ' \
                   'persona.login = login.idLogin and login.mail = %s'
             val = (mail,)
 
