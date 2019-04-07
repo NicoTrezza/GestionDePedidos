@@ -26,6 +26,7 @@ from negocio.microtallerABM import MicrotallerABM
 from negocio.carreraABM import CarreraABM
 from negocio.tutoriaABM import TutoriaABM
 from negocio.tipoPersonaABM import TipoPersonaABM
+from negocio.matricularABM import MatricularABM
 
 from datos.aula import Aula
 
@@ -34,6 +35,7 @@ from werkzeug.utils import secure_filename
 import forms
 import crearPdf
 
+from openpyxl import load_workbook
 
 app = Flask(__name__, template_folder="vistas")
 app.config.from_object(DevelopmentConfig)
@@ -326,6 +328,8 @@ def matricular():
     usuario = ''
     #########
     login_abm = LoginABM()
+    persona_abm = PersonaABM()
+    matricular_abm = MatricularABM()
     permisos = 0
     try:
         us = login_abm.traerXMail(session['usuario'])
@@ -352,6 +356,37 @@ def matricular():
                 filename = secure_filename(f.filename)
                 f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/' + filename)
                 #f.save('C:/Users/Trezza/Documents/Git/GestorDePedidos/prototipo/' + filename)
+
+                # lectura_del_archivo_excel-------------------------
+                filesheet = filename
+                wb = load_workbook(filesheet)
+                sheet = wb.active
+
+                personas = []
+
+                rows = sheet.rows
+                i = 0
+                for row in rows:
+                    if i != 0:
+                        personas.append(row)
+                    i = i + 1
+
+                matricular_abm.insertar(matricular.departamento.data, time.strftime("%Y-%m-%d %H:%M:%S"))
+                ultima_matricula = matricular_abm.listar()[-1]
+                # ultima_matricula = matriculas[-1]
+
+                for persona in personas:
+                    nombre, apellido, dni, mail, aula1, aula2, aula3, aula4 = persona
+                    try:
+                        p = persona_abm.traerXDni(dni.value)
+                        matricular_abm.insertarpersona(ultima_matricula.getIdMatricular(), p.getIdPersona())
+
+                    except:
+                        persona_abm.insertar(nombre.value, apellido.value, dni.value, mail.value, 4, None)
+                        ultima_persona = persona_abm.listar()[-1]
+                        matricular_abm.insertarpersona(ultima_matricula.getIdMatricular(),
+                                                       ultima_persona.getIdPersona())
+                # ---------------------------------------------------------
 
                 # creo el pdf
                 crearPdf.matricular(matricular.departamento.data,
