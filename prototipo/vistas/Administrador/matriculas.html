@@ -1,0 +1,79 @@
+{% extends 'base/baseSinFooter.html' %}
+
+{% block titulo %} {{ titulo }} {% endblock %}
+
+{% block contenido %}
+
+	<nav class="nav-extended light-blue darken-3">
+	<div class="row">
+	  <div class="col s12">
+	  <div class="nav-content">
+	    <ul class="tabs tabs-transparent">
+	      <li class="tab col s12 active"><a class="active" href="../administrador/tutorias" target="_self">Tutorias</a></li>
+	    </ul>
+	  </div>
+	  </div>
+	</div>
+	</nav>
+	
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center blue-text text-darken-2">Solicitud de Estadisticas</h1>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+
+      	<div class="col s12">
+	      <div class="card center">
+	        <div class="card-content">
+	          <span class="card-title">Tabla de algo</span>
+	          <p>Aca como podras ver es una tabla.</p>
+	        </div>
+	        <div class="card-action">
+	          <table id="example" class="display">
+				<thead>
+				    <tr>
+				        <th>FECHA</th>
+                        <th>DEPARTAMENTO</th>
+				        <th>NOMBRE</th>
+						<th>APELLIDO</th>
+						<th>DNI</th>
+						<th>E-MAIL</th>
+				    </tr>
+				</thead>
+				<tbody>
+
+				{%for m, p, d in matriculas%}
+					<tr>
+						<td>{{m.getFechaactual()}}</td>
+                        <td>{{d.getNombreDepartamento()}}</td>
+				        <td>{{p.getNombre()}}</td>
+						<td>{{p.getApellido()}}</td>
+						<td>{{p.getDni()}}</td>
+						<td>{{p.getMailPersona()}}</td>
+				    </tr>
+				{%endfor%}
+				</tbody>
+			  </table>
+	        </div>
+	      </div>
+	    </div>
+
+	</div>
+  	</div>
+  </div>
+
+  <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+  <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+
+  <script type="text/javascript">
+  	$(document).ready(function() {
+	    $('#example').DataTable();
+	} );
+  </script>
+{% endblock %}

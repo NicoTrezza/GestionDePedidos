@@ -23,3 +23,6 @@ class MatricularABM(object):
 
     def listar(self):
         return self.dao.listar()
+
+    def listarMatricular(self):
+        return self.dao.listarMatricular()

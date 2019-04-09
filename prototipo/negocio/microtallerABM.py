@@ -28,3 +28,6 @@ class MicrotallerABM(object):
 
     def listarEstudiantes(self):
         return self.dao.listarEstudiantes()
+
+    def listarMicrotalleres(self):
+        return self.dao.listarMicrotalleres()

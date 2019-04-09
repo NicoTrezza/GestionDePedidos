@@ -176,6 +176,20 @@ def tutoriastabla():
     return render_template('Administrador/tutorias.html', titulo="Tutorias", tutorias=tutorias)
 
 
+@app.route('/administrador/cursos', methods=['GET', 'POST'])
+def microtallerestabla():
+    microtaller_abm = MicrotallerABM()
+    microtalleres = microtaller_abm.listarMicrotalleres()
+    return render_template('Administrador/cursos.html', titulo="Cursos", microtalleres=microtalleres)
+
+
+@app.route('/administrador/matriculas', methods=['GET', 'POST'])
+def matriculartabla():
+    matricular_abm = MatricularABM()
+    matriculas = matricular_abm.listarMatricular()
+    return render_template('Administrador/matriculas.html', titulo="Matriculas", matriculas=matriculas)
+
+
 @app.route('/administrador/graficos', methods=['GET', 'POST'])
 def graficos():
     persona_abm = PersonaABM()
@@ -509,7 +523,7 @@ def crear():
                         aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data,
                                           crear_aula.departamento.data)
                         for idp in idpersona:
-                            aula_abm.insertarpersona_crear(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula, crear_aula.descripcion.data, 1)
+                            aula_abm.insertarpersona_crear(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula, crear_aula.descripcion.data)
 
                 else:
                     flash('el aula ya existe')
@@ -654,8 +668,7 @@ def reutilizar():
                                                                        reutilizar_aula.nombrenuevo.data).getIdAula(),
                                                                    reutilizar_aula.direccionulr.data,
                                                                    reutilizar_aula.nombreaula.data,
-                                                                   reutilizar_aula.otro.data,
-                                                                   2)
+                                                                   reutilizar_aula.otro.data)
                         else:
                             for idp in idpersona:
                                 aula_abm.insertarpersona_modificar(idp,
@@ -663,24 +676,21 @@ def reutilizar():
                                                                        reutilizar_aula.nombreaula.data).getIdAula(),
                                                                    reutilizar_aula.direccionulr.data,
                                                                    None,
-                                                                   reutilizar_aula.otro.data,
-                                                                   2)
+                                                                   reutilizar_aula.otro.data)
                     else:
                         if reutilizar_aula.nombrenuevo.data != '':
                             aula_abm.insertarpersona_modificar(None,
                                                                aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula(),
                                                                reutilizar_aula.direccionulr.data,
                                                                reutilizar_aula.nombreaula.data,
-                                                               reutilizar_aula.otro.data,
-                                                               2)
+                                                               reutilizar_aula.otro.data)
                         else:
                             aula_abm.insertarpersona_modificar(None,
                                                                aula_abm.traerXNombre(
                                                                    reutilizar_aula.nombreaula.data).getIdAula(),
                                                                reutilizar_aula.direccionulr.data,
                                                                None,
-                                                               reutilizar_aula.otro.data,
-                                                               2)
+                                                               reutilizar_aula.otro.data)
 
                 else:
                     flash('el aula no existe')
@@ -771,8 +781,7 @@ def eliminar():
                 if aula is not None:
                     aula_abm.insertarpersona_eliminar(aula_abm.traerXNombre(eliminar_aula.nombreaula.data).idAula,
                                                       eliminar_aula.direccionulr.data,
-                                                      eliminar_aula.motivo.data,
-                                                      3)
+                                                      eliminar_aula.motivo.data)
                 else:
                     flash('el aula no existe')
 

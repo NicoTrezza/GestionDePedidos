@@ -2,6 +2,8 @@ from conexion import Conexion
 from mysql.connector import Error
 
 from datos.microtaller import MicroTaller
+from datos.persona import Persona
+
 
 class MicrotallerDao(Conexion):
         
@@ -152,5 +154,30 @@ class MicrotallerDao(Conexion):
         for objeto in lista:
             ob = MicroTaller(objeto)
             lis.append(ob)
+
+        return lis
+
+    def listarMicrotalleres(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from microtallerpersona inner join microtaller inner join persona where Microtaller_idMicrotaller = idMicrotaller and Persona_idPersona = idPersona'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            m = MicroTaller(objeto[2:6])
+            p = Persona(objeto[6:])
+
+            lis.append((m, p))
 
         return lis
