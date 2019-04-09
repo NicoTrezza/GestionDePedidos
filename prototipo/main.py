@@ -190,6 +190,27 @@ def matriculartabla():
     return render_template('Administrador/matriculas.html', titulo="Matriculas", matriculas=matriculas)
 
 
+@app.route('/administrador/aulas_creadas', methods=['GET', 'POST'])
+def aulas_creadas():
+    aula_abm = AulaABM()
+    aulas = aula_abm.listarAulasCrear()
+    return render_template('Administrador/aulas_creadas.html', titulo="Aulas creadas", aulas=aulas)
+
+
+@app.route('/administrador/aulas_modificadas', methods=['GET', 'POST'])
+def aulas_modificadas():
+    aula_abm = AulaABM()
+    aulas = aula_abm.listarAulasModificar()
+    return render_template('Administrador/aulas_modificadas.html', titulo="aulas modificadas", aulas=aulas)
+
+
+@app.route('/administrador/aulas_eliminadas', methods=['GET', 'POST'])
+def aulas_eliminadas():
+    aula_abm = AulaABM()
+    aulas = aula_abm.listarAulasEliminar()
+    return render_template('Administrador/aulas_eliminadas.html', titulo="Aulas eliminadas", aulas=aulas)
+
+
 @app.route('/administrador/graficos', methods=['GET', 'POST'])
 def graficos():
     persona_abm = PersonaABM()

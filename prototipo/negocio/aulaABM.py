@@ -46,3 +46,12 @@ class AulaABM(object):
     
     def listar(self):
         return self.dao.listar()
+
+    def listarAulasCrear(self):
+        return self.dao.listarAulasCrear()
+
+    def listarAulasModificar(self):
+        return self.dao.listarAulasModificar()
+
+    def listarAulasEliminar(self):
+        return self.dao.listarAulasEliminar()

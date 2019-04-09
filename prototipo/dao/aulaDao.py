@@ -2,6 +2,10 @@ from conexion import Conexion
 from mysql.connector import Error
 
 from datos.aula import Aula
+from datos.persona import Persona
+from datos.departamento import Departamento
+from datos.personaaula import Personaaula
+
 
 class AulaDao(Conexion):
         
@@ -239,4 +243,84 @@ class AulaDao(Conexion):
             ob = Aula(objeto)
             lis.append(ob)
             
+        return lis
+
+    def listarAulasCrear(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from personaaula inner join aula inner join persona inner join departamento where Persona_idPersona = idPersona and Aula_idAula = idAula and Departamento_idDepartamento = idDepartamento and tipo = 1'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            pa = Personaaula(objeto[:9])
+            a = Aula(objeto[9:13])
+            p = Persona(objeto[13:20])
+            d = Departamento(objeto[20:])
+
+            lis.append((pa, a, d, p))
+
+        return lis
+
+    def listarAulasModificar(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from personaaula inner join aula inner join departamento where Aula_idAula = idAula and Departamento_idDepartamento = idDepartamento and tipo = 2'
+
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            pa = Personaaula(objeto[:9])
+            a = Aula(objeto[9:13])
+            d = Departamento(objeto[13:])
+
+            lis.append((pa, a, d))
+
+        return lis
+
+    def listarAulasEliminar(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from personaaula inner join aula inner join departamento where Aula_idAula = idAula and Departamento_idDepartamento = idDepartamento and tipo = 3'
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            pa = Personaaula(objeto[:9])
+            a = Aula(objeto[9:13])
+            d = Departamento(objeto[13:])
+
+            lis.append((pa, a, d))
+
         return lis
