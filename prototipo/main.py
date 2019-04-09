@@ -169,11 +169,11 @@ def admin():
     return render_template('Administrador/admin.html', titulo="Admin")
 
 
-@app.route('/administrador/tablas', methods=['GET', 'POST'])
-def tablas():
-    persona_abm = PersonaABM()
-    personas = persona_abm.listar()
-    return render_template('Administrador/tablas.html', titulo="Tablas", personas=personas)
+@app.route('/administrador/tutorias', methods=['GET', 'POST'])
+def tutoriastabla():
+    tutoria_abm = TutoriaABM()
+    tutorias = tutoria_abm.listarTutorias()
+    return render_template('Administrador/tutorias.html', titulo="Tutorias", tutorias=tutorias)
 
 
 @app.route('/administrador/graficos', methods=['GET', 'POST'])

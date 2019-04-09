@@ -17,4 +17,4 @@ class Departamento(object):
         self.nombreDepartamento = nombreDepartamento
 
     def __str__(self):
-        return "Id del Departamento: {}, nombre: {}".format(self.idDepartamento, self.nombreDepartamento)
+        return u'Id del Departamento: {}, nombre: {}'.format(self.idDepartamento, self.nombreDepartamento)

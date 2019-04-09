@@ -9,7 +9,7 @@
 	  <div class="col s12">
 	  <div class="nav-content">
 	    <ul class="tabs tabs-transparent">
-	      <li class="tab col s12 active"><a class="active" href="../administrador/tablas" target="_self">Tablas</a></li>
+	      <li class="tab col s12 active"><a class="active" href="../administrador/tutorias" target="_self">Tutorias</a></li>
 	    </ul>
 	  </div>
 	  </div>
@@ -38,20 +38,24 @@
 	          <table id="example" class="display">
 				<thead>
 				    <tr>
-				        <th>Nombre</th>
-				        <th>Apellido</th>
-						<th>E-Mail</th>
+				        <th>FECHA</th>
+				        <th>NOMBRE</th>
+						<th>APELLIDO</th>
 						<th>DNI</th>
+						<th>E-MAIL</th>
+						<th>DEPARTAMENTO</th>
 				    </tr>
 				</thead>
 				<tbody>
 
-				{%for persona in personas%}
+				{%for t, d, p in tutorias%}
 					<tr>
-						<td>{{persona.getNombre()}}</td>
-				        <td>{{persona.getApellido()}}</td>
-						<td>{{persona.getMailPersona()}}</td>
-						<td>{{persona.getDni()}}</td>
+						<td>{{t.getFechaactual()}}</td>
+				        <td>{{p.getNombre()}}</td>
+						<td>{{p.getApellido()}}</td>
+						<td>{{p.getDni()}}</td>
+						<td>{{p.getMailPersona()}}</td>
+						<td>{{d.getNombreDepartamento()}}</td>
 				    </tr>
 				{%endfor%}
 				</tbody>

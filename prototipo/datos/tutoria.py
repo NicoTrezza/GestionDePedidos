@@ -66,4 +66,4 @@ class Tutoria(object):
         self.fechaactual = fechaactual
 
     def __str__(self):
-        return "Id de la Tutoria: {}, motivo de la Tutoria: {}, usuario de la Tutoria: {}, usuario de la Tutoria: {}".format(self.idTutoria, self.motivo, self.personaTutoria, self.departamento)
+        return u'Id de la Tutoria: {}, motivo de la Tutoria: {}, usuario de la Tutoria: {}, usuario de la Tutoria: {}'.format(self.idTutoria, self.motivo, self.personaTutoria, self.departamento)

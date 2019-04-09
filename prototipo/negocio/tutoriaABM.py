@@ -19,3 +19,6 @@ class TutoriaABM(object):
     
     def listar(self):
         return self.dao.listar()
+
+    def listarTutorias(self):
+        return self.dao.listarTutorias()

@@ -65,15 +65,15 @@ def main():
 	login_abm.insertar('Dario', '1234', 1, 1)
 
 	# creo una persona de prueba y le doy el login de administrador
-	persona_abm.insertar('Martín', 'Lanús', 12345678, 'martin', 1, 1)
+	persona_abm.insertar('Martín', 'Lanús', 12345678, 'martin@lala.com', 1, 1)
 	# creo otra persona de prueba y le doy el login de usuario con permisos
-	persona_abm.insertar('Nico', 'Boca', 12345687, 'nico', 2, 2)
+	persona_abm.insertar('Nico', 'Boca', 12345687, 'nicolala.com', 2, 2)
 	# creo otra persona de prueba y le doy el login de usuario comun
-	persona_abm.insertar('Gris', 'River', 12345689, 'gris', 3, 3)
+	persona_abm.insertar('Gris', 'River', 12345689, 'grislala.com', 3, 3)
 	# creo otra persona de prueba y le doy el login de usuario comun
-	persona_abm.insertar('Jose', 'River', 12345610, 'jose', 3, 4)
+	persona_abm.insertar('Jose', 'River', 12345610, 'joselala.com', 3, 4)
 	# creo otra persona de prueba y le doy el otro login de administrador
-	persona_abm.insertar('Dario', 'Rodríguez', 12345611, 'Dario', 1, 5)
+	persona_abm.insertar('Dario', 'Rodríguez', 12345611, 'dariolala.com', 1, 5)
 	#Permiso, id (no lo borren -.- este comentario)
 
 	# creo microtalleres

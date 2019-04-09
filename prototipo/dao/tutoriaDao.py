@@ -2,6 +2,8 @@ from conexion import Conexion
 from mysql.connector import Error
 
 from datos.tutoria import Tutoria
+from datos.departamento import Departamento
+from datos.persona import Persona
 
 class TutoriaDao(Conexion):
         
@@ -92,4 +94,31 @@ class TutoriaDao(Conexion):
             ob = Tutoria(objeto)
             lis.append(ob)
             
+        return lis
+
+    def listarTutorias(self):
+        try:
+            self.conectar()
+            cursor = self.conexion.cursor()
+
+            sql = 'select * from tutoria inner join departamento inner join persona where Departamento_idDepartamento = idDepartamento and personaTutoria = idPersona'
+
+
+            cursor.execute(sql)
+
+            lista = cursor.fetchall()
+
+            self.desconectar()
+        except Error as e:
+            print e
+
+        lis = []
+
+        for objeto in lista:
+            t = Tutoria(objeto[:11])
+            d = Departamento(objeto[11:13])
+            p = Persona(objeto[13:])
+
+            lis.append((t, d, p))
+
         return lis
