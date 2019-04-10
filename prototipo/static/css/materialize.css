@@ -5551,7 +5551,10 @@ button.btn-floating {
 
 .btn-block {
   display: block;
-  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 55%;
 }
 
 .separador {

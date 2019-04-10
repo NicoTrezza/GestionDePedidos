@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>{% block titulo %}  {% endblock %}</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="Materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- <link href="Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/datatables.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <style>
+	body{
+      padding-left: 250px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      body{
+        padding-left: 0;
+      }
+    }
+    </style>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+     function show_options() {
+         var d = document.getElementById("departamento");
+         var c = document.getElementById("carrera");
+         var value = d.options[d.selectedIndex].value;
+             if (value == 1){
+                c.style.display = "block";
+             } else{
+                c.style.display = "none";
+             }
+     }
+     </script>
+
+    <script>
+    function validaNumeros(e){
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla==8){
+            return true;
+        }
+
+        // Patron de entrada, en este caso solo acepta numeros
+        patron =/[0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+    </script>
+
+    <script>
+function validaTexto(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+
+    // Patron de entrada, en este caso solo acepta letras
+    patron =/^[a-z áéíóúñüàè]+$/i;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
+
+</head>
+<body class="grey lighten-4">
+  <nav class="nav-extended light-blue darken-3">
+<div class="nav-wrapper">
+  <div class="nav-wrapper container">
+  <a href="/" id="logo-container" class="hide-on-small-only brand-logo truncate center">GESTOR DE PEDIDOS</a>
+
+ <ul id="slide-out" class="sidenav sidenav-fixed">
+	<a href="https://www.frba.utn.edu.ar/" class="nav-title"><img src="\static\logo-ead.png" width="130" height="55"></a>
+	
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Modificaciones<i class="material-icons light-blue-text left">group_add</i></a>
+        <div class="collapsible-body">
+          <ul>
+            <li>
+        <a href="../administrador/modificarpersonas"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Personas</p></a>
+        </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Crear usuarios<i class="material-icons light-blue-text left">group_add</i></a>
+        <div class="collapsible-body">
+          <ul>
+            <li>
+		      <a href="../administrador/solicitudespendientes"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Solicitudes</p></a>
+		    </li>
+		    <li>
+		      <a href="../administrador/altausuarios"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Crear</p></a>
+		      </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Tablas<i class="material-icons light-blue-text left">show_chart</i></a>
+        <div class="collapsible-body">
+          <ul>
+            <li>
+            <a href="tutorias"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Tutorias</p></a>
+            </li>
+          <li>
+              <a href="cursos"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Cursos</p></a>
+          </li>
+          <li>
+              <a href="matriculas"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Matriculas</p></a>
+          </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Graficos<i class="material-icons light-blue-text left">show_chart</i></a>
+        <div class="collapsible-body">
+          <ul>
+            <li>
+		      <a href="graficos"><i class="material-icons light-blue-text left">lens</i><p class="blue-text text-darken-2">Graficos</p></a>
+		    </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+</ul>
+
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+</div>
+</div>
+</nav>
+
+    {% with messages = get_flashed_messages() %}
+        {%if messages%}
+            {%for message in messages%}
+    <div class="col s12">
+	      <div class="card center">
+	        <div class="card-action">
+			      <div class="row">
+
+                {{message}}
+
+			      </div>
+	        </div>
+	      </div>
+	    </div>
+    {%endfor%}
+        {%endif%}
+    {% endwith %}
+
+    <!--
+    {% with messages = get_flashed_messages() %}
+        {%if messages%}
+            {%for message in messages%}
+                {{message}}
+            {%endfor%}
+        {%endif%}
+    {% endwith %}
+-->
+	{% block contenido %}
+    {% endblock %}
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+        $('#departamento').change(function() {
+
+          var departamento = $('#departamento').val();
+
+          // Make Ajax Request and expect JSON-encoded data
+          $.getJSON(
+            '/get_food' + '/' + departamento,
+            function(data) {
+
+              // Remove old options
+              $('#carrera').find('option').remove();
+
+              // Add new items
+              $.each(data, function(key, val) {
+                key = key+1
+                var option_item = '<option value="' + key + '">' + val + '</option>'
+                $('#carrera').append(option_item);
+              });
+            }
+          );
+        });
+
+    $('.collapsible').collapsible();
+    $('.sidenav').sidenav();
+    $('.modal').modal();
+    $('.tabs').tabs();
+    $('.scrollspy').scrollSpy();
+
+    $('.datepicker').datepicker({
+    format:'yyyy-mm-dd',
+    autoClose:true,
+    i18n:{
+        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthsShort: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+		weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+        weekdaysAbbrev:['D','L','M','M','J','V','S'],
+        cancel:'Cancelar',
+        done:'Aceptar'
+        }
+    });
+
+    $('.timepicker').timepicker({
+    twelveHour:false,
+    autoClose:true,
+    i18n:{
+        cancel:'Cancelar',
+        done:'Aceptar'
+        }
+    })
+    ;
+
+	});
+	</script>
+
+  </body>
+</html>
