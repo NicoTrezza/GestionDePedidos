@@ -1,4 +1,6 @@
 from dao.aulaDao import AulaDao
+import time
+
 
 class AulaABM(object):
 
@@ -6,7 +8,7 @@ class AulaABM(object):
         self.dao = AulaDao()
         
     def insertar(self, nombreAula, descripcion, iddepartamento):
-        self.dao.insertar(nombreAula, descripcion, iddepartamento)
+        return self.dao.insertar(nombreAula, descripcion, iddepartamento)
 
     def insertaraula_personaaula(self, idaula, idtipo):
         self.dao.insertaraula_personaaula(idaula, idtipo)
@@ -15,13 +17,13 @@ class AulaABM(object):
         self.dao.insertarpersona(idpersona, idaula, idtipo)
 
     def insertarpersona_crear(self, idpersona, idaula, descipcion):
-        self.dao.insertarpersona_crear(idpersona, idaula, descipcion, 1)
+        self.dao.insertarpersona_crear(idpersona, idaula, descipcion, 1, time.strftime("%Y-%m-%d %H:%M:%S"))
 
     def insertarpersona_modificar(self, idpersona, idaula, url, nombre_anterior, otros):
-        self.dao.insertarpersona_modificar(idpersona, idaula, url, nombre_anterior, otros, 2)
+        self.dao.insertarpersona_modificar(idpersona, idaula, url, nombre_anterior, otros, 2, time.strftime("%Y-%m-%d %H:%M:%S"))
 
     def insertarpersona_eliminar(self, idaula, url, motivo):
-        self.dao.insertarpersona_eliminar(idaula, url, motivo, 3)
+        self.dao.insertarpersona_eliminar(idaula, url, motivo, 3, time.strftime("%Y-%m-%d %H:%M:%S"))
 
     def modificar(self, a):
         self.dao.modificar(a.getIdAula(), a.getNombreAula(), a.getDescripcion(), a.getDepartamentoAula())

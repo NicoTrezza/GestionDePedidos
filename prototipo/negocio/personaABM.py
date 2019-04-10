@@ -9,7 +9,7 @@ class PersonaABM(object):
         self.dao = PersonaDao()
         
     def insertar(self, nombre, apellido, dni, emailPersona, tipoPersona, login):
-        self.dao.insertar(nombre, apellido, dni, emailPersona, tipoPersona, login)
+        return self.dao.insertar(nombre, apellido, dni, emailPersona, tipoPersona, login)
         
     def modificar(self, u):
         self.dao.modificar(u.getIdPersona(), u.getNombre(), u.getApellido(), u.getDni(), u.getMailPersona(), u.getTipoPersona(), u.getLogin())

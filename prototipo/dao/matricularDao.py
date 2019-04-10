@@ -20,11 +20,13 @@ class MatricularDao(Conexion):
             val = (departamento, fechaactual)
 
             cursor.execute(sql, val)
+            id = cursor.lastrowid
             self.conexion.commit()
 
             self.desconectar()
         except Error as e:
             print e
+        return id
 
     def insertarpersona(self, idMatricular, idPersona):
         try:

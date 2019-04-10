@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import time
 
 from flask import Flask
 from flask import render_template
@@ -406,21 +405,20 @@ def matricular():
                         personas.append(row)
                     i = i + 1
 
-                matricular_abm.insertar(matricular.departamento.data, time.strftime("%Y-%m-%d %H:%M:%S"))
-                ultima_matricula = matricular_abm.listar()[-1]
+                idmatricular = matricular_abm.insertar(matricular.departamento.data)
+                # ultima_matricula = matricular_abm.listar()[-1]
                 # ultima_matricula = matriculas[-1]
 
                 for persona in personas:
                     nombre, apellido, dni, mail, aula1, aula2, aula3, aula4 = persona
                     try:
                         p = persona_abm.traerXDni(dni.value)
-                        matricular_abm.insertarpersona(ultima_matricula.getIdMatricular(), p.getIdPersona())
+                        matricular_abm.insertarpersona(idmatricular, p.getIdPersona())
 
                     except:
-                        persona_abm.insertar(nombre.value, apellido.value, dni.value, mail.value, 4, None)
-                        ultima_persona = persona_abm.listar()[-1]
-                        matricular_abm.insertarpersona(ultima_matricula.getIdMatricular(),
-                                                       ultima_persona.getIdPersona())
+                        idpersona = persona_abm.insertar(nombre.value, apellido.value, dni.value, mail.value, 4, None)
+                        # ultima_persona = persona_abm.listar()[-1]
+                        matricular_abm.insertarpersona(idmatricular, idpersona)
                 # ---------------------------------------------------------
 
                 # creo el pdf
@@ -506,82 +504,70 @@ def crear():
                 print crear_aula.descripcion.data
 
                 # guardo en la base de datos
-                aula = ''
 
                 idpersona = []
 
-                try:
-                    aula_abm.traerXNombre(crear_aula.nombreaula.data)
-                except:
-                    aula = None
-
                 # el insert de la tabla persona
-                if aula is None:
-                    for i in range(1, cant_docentes):
+                for i in range(1, cant_docentes):
+                    try:
+                        print 'intento' + str(i)
+                        persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                        idpersona.append(persona.getIdPersona())
+                    except:
                         try:
-                            print 'intento' + str(i)
+                            persona_abm.insertar(request.form['nombredocente' + str(i)],
+                                                 request.form['apellidodocente' + str(i)],
+                                                 request.form['dni' + str(i)],
+                                                 request.form['emailprofesor' + str(i)],
+                                                 request.form['rol' + str(i)],
+                                                 None)
+                            print request.form['dni' + str(i)]
                             persona = persona_abm.traerXDni(request.form['dni' + str(i)])
                             idpersona.append(persona.getIdPersona())
                         except:
-                            try:
-                                persona_abm.insertar(request.form['nombredocente' + str(i)],
-                                                     request.form['apellidodocente' + str(i)],
-                                                     request.form['dni' + str(i)],
-                                                     request.form['emailprofesor' + str(i)],
-                                                     request.form['rol' + str(i)],
-                                                     None)
-                                print request.form['dni' + str(i)]
-                                persona = persona_abm.traerXDni(request.form['dni' + str(i)])
-                                idpersona.append(persona.getIdPersona())
-                            except:
-                                print 'no se ingresaron datos / dni repetido'
+                            print 'no se ingresaron datos / dni repetido'
 
                 print idpersona
 
                 # el insert de la tabla intermedia y del aula
-                if aula is None:
-                    if persona is not None:
-                        aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data,
-                                          crear_aula.departamento.data)
-                        for idp in idpersona:
-                            aula_abm.insertarpersona_crear(idp, aula_abm.traerXNombre(crear_aula.nombreaula.data).idAula, crear_aula.descripcion.data)
+                if persona is not None:
+                    idaula = aula_abm.insertar(crear_aula.nombreaula.data, crear_aula.descripcion.data,
+                                      crear_aula.departamento.data)
+                    for idp in idpersona:
+                        aula_abm.insertarpersona_crear(idp, idaula, crear_aula.descripcion.data)
 
-                else:
-                    flash('el aula ya existe')
+                # creo el pdf
 
-                if aula is None:
-                    # creo el pdf
+                lista_personas = []
 
-                    lista_personas = []
+                for id in idpersona:
+                    lista_personas.append(persona_abm.traer(id))
 
-                    for id in idpersona:
-                        lista_personas.append(persona_abm.traer(id))
+                crearPdf.crear_aula(request.form['departamento'],
+                                    request.form['carrera'],
+                                    request.form['nombreaula'],
+                                    lista_personas,
+                                    request.form['descripcion'])
 
-                    crearPdf.crear_aula(request.form['departamento'],
-                                        request.form['carrera'],
-                                        request.form['nombreaula'],
-                                        lista_personas,
-                                        request.form['descripcion'])
+                # creo el mail a enviar
+                msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
+                              recipients=lista_mails)  # recipients es una lista!!
 
-                    # creo el mail a enviar
-                    msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
-                                  recipients=lista_mails)  # recipients es una lista!!
+                msg.html = render_template('email.html',
+                                           departamento=request.form['departamento'],
+                                           carrera=request.form['carrera'],
+                                           nombreaula=request.form['nombreaula'],
+                                           personas=lista_personas,
+                                           descripcion=request.form['descripcion'])
+                # archivo pdf adjunto
+                with app.open_resource("crear_aula.pdf") as pdf:
+                    msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
 
-                    msg.html = render_template('email.html',
-                                               departamento=request.form['departamento'],
-                                               carrera=request.form['carrera'],
-                                               nombreaula=request.form['nombreaula'],
-                                               personas=lista_personas,
-                                               descripcion=request.form['descripcion'])
-                    # archivo pdf adjunto
-                    with app.open_resource("crear_aula.pdf") as pdf:
-                        msg.attach("crear_aula.pdf", "documento/pdf", pdf.read())
+                # envio el mail
+                # mail.send(msg)
 
-                    # envio el mail
-                    # mail.send(msg)
-
-                    # elimino el pdf despues de enviado el mail
-                    # os.remove('crear_aula.pdf')
+                # elimino el pdf despues de enviado el mail
+                # os.remove('crear_aula.pdf')
 
                 usuario = session['usuario']
 
@@ -641,118 +627,84 @@ def reutilizar():
                 print reutilizar_aula.otro.data
 
                 # modifico en la base de datos ----------------------------------------------------------
-                aula = ''
 
                 idpersona = []
 
-                try:
-                    aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
-                except:
-                    aula = None
-
                 # el insert de la tabla persona
-                if aula is not None:
-                    for i in range(1, cant_docentes):
+                for i in range(1, cant_docentes):
+                    try:
+                        print 'intento' + str(i)
+                        persona = persona_abm.traerXDni(request.form['dni' + str(i)])
+                        idpersona.append(persona.getIdPersona())
+                    except:
                         try:
-                            print 'intento' + str(i)
+                            persona_abm.insertar(request.form['nombredocente' + str(i)],
+                                                 request.form['apellidodocente' + str(i)],
+                                                 request.form['dni' + str(i)],
+                                                 request.form['emailprofesor' + str(i)],
+                                                 request.form['rol' + str(i)],
+                                                 None)
+                            print request.form['dni' + str(i)]
                             persona = persona_abm.traerXDni(request.form['dni' + str(i)])
                             idpersona.append(persona.getIdPersona())
                         except:
-                            try:
-                                persona_abm.insertar(request.form['nombredocente' + str(i)],
-                                                     request.form['apellidodocente' + str(i)],
-                                                     request.form['dni' + str(i)],
-                                                     request.form['emailprofesor' + str(i)],
-                                                     request.form['rol' + str(i)],
-                                                     None)
-                                print request.form['dni' + str(i)]
-                                persona = persona_abm.traerXDni(request.form['dni' + str(i)])
-                                idpersona.append(persona.getIdPersona())
-                            except:
-                                print 'no se ingresaron datos / dni repetido'
+                            print 'no se ingresaron datos / dni repetido'
 
                 print idpersona
 
                 # el insert de la tabla intermedia
-                if aula is not None:
-                    aula = aula_abm.traerXNombre(reutilizar_aula.nombreaula.data)
-                    aula.setDepartamentoAula(reutilizar_aula.departamento.data)
-                    if reutilizar_aula.nombrenuevo.data != '':
-                        aula.setNombreAula(reutilizar_aula.nombrenuevo.data)
-                    aula_abm.modificar(aula)
+                idaula = aula_abm.insertar(reutilizar_aula.nombreaula.data, None, reutilizar_aula.departamento.data)
 
-                    if cant_personas > 0:
-                        if reutilizar_aula.nombrenuevo.data != '':
-                            for idp in idpersona:
-                                aula_abm.insertarpersona_modificar(idp,
-                                                                   aula_abm.traerXNombre(
-                                                                       reutilizar_aula.nombrenuevo.data).getIdAula(),
-                                                                   reutilizar_aula.direccionulr.data,
-                                                                   reutilizar_aula.nombreaula.data,
-                                                                   reutilizar_aula.otro.data)
-                        else:
-                            for idp in idpersona:
-                                aula_abm.insertarpersona_modificar(idp,
-                                                                   aula_abm.traerXNombre(
-                                                                       reutilizar_aula.nombreaula.data).getIdAula(),
-                                                                   reutilizar_aula.direccionulr.data,
-                                                                   None,
-                                                                   reutilizar_aula.otro.data)
-                    else:
-                        if reutilizar_aula.nombrenuevo.data != '':
-                            aula_abm.insertarpersona_modificar(None,
-                                                               aula_abm.traerXNombre(reutilizar_aula.nombrenuevo.data).getIdAula(),
-                                                               reutilizar_aula.direccionulr.data,
-                                                               reutilizar_aula.nombreaula.data,
-                                                               reutilizar_aula.otro.data)
-                        else:
-                            aula_abm.insertarpersona_modificar(None,
-                                                               aula_abm.traerXNombre(
-                                                                   reutilizar_aula.nombreaula.data).getIdAula(),
-                                                               reutilizar_aula.direccionulr.data,
-                                                               None,
-                                                               reutilizar_aula.otro.data)
-
+                if cant_personas > 0:
+                    for idp in idpersona:
+                        aula_abm.insertarpersona_modificar(idp,
+                                                           idaula,
+                                                           reutilizar_aula.direccionulr.data,
+                                                           reutilizar_aula.nombrenuevo.data,
+                                                           reutilizar_aula.otro.data)
                 else:
-                    flash('el aula no existe')
+                    aula_abm.insertarpersona_modificar(None,
+                                                       idaula,
+                                                       reutilizar_aula.direccionulr.data,
+                                                       reutilizar_aula.nombrenuevo.data,
+                                                       reutilizar_aula.otro.data)
 
-                if aula is not None:
-                    # creo el pdf----------------------------------------------------------
+                # creo el pdf----------------------------------------------------------
 
-                    lista_personas = []
+                lista_personas = []
 
-                    for id in idpersona:
-                        lista_personas.append(persona_abm.traer(id))
+                for id in idpersona:
+                    lista_personas.append(persona_abm.traer(id))
 
-                    crearPdf.modificar_aula(reutilizar_aula.departamento.data,
-                                        request.form['carrera'],
-                                        reutilizar_aula.nombreaula.data,
-                                        reutilizar_aula.direccionulr.data,
-                                        lista_personas,
-                                        reutilizar_aula.nombrenuevo.data,
-                                        reutilizar_aula.otro.data)
+                crearPdf.modificar_aula(reutilizar_aula.departamento.data,
+                                    request.form['carrera'],
+                                    reutilizar_aula.nombreaula.data,
+                                    reutilizar_aula.direccionulr.data,
+                                    lista_personas,
+                                    reutilizar_aula.nombrenuevo.data,
+                                    reutilizar_aula.otro.data)
 
-                    # creo el mail a enviar
-                    msg = Message('Reutilizar aula', sender=app.config['MAIL_USERNAME'],
-                                  recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
+                # creo el mail a enviar
+                msg = Message('Reutilizar aula', sender=app.config['MAIL_USERNAME'],
+                              recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
 
-                    msg.html = render_template('email_aula_reutilizar.html',
-                                               departamento=request.form['departamento'],
-                                               carrera=request.form['carrera'],
-                                               nombreaula=reutilizar_aula.nombreaula.data,
-                                               direccionulr=reutilizar_aula.direccionulr.data,
-                                               personas=lista_personas,
-                                               nombre_nuevo=reutilizar_aula.nombrenuevo.data,
-                                               otro=reutilizar_aula.otro.data)
-                    # archivo pdf adjunto
-                    with app.open_resource("modificar_aula.pdf") as pdf:
-                        msg.attach("modificar_aula.pdf", "documento/pdf", pdf.read())
+                msg.html = render_template('email_aula_reutilizar.html',
+                                           departamento=request.form['departamento'],
+                                           carrera=request.form['carrera'],
+                                           nombreaula=reutilizar_aula.nombreaula.data,
+                                           direccionulr=reutilizar_aula.direccionulr.data,
+                                           personas=lista_personas,
+                                           nombre_nuevo=reutilizar_aula.nombrenuevo.data,
+                                           otro=reutilizar_aula.otro.data)
+                # archivo pdf adjunto
+                with app.open_resource("modificar_aula.pdf") as pdf:
+                    msg.attach("modificar_aula.pdf", "documento/pdf", pdf.read())
 
-                    # envio el mail
-                    # mail.send(msg)
+                # envio el mail
+                # mail.send(msg)
 
-                    # elimino el pdf despues de enviado el mail
-                    # os.remove('modificar_aula.pdf')
+                # elimino el pdf despues de enviado el mail
+                # os.remove('modificar_aula.pdf')
 
                 usuario = session['usuario']
             else:
@@ -789,51 +741,41 @@ def eliminar():
                 print eliminar_aula.motivo.data
 
                 # creo solicitud de eliminacion en la base de datos ----------------------------------------
-                aula = ''
-
-                idpersona = []
-
-                try:
-                    aula_abm.traerXNombre(eliminar_aula.nombreaula.data)
-                except:
-                    aula = None
+                # aula = ''
 
                 # el insert de la tabla intermedia y del aula
-                if aula is not None:
-                    aula_abm.insertarpersona_eliminar(aula_abm.traerXNombre(eliminar_aula.nombreaula.data).idAula,
-                                                      eliminar_aula.direccionulr.data,
-                                                      eliminar_aula.motivo.data)
-                else:
-                    flash('el aula no existe')
+                idaula = aula_abm.insertar(eliminar_aula.nombreaula.data, None, eliminar_aula.departamento.data)
+                aula_abm.insertarpersona_eliminar(idaula,
+                                                  eliminar_aula.direccionulr.data,
+                                                  eliminar_aula.motivo.data)
 
-                if aula is not None:
-                    # creo el pdf----------------------------------------------------------
+                # creo el pdf----------------------------------------------------------
 
-                    crearPdf.eliminar_aula(eliminar_aula.departamento.data,
-                                        request.form['carrera'],
-                                        eliminar_aula.nombreaula.data,
-                                        eliminar_aula.direccionulr.data,
-                                        eliminar_aula.motivo.data)
+                crearPdf.eliminar_aula(eliminar_aula.departamento.data,
+                                    request.form['carrera'],
+                                    eliminar_aula.nombreaula.data,
+                                    eliminar_aula.direccionulr.data,
+                                    eliminar_aula.motivo.data)
 
-                    # creo el mail a enviar
-                    msg = Message('Eliminar aula', sender=app.config['MAIL_USERNAME'],
-                                  recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
+                # creo el mail a enviar
+                msg = Message('Eliminar aula', sender=app.config['MAIL_USERNAME'],
+                              recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
 
-                    msg.html = render_template('email_aula_eliminar.html',
-                                               departamento=request.form['departamento'],
-                                               carrera=request.form['carrera'],
-                                               nombreaula=eliminar_aula.nombreaula.data,
-                                               direccionulr=eliminar_aula.direccionulr.data,
-                                               motivo=eliminar_aula.motivo.data)
-                    # archivo pdf adjunto
-                    with app.open_resource("eliminar_aula.pdf") as pdf:
-                        msg.attach("eliminar_aula.pdf", "documento/pdf", pdf.read())
+                msg.html = render_template('email_aula_eliminar.html',
+                                           departamento=request.form['departamento'],
+                                           carrera=request.form['carrera'],
+                                           nombreaula=eliminar_aula.nombreaula.data,
+                                           direccionulr=eliminar_aula.direccionulr.data,
+                                           motivo=eliminar_aula.motivo.data)
+                # archivo pdf adjunto
+                with app.open_resource("eliminar_aula.pdf") as pdf:
+                    msg.attach("eliminar_aula.pdf", "documento/pdf", pdf.read())
 
-                    # envio el mail
-                    # mail.send(msg)
+                # envio el mail
+                # mail.send(msg)
 
-                    # elimino el pdf despues de enviado el mail
-                    # os.remove('eliminar_aula.pdf')
+                # elimino el pdf despues de enviado el mail
+                # os.remove('eliminar_aula.pdf')
 
                 usuario = session['usuario']
             else:
@@ -885,8 +827,7 @@ def tutorias():
             tutorias_abm.insertar(tutorias.motivo.data, tutorias.dia1.data + ' ' + tutorias.dia1_hora1.data + ':00', tutorias.dia1.data + ' ' + tutorias.dia1_hora2.data + ':00'
                                   , tutorias.dia2.data + ' ' + tutorias.dia2_hora1.data + ':00', tutorias.dia2.data + ' ' + tutorias.dia2_hora2.data + ':00'
                                   , tutorias.dia3.data + ' ' + tutorias.dia3_hora1.data + ':00', tutorias.dia3.data + ' ' + tutorias.dia3_hora2.data + ':00'
-                                  , idpersona, tutorias.departamento.data
-                                  , time.strftime("%Y-%m-%d %H:%M:%S"))
+                                  , idpersona, tutorias.departamento.data)
 
             # tutoria_abm.insertar('asdf', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '2019-03-13 00:00:00', '1', '1', '2019-03-13 00:00:00')
 
@@ -901,8 +842,7 @@ def tutorias():
                                   tutorias.dia2.data + ' ' + tutorias.dia2_hora2.data + ':00'
                                   , tutorias.dia3.data + ' ' + tutorias.dia3_hora1.data + ':00',
                                   tutorias.dia3.data + ' ' + tutorias.dia3_hora2.data + ':00'
-                                  , idpersona, tutorias.departamento.data
-                                  , time.strftime("%Y-%m-%d %H:%M:%S"))
+                                  , idpersona, tutorias.departamento.data)
         # creo el pdf
         crearPdf.tutoria(tutorias.motivo.data,
                          tutorias.nombre.data,

@@ -19,13 +19,15 @@ class AulaDao(Conexion):
             
             sql = 'insert into aula (nombreAula, descripcion, Departamento_idDepartamento) values (%s, %s, %s)'
             val = (nombreAula, descripcion, iddepartamento)
-    
+
             cursor.execute(sql, val)
+            id = cursor.lastrowid
             self.conexion.commit()
-    
+
             self.desconectar()
         except Error as e:
             print e
+        return id
 
     def insertarpersona(self, idpersona, idaula, idtipo):
         try:
@@ -42,13 +44,13 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
-    def insertarpersona_crear(self, idpersona, idaula, descipcion, idtipo):
+    def insertarpersona_crear(self, idpersona, idaula, descipcion, idtipo, fechaactual):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, descripcion, tipo) values (%s, %s, %s, %s)'
-            val = (idpersona, idaula, descipcion, idtipo)
+            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, descripcion, tipo, fechaactual) values (%s, %s, %s, %s, %s)'
+            val = (idpersona, idaula, descipcion, idtipo, fechaactual)
 
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -57,13 +59,13 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
-    def insertarpersona_modificar(self, idpersona, idaula, url, nombre_anterior, otros, idtipo):
+    def insertarpersona_modificar(self, idpersona, idaula, url, nombre_anterior, otros, idtipo, fechaactual):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, url, nombreAnterior, otrosReutilizar, tipo) values (%s, %s, %s, %s, %s, %s)'
-            val = (idpersona, idaula, url, nombre_anterior, otros, idtipo)
+            sql = 'insert into personaaula (Persona_idPersona, Aula_idAula, url, nombreNuevo, otrosReutilizar, tipo, fechaactual) values (%s, %s, %s, %s, %s, %s, %s)'
+            val = (idpersona, idaula, url, nombre_anterior, otros, idtipo, fechaactual)
 
             cursor.execute(sql, val)
             self.conexion.commit()
@@ -72,13 +74,13 @@ class AulaDao(Conexion):
         except Error as e:
             print e
 
-    def insertarpersona_eliminar(self, idaula, url, motivo, idtipo):
+    def insertarpersona_eliminar(self, idaula, url, motivo, idtipo, fechaactual):
         try:
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'insert into personaaula (Aula_idAula, url, motivoEliminacion, tipo) values (%s, %s, %s, %s)'
-            val = (idaula, url, motivo, idtipo)
+            sql = 'insert into personaaula (Aula_idAula, url, motivoEliminacion, tipo, fechaactual) values (%s, %s, %s, %s, %s)'
+            val = (idaula, url, motivo, idtipo, fechaactual)
 
             cursor.execute(sql, val)
             self.conexion.commit()

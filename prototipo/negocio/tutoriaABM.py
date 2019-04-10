@@ -1,12 +1,14 @@
 from dao.tutoriaDao import TutoriaDao
+import time
+
 
 class TutoriaABM(object):
 
     def __init__(self):
         self.dao = TutoriaDao()
         
-    def insertar(self, motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, departamento, fechaactual):
-        self.dao.insertar(motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, departamento, fechaactual)
+    def insertar(self, motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, departamento):
+        self.dao.insertar(motivo, fecha1desde, fecha1hasta, fecha2desde, fecha2hasta, fecha3desde, fecha3hasta, personaTutoria, departamento, time.strftime("%Y-%m-%d %H:%M:%S"))
         
     def modificar(self, t):
         self.dao.modificar(t.getIdTutoria(), t.getMotivo(), t.getPersonaTutoria(), t.getDepartamento())

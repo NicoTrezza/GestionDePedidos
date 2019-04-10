@@ -1,4 +1,5 @@
 from dao.matricularDao import MatricularDao
+import time
 
 
 class MatricularABM(object):
@@ -6,8 +7,8 @@ class MatricularABM(object):
     def __init__(self):
         self.dao = MatricularDao()
 
-    def insertar(self, departamento, fechaactual):
-        self.dao.insertar(departamento, fechaactual)
+    def insertar(self, departamento):
+        return self.dao.insertar(departamento, time.strftime("%Y-%m-%d %H:%M:%S"))
 
     def insertarpersona(self, idMatricular, idPersona):
         self.dao.insertarpersona(idMatricular, idPersona)

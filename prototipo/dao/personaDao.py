@@ -20,11 +20,13 @@ class PersonaDao(Conexion):
             val = (nombre, apellido, dni, emailPersona, tipoPersona, login)
         
             cursor.execute(sql, val)
+            id = cursor.lastrowid
             self.conexion.commit()
         
             self.desconectar()
         except Error as e:
             print e
+        return id
 
     def modificar(self, idPersona, nombre, apellido, dni, emailPersona, tipoPersona, login):
         try:
