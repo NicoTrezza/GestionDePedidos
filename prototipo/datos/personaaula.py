@@ -31,6 +31,7 @@ class Personaaula(object):
         except:
             self.motivoEliminacion = None
         self.tipo = int(dao[8])
+        self.fechaactual = u'{}'.format(dao[9])
 
     def getIdPersonaaula(self):
         return self.idPersonaaula
@@ -86,5 +87,11 @@ class Personaaula(object):
     def setTipo(self, tipo):
         self.tipo = tipo
 
+    def getFechaactual(self):
+        return self.fechaactual
+
+    def setFechaactual(self, fechaactual):
+        self.fechaactual = fechaactual
+
     def __str__(self):
-        return u'Id: {}, persona: {}, aula: {} , descripcion: {} , ulr: {} , nombre anterior: {} , otros reutilizar: {} , motivo eliminacion: {} , tipo: {}  '.format(self.idPersonaaula, self.persona, self.aula, self.descripcion, self.ulr, self.nombreAnterior, self.otrosReutilizar, self.motivoEliminacion, self.tipo)
+        return u'Id: {}, persona: {}, aula: {} , descripcion: {} , ulr: {} , nombre anterior: {} , otros reutilizar: {} , motivo eliminacion: {} , tipo: {}, fecha: {}'.format(self.idPersonaaula, self.persona, self.aula, self.descripcion, self.ulr, self.nombreAnterior, self.otrosReutilizar, self.motivoEliminacion, self.tipo, self.fechaactual)

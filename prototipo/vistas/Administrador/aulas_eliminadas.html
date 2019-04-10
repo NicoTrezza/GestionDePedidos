@@ -39,6 +39,7 @@
 	          <table id="example" class="display">
 				<thead>
 				    <tr>
+						<th>FECHA</th>
 				        <th>AULA</th>
 						<th>MOTIVO</th>
                         <th>ULR</th>
@@ -49,6 +50,7 @@
 
 				{%for pa, a, d in aulas%}
 					<tr>
+						<td>{{pa.getFechaactual()}}</td>
 						<td>{{a.getNombreAula()}}</td>
                         <td>{{pa.getMotivoEliminacion()}}</td>
 						<td>{{pa.getUlr()}}</td>

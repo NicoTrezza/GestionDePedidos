@@ -38,6 +38,7 @@
 	          <table id="example" class="display">
 				<thead>
 				    <tr>
+						<th>FECHA</th>
 				        <th>AULA</th>
 				        <th>NOMBRE</th>
 						<th>APELLIDO</th>
@@ -51,6 +52,7 @@
 
 				{%for pa, a, d, p in aulas%}
 					<tr>
+						<td>{{pa.getFechaactual()}}</td>
 						<td>{{a.getNombreAula()}}</td>
 				        <td>{{p.getNombre()}}</td>
 						<td>{{p.getApellido()}}</td>

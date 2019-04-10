@@ -265,10 +265,10 @@ class AulaDao(Conexion):
         lis = []
 
         for objeto in lista:
-            pa = Personaaula(objeto[:9])
-            a = Aula(objeto[9:13])
-            p = Persona(objeto[13:20])
-            d = Departamento(objeto[20:])
+            pa = Personaaula(objeto[:10])
+            a = Aula(objeto[10:14])
+            p = Persona(objeto[14:21])
+            d = Departamento(objeto[21:])
 
             lis.append((pa, a, d, p))
 
@@ -293,9 +293,9 @@ class AulaDao(Conexion):
         lis = []
 
         for objeto in lista:
-            pa = Personaaula(objeto[:9])
-            a = Aula(objeto[9:13])
-            d = Departamento(objeto[13:])
+            pa = Personaaula(objeto[:10])
+            a = Aula(objeto[10:14])
+            d = Departamento(objeto[14:])
 
             lis.append((pa, a, d))
 
@@ -319,9 +319,9 @@ class AulaDao(Conexion):
         lis = []
 
         for objeto in lista:
-            pa = Personaaula(objeto[:9])
-            a = Aula(objeto[9:13])
-            d = Departamento(objeto[13:])
+            pa = Personaaula(objeto[:10])
+            a = Aula(objeto[10:14])
+            d = Departamento(objeto[14:])
 
             lis.append((pa, a, d))
 
