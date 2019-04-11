@@ -14,12 +14,13 @@
 		<h6 id="logo-container" class="hide-on-small-only brand-logo truncate center">GESTOR DE PEDIDOS</h6>
 
 		{% if usuario == '' %}
-		<a class="right" href="login/login">Entrar<i class="material-icons right">account_circle</i></a>
+		<a class="right" href="login/solicitudcuenta"><i style="height: 20px;" class="material-icons right">account_circle</i><p style="margin-left: 20px;width: 40px;">Solicitar</p></a>
+		<a class="right" href="login/login"><i style="height: 20px;" class="material-icons right">account_circle</i><p>Entrar</p></a>
 		{% else %}
-		<a class="right" href="/logout">Salir<i class="material-icons right">directions_run</i></a>
+		<a class="right" href="/logout"><i style="height: 20px;" class="material-icons right">directions_run</i><p style="margin-left: 20px;">Salir</p></a>
 		{% endif %}
 		{% if permiso_usuario == 1 or permiso_usuario == 2 %}
-		<a class="right" href="administrador/admin">Admin<i class="material-icons right">settings</i></a>
+		<a class="right" href="administrador/admin"><i style="height: 20px;" class="material-icons right">settings</i><p>Admin</p></a>
 		{% endif %}
     </div>
   </nav>
