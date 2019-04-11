@@ -5,7 +5,7 @@
 {% block contenido %}
 
   <nav class="light-blue darken-3 " role="navigation">
-		 <div class="left"><img src="\static\logo-ead-blanco.png"width="130" height="55" style="padding-left: 15px; padding-top: 5px;"></div>
+		 <a href="https://www.frba.utn.edu.ar/"><div class="left"><img src="\static\logo-ead-blanco.png"width="130" height="55" style="padding-left: 15px; padding-top: 5px;"></div></a>
 
 	<div class="nav-wrapper container ">
 
@@ -13,21 +13,21 @@
 	  <!--	<a id="logo-container" class="brand-logo center">GESTOR DE PEDIDOS</a> -->
 		<h6 id="logo-container" class="hide-on-small-only brand-logo truncate center">GESTOR DE PEDIDOS</h6>
 
-		{% if usuario == '' %}
-		<a class="right" href="login/solicitudcuenta"><i style="height: 20px;" class="material-icons right">account_circle</i><p style="margin-left: 20px;width: 40px;">Solicitar</p></a>
-		<a class="right" href="login/login"><i style="height: 20px;" class="material-icons right">account_circle</i><p>Entrar</p></a>
-		{% else %}
+
 		<a class="right" href="/logout"><i style="height: 20px;" class="material-icons right">directions_run</i><p style="margin-left: 20px;">Salir</p></a>
-		{% endif %}
-		{% if permiso_usuario == 1 or permiso_usuario == 2 %}
-		<a class="right" href="administrador/admin"><i style="height: 20px;" class="material-icons right">settings</i><p>Admin</p></a>
-		{% endif %}
+		<a class="right" href="../control"><i style="height: 20px;width: 50px;" class="material-icons right">directions_run</i><p style="margin-left: 20px;">Configuracion</p></a>
+		<a class="right" href="/"><i style="height: 20px;" class="material-icons right">settings</i><p>Inicio</p></a>
     </div>
   </nav>
 
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
+		{% if permiso_usuario == 1 %}
       <h4 class="header center blue-text text-darken-2">Administrador</h4>
+		{% endif %}
+		{% if permiso_usuario == 2 %}
+      <h4 class="header center blue-text text-darken-2">Estadisticas</h4>
+		{% endif %}
       <div class="row center">
         <h6 class="col s12 blue-text">Una frase interesante</h6>
       </div>
@@ -41,6 +41,7 @@
 
 		<!--<div class="col s12 m6 l3 hide-on-med-and-down"></div> -->
 
+		  {% if permiso_usuario == 1 %}
 		  <div class="col s12 m6 l3">
 			  <div class="card small">
 	        <div class="card-content">
@@ -105,6 +106,48 @@
 			</div>
 	      </div>
 	    </div>
+		  {% endif %}
+
+
+		  {% if permiso_usuario == 2 %}
+		  		<div class="col s12 m6 l3 hide-on-med-and-down"></div>
+
+		  <div class="col s12 m6 l3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">show_chart</i>
+	          <span class="card-title">Tablas</span>
+	         <!-- <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p> -->
+	        </div>
+	        <div class="card-action">
+				<a href="aulas_creadas" class="btn-small btn-block light-blue darken-3">Aulas creadas</a>
+				<div class="separador"></div>
+				<a href="aulas_modificadas" class="btn-small btn-block light-blue darken-3">Aulas modificadas</a>
+				<div class="separador"></div>
+				<a href="aulas_eliminadas" class="btn-small btn-block light-blue darken-3">Aulas eliminadas</a>
+				<div class="separador"></div>
+	          <a href="tutorias" class="btn-small btn-block light-blue darken-3">Tutorias</a>
+				<div class="separador"></div>
+				<a href="cursos" class="btn-small btn-block light-blue darken-3">Cursos</a>
+				<div class="separador"></div>
+				<a href="matriculas" class="btn-small btn-block light-blue darken-3">Matriculas</a>
+			</div>
+	      </div>
+	    </div>
+
+		  <div class="col s12 m6 l3">
+	      <div class="card small">
+	        <div class="card-content">
+	          <i class="material-icons light-blue-text right">show_chart</i>
+	          <span class="card-title">Graficos</span>
+	         <!-- <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p> -->
+	        </div>
+	        <div class="card-action">
+	          <a href="graficos" class="btn-small btn-block light-blue darken-3">Graficos</a>
+			</div>
+	      </div>
+	    </div>
+		  {% endif %}
 
 
 	  </div>

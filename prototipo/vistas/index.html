@@ -5,7 +5,7 @@
 {% block contenido %}
 
   <nav class="light-blue darken-3 " role="navigation">
-		 <div class="left"><img src="\static\logo-ead-blanco.png"width="130" height="55" style="padding-left: 15px; padding-top: 5px;"></div>
+		 <a href="https://www.frba.utn.edu.ar/"><div class="left"><img src="\static\logo-ead-blanco.png"width="130" height="55" style="padding-left: 15px; padding-top: 5px;"></div></a>
 
 	<div class="nav-wrapper container ">
 
@@ -18,10 +18,13 @@
 		<a class="right" href="login/login"><i style="height: 20px;" class="material-icons right">account_circle</i><p>Entrar</p></a>
 		{% else %}
 		<a class="right" href="/logout"><i style="height: 20px;" class="material-icons right">directions_run</i><p style="margin-left: 20px;">Salir</p></a>
-		{% endif %}
 		{% if permiso_usuario == 1 or permiso_usuario == 2 %}
 		<a class="right" href="administrador/admin"><i style="height: 20px;" class="material-icons right">settings</i><p>Admin</p></a>
+		{% else %}
+		<a class="right" href="../control"><i style="height: 20px;width: 50px;" class="material-icons right">directions_run</i><p style="margin-left: 20px;margin-right: 10px;">Configuracion</p></a>
 		{% endif %}
+		{% endif %}
+
     </div>
   </nav>
 

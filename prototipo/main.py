@@ -87,11 +87,14 @@ def login():
         try:
             usuario = login_abm.traerXMail(mail)
             if usuario.getContrasenia() == contrasenia and usuario.getEstado() == 1:
-
+                permiso = usuario.getPermisos()
                 mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
                 # flash(mensajeBienvenida)
                 session['usuario'] = login.usuario.data
-                return redirect(url_for('index'))
+                if permiso == 1 or permiso == 2:
+                    return redirect(url_for('admin'))
+                else:
+                    return redirect(url_for('index'))
             else:
                 mensajeError = u'usuario o contraseña no validas'#este es para la contraseña no valida
                 flash(mensajeError)
@@ -164,8 +167,18 @@ def logout():
 
 @app.route('/administrador/admin', methods=['GET', 'POST'])
 def admin():
-
-    return render_template('Administrador/admin.html', titulo="Admin")
+    login_abm = LoginABM()
+    permiso_usuario = 0
+    try:
+        usuario = login_abm.traerXMail(session['usuario'])
+        permiso_usuario = usuario.getPermisos()
+    except:
+        print 'no hay usuario logueado'
+    usuario = ''
+    if 'usuario' in session:
+        usuario = session['usuario']
+        # print usuario
+    return render_template('Administrador/admin.html', titulo="Admin", usuario=usuario, permiso_usuario=permiso_usuario)
 
 
 @app.route('/administrador/tutorias', methods=['GET', 'POST'])
