@@ -26,6 +26,7 @@ from negocio.carreraABM import CarreraABM
 from negocio.tutoriaABM import TutoriaABM
 from negocio.tipoPersonaABM import TipoPersonaABM
 from negocio.matricularABM import MatricularABM
+from negocio.usuarioABM import UsuarioABM
 
 from datos.aula import Aula
 
@@ -367,6 +368,22 @@ def altausuarios():
             flash('Usuario en uso')
 
     return render_template('Administrador/altausuarios.html', titulo="Alta de usuarios", form=altausuarios)
+
+
+@app.route('/usuario/usuario', methods=['GET', 'POST'])
+def usuario():
+    usuario = forms.Usuario(request.form)
+    #########
+    usuario_abm = UsuarioABM()
+
+    ########
+    if request.method == 'POST' and usuario.validate():
+        print usuario.nombre.data
+        print usuario.apellido.data
+        print usuario.dni.data
+        print usuario.email.data
+
+    return render_template('Usuario/usuario.html', titulo="Usuario", form=usuario)
 
 
 @app.route('/usuario/matricular', methods=['GET', 'POST'])

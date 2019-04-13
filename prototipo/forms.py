@@ -48,16 +48,16 @@ class Solicitudcuenta(Form):
 
 class Altausuarios(Form):
 
-    nombredocente = StringField('Nombre del docente',
+    nombredocente = StringField('Nombre',
                                 [validators.required()]
                                 )
-    apellidodocente = StringField('Apellido del docente',
+    apellidodocente = StringField('Apellido',
                                   [validators.required()]
                                   )
     dni = StringField('DNI',
                       [validators.required()]
                       )
-    emailprofesor = EmailField('E-mail del docente',
+    emailprofesor = EmailField('E-mail',
                                [validators.required(),
                                 validators.email()]
                                )
@@ -252,3 +252,20 @@ class Matricular(Form):
 
     departamento = SelectField('Departamento', choices=eleccion, default=2)
     #carrera = SelectField(coerce=int)
+
+
+class Usuario(Form):
+
+    nombre = StringField('Nombre',
+                                [validators.required()]
+                                )
+    apellido = StringField('Apellido',
+                                  [validators.required()]
+                                  )
+    dni = StringField('DNI',
+                      [validators.required()]
+                      )
+    email = EmailField('E-mail',
+                               [validators.required(),
+                                validators.email()]
+                               )

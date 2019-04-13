@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USUARIO</title>
+</head>
+<body>
+<form method="POST">
+{% from "macro_forms.html" import render_field %}
+{{ render_field(form.nombre) }}
+{{ render_field(form.apellido) }}
+{{ render_field(form.dni) }}
+{{ render_field(form.email) }}
+		  <button id="boton" type="submit" value="submit"> Enviar  </button>
+			  <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
+
+</form>
+
+</body>
+</html>
