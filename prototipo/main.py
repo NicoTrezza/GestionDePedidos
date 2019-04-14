@@ -87,7 +87,7 @@ def login():
 
         try:
             usuario = login_abm.traerXMail(mail)
-            if usuario.getContrasenia() == contrasenia and usuario.getEstado() == 1:
+            if login_abm.checkPassword(usuario, contrasenia) and usuario.getEstado() == 1:
                 permiso = usuario.getPermisos()
                 mensajeBienvenida = 'Bienvenido {}'.format(login.usuario.data)
                 # flash(mensajeBienvenida)

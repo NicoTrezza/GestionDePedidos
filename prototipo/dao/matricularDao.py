@@ -33,7 +33,7 @@ class MatricularDao(Conexion):
             self.conectar()
             cursor = self.conexion.cursor()
 
-            sql = 'insert into Matricular_has_Persona (Matricular_idMatricular, Persona_idPersona) values (%s, %s)'
+            sql = 'insert into matricular_has_persona (Matricular_idMatricular, Persona_idPersona) values (%s, %s)'
             val = (idMatricular, idPersona)
 
             cursor.execute(sql, val)

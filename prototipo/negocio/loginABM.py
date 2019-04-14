@@ -1,12 +1,18 @@
 from dao.loginDao import LoginDao
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
+
 
 class LoginABM(object):
 
     def __init__(self):
         self.dao = LoginDao()
-        
+
+    def checkPassword(self, l, contrasenia):
+        return check_password_hash(l.getContrasenia(), contrasenia)
+
     def insertar(self, mail, contrasenia, permisos, estado):
-        self.dao.insertar(mail, contrasenia, permisos, estado)
+        self.dao.insertar(mail, generate_password_hash(contrasenia), permisos, estado)
         
     def modificar(self, l):
         self.dao.modificar(l.getIdLogin(), l.getMail(), l.getContrasenia(), l.getPermisos())

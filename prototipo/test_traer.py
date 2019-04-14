@@ -17,7 +17,7 @@ def main():
     persona_abm = PersonaABM()
     login_abm = LoginABM()
 
-    print (time.strftime("%Y-%m-%d %H:%M:%S"))
+    print login_abm.checkPassword(login_abm.traerXMail('martin'), '134')
 
 
 if __name__ == '__main__':
