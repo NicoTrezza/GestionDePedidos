@@ -375,6 +375,7 @@ def usuario():
     usuario = forms.Usuario(request.form)
     #########
     usuario_abm = UsuarioABM()
+    persona_abm = PersonaABM()
 
     ########
     if request.method == 'POST' and usuario.validate():
@@ -382,6 +383,27 @@ def usuario():
         print usuario.apellido.data
         print usuario.dni.data
         print usuario.email.data
+
+        try:
+            persona = persona_abm.traerXDni(usuario.dni.data)
+            usuario_abm.insertar(persona.getIdPersona())
+        except:
+            idPersona = persona_abm.insertar(usuario.nombre.data, usuario.apellido.data, usuario.dni.data, usuario.email.data, 1, None)
+            usuario_abm.insertar(idPersona)
+
+            # creo el mail a enviar
+            msg = Message('Usuario', sender=app.config['MAIL_USERNAME'],
+                          recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
+
+            msg.html = render_template('email_usuario.html',
+                                       nombre=usuario.nombre.data,
+                                       apellido=usuario.apellido.data,
+                                       dni=usuario.dni.data,
+                                       email=usuario.email.data
+                                       )
+
+            # envio el mail
+            # mail.send(msg)
 
     return render_template('Usuario/usuario.html', titulo="Usuario", form=usuario)
 
@@ -440,15 +462,16 @@ def matricular():
                 # ultima_matricula = matriculas[-1]
 
                 for persona in personas:
-                    nombre, apellido, dni, mail, aula1, aula2, aula3, aula4 = persona
-                    try:
-                        p = persona_abm.traerXDni(dni.value)
-                        matricular_abm.insertarpersona(idmatricular, p.getIdPersona())
+                    nombre, apellido, dni, email, aula1, aula2, aula3, aula4 = persona
+                    if nombre.value is not None:
+                        try:
+                            p = persona_abm.traerXDni(dni.value)
+                            matricular_abm.insertarpersona(idmatricular, p.getIdPersona())
 
-                    except:
-                        idpersona = persona_abm.insertar(nombre.value, apellido.value, dni.value, mail.value, 4, None)
-                        # ultima_persona = persona_abm.listar()[-1]
-                        matricular_abm.insertarpersona(idmatricular, idpersona)
+                        except:
+                            idpersona = persona_abm.insertar(nombre.value, apellido.value, dni.value, email.value, 4, None)
+                            # ultima_persona = persona_abm.listar()[-1]
+                            matricular_abm.insertarpersona(idmatricular, idpersona)
                 # ---------------------------------------------------------
 
                 # creo el pdf
