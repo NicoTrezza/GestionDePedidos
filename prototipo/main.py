@@ -276,10 +276,10 @@ def control():
 
         if request.form['password'] != request.form['password2']:
             flash(u'La nueva contraseña no coincide')
-        if request.form['contrasenia'] != "" and request.form['contrasenia'] != usuarioLogin.getContrasenia():
+        if request.form['contrasenia'] != "" and login_abm.checkPassword(usuarioLogin, request.form['contrasenia']):
             flash(u'La contraseña actual es incorrecta')
 
-        if request.form['password'] == request.form['password2'] and request.form['contrasenia'] != "" and request.form['contrasenia'] == usuarioLogin.getContrasenia():
+        if request.form['password'] == request.form['password2'] and request.form['contrasenia'] != "" and login_abm.checkPassword(usuarioLogin, request.form['contrasenia']):
             l = login_abm.traerXMail(session['usuario'])
             l.setContrasenia(request.form['password2'])
             login_abm.modificar(l)
