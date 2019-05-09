@@ -7,6 +7,7 @@ from negocio.aulaABM import AulaABM
 from negocio.tipoPersonaABM import TipoPersonaABM
 from negocio.personaABM import PersonaABM
 from negocio.loginABM import LoginABM
+#from datos.login import Login
 import time
 
 def main():
@@ -17,7 +18,12 @@ def main():
     persona_abm = PersonaABM()
     login_abm = LoginABM()
 
-    print login_abm.checkPassword(login_abm.traerXMail('martin'), '134')
+    print login_abm.checkPassword(login_abm.traerXMail('martin'), '1234')
+    login = login_abm.traerXMail("martin")
+    login.setContrasenia("12345678")
+    login_abm.modificar(login)
+    print login_abm.checkPassword(login_abm.traerXMail('martin'), '12345678')
+    print login_abm.traerXMail("martin")
 
 
 if __name__ == '__main__':

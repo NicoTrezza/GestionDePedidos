@@ -15,7 +15,7 @@ class LoginABM(object):
         self.dao.insertar(mail, generate_password_hash(contrasenia), permisos, estado)
         
     def modificar(self, l):
-        self.dao.modificar(l.getIdLogin(), l.getMail(), l.getContrasenia(), l.getPermisos())
+        self.dao.modificar(l.getIdLogin(), l.getMail(), generate_password_hash(l.getContrasenia()), l.getPermisos())
 
     def confirmarcuenta(self, idLogin):
         self.dao.confirmarcuenta(idLogin)
