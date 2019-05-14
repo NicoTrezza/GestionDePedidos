@@ -36,6 +36,9 @@ from werkzeug.utils import secure_filename
 import forms
 import crearPdf
 
+import string
+import random
+
 from openpyxl import load_workbook
 
 app = Flask(__name__, template_folder="vistas")
@@ -158,6 +161,58 @@ def solicitudcuenta():
             flash('Usuario en uso')
 
     return render_template('Login/solicitudcuenta.html', titulo="Solicitud", form=solicitud)
+
+
+@app.route('/login/restablecer', methods=['GET', 'POST'])
+def restablecercontrasenia():
+    login_abm = LoginABM()
+    restablecer=forms.Restablecer(request.form)
+    usuarios = login_abm.listarLoginYPersona()
+    mailexiste = False
+    usuario = ''
+
+    if request.method == 'POST' and restablecer.validate():
+        print restablecer.mail.data
+        for l, p in usuarios:
+            # print u'{}'.format(p)
+            # print u'{}'.format(l)
+            if restablecer.mail.data == p.getMailPersona():
+                mailexiste = True
+                usuario = l.getMail()
+
+        if mailexiste:
+            try:
+                l = login_abm.traerXMail(usuario)
+                contrasenia = ''.join(random.choice('0123456789') for _ in range(8))
+                # print contrasenia
+                l.setContrasenia(contrasenia)
+                login_abm.modificar(l)
+                mensaje = u'Se le enviara un mail'
+            except:
+                mensaje = u'Mail no existe'
+
+            # creo el mail a enviar
+            msg = Message('Restablecer', sender=app.config['MAIL_USERNAME'],
+                          recipients=[restablecer.mail.data])  # recipients es una lista!!
+
+            msg.html = render_template('email_restablecer.html',
+                                       usuario=usuario,
+                                       contrasenia=contrasenia
+                                       )
+
+            # envio el mail
+            try:
+                print 'envia mail'
+                #mail.send(msg)
+            except:
+                mensaje = u'Problema al enviar mail, intente nuevamente'
+
+        else:
+            mensaje = u'Mail no existe'
+
+        flash(mensaje)
+
+    return render_template('Login/restablecer.html', titulo=u'Restablecer Contraseña', form=restablecer)
 
 
 @app.route('/logout', methods=['GET', 'POST'])

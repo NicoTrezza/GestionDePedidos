@@ -7,7 +7,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center blue-text text-darken-2">Iniciar sesión</h1>
+      <h1 class="header center blue-text text-darken-2">Restablecer Contraseña</h1>
 
       <br><br>
 
@@ -30,10 +30,7 @@
 	        <div class="card-action">
 			      <div class="row">
 			        <div class="input-field col s12">
-                        {{ render_field(form.usuario) }}
-			        </div>
-			        <div class="input-field col s12">
-                        {{ render_field(form.contrasenia) }}
+                        {{ render_field(form.mail) }}
 			        </div>
 			      </div>
 	        </div>
@@ -46,7 +43,6 @@
               <input type="hidden" name="csrf_token" value="{{csrf_token() }}"/>
 		  </form>
     </div>
-        <a href="../login/restablecer" >Restablecer Contraseña</a>
     </div>
     <br><br>
   </div>

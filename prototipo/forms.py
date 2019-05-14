@@ -18,6 +18,12 @@ class Login(Form):
                               )
 
 
+class Restablecer(Form):
+    mail = EmailField('E-Mail',
+                          [validators.required()]
+                          )
+
+
 class Solicitudcuenta(Form):
 
     nombredocente = StringField('Nombre',
