@@ -294,10 +294,16 @@ def solicitudespendientes():
 
     if request.method == 'POST':
         #  print request.form.getlist('solicitud')
-        for id in request.form.getlist('solicitud'):
-            login_abm.confirmarcuenta(id)
+        if 'confirmar' in request.form:
+            for id in request.form.getlist('solicitud'):
+                login_abm.confirmarcuenta(id)
 
-        return redirect(url_for('solicitudespendientes'))
+            return redirect(url_for('solicitudespendientes'))
+        if 'eliminar' in request.form:
+            for id in request.form.getlist('solicitud'):
+                login_abm.eliminar(id)
+
+            return redirect(url_for('solicitudespendientes'))
     #for log, per in solicitudes:
     #    print log, per
 
