@@ -3,31 +3,6 @@
 {% block titulo %} {{ titulo }} {% endblock %}
 
 {% block contenido %}
-                        <script type="text/javascript">
-                            function mostrar_grupo_individual() {
-
-                            var x = document.getElementById("grupal2");
-                            var g = document.getElementById("grupal");
-
-                                if (x.style.display == "block") {
-                                    x.style.display = "none";
-                                    g.value="1"
-                                    g.required = false;
-                                }
-                             }
-
-                            function mostrar_grupo_grupal() {
-
-                            var x = document.getElementById("grupal2");
-                            var g = document.getElementById("grupal");
-
-                                if (x.style.display == "none") {
-                                    x.style.display = "block";
-                                    g.value=""
-                                    g.required = true;
-                                }
-                            }
-                        </script>
 
    <nav class="nav-extended light-blue darken-3">
     <div class="row">
@@ -118,26 +93,14 @@
     <div class="col s12">
         <div class="card">
           <div class="card-content">
-            <span class="card-title">La Capacitación será:</span>
+            <span class="card-title">Cantidad de personas:</span>
           </div>
           <div class="card-action">
             <div class="row">
               <div class="col s12">
                 <div class="row">
-                    <p>
-                      <label>
-                        <input class="with-gap" name="group1" id = "individual" onchange="mostrar_grupo_individual()" type="radio" />
-                        <span>Individual</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input class="with-gap" name="group1" type="radio" onchange="mostrar_grupo_grupal()" />
-                        <span>Grupal</span>
-                      </label>
-                    </p>
 
-                    <div style="display:none;" id = "grupal2" >
+                    <div id = "grupal2" >
                         {{ render_field(form.grupal) }}
 			        </div>
 
