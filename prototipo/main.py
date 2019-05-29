@@ -12,7 +12,7 @@ from flask import url_for
 from flask import redirect
 from flask import flash
 from flask import jsonify
-import flask_security
+#import flask_security
 
 from flask_mail import Mail
 from flask_mail import Message
