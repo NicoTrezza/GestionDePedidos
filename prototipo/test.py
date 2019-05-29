@@ -11,6 +11,9 @@ from negocio.tutoriaABM import TutoriaABM
 
 
 def main():
+	"""
+
+	"""
 	departamento_abm = DepartamentoABM()
 	carrera_abm = CarreraABM()
 	tipo_persona_abm = TipoPersonaABM()
@@ -36,13 +39,16 @@ def main():
 	departamento_abm.insertar('Departamento de Ingeniería en Sistemas de Información')
 	departamento_abm.insertar('Departamento de Ingeniería Textil')
 
-	carrera_abm.insertar('Física', 1)
-	carrera_abm.insertar('Quimica', 1)
-	carrera_abm.insertar('Ingles', 1)
-	carrera_abm.insertar('Algebra', 1)
-	carrera_abm.insertar('Geogebra', 1)
-	carrera_abm.insertar('Análisis matemático', 1)
+	carrera_abm.insertar('Algebra y Geometría Analítica', 1)
+	carrera_abm.insertar('Quimica General', 1)
+	carrera_abm.insertar('Análisis Matemático', 1)
 	carrera_abm.insertar('Probabilidad Estadísticas', 1)
+	carrera_abm.insertar('Física', 1)
+	carrera_abm.insertar('Ingeniería Sociedad', 1)
+	carrera_abm.insertar('Ingles Comunicacional', 1)
+	carrera_abm.insertar('Ingles Técnico Número 1', 1)
+	carrera_abm.insertar('Ingles Técnico Número 2', 1)
+	carrera_abm.insertar('Ingles Técnico Número 3', 1)
 
 	# creo un tipo de persona especial para Usuario
 	tipo_persona_abm.insertar('Docente a cargo')
@@ -77,10 +83,12 @@ def main():
 	#Permiso, id (no lo borren -.- este comentario)
 
 	# creo microtalleres
-	microtaller_abm.insertar('Diseño y Gestión del Aula Virtual en Moodle', None, 1)
-	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 1', None, 2)
-	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 2', None, 2)
-	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 3', None, 2)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 1', None, 1)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 2', None, 1)
+	microtaller_abm.insertar('Diseño y Gestión del Aula en Moodle: Unidad 3', None, 1)
+	microtaller_abm.insertar('Curso 1', None, 2)
+	microtaller_abm.insertar('Curso 2', None, 2)
+	microtaller_abm.insertar('Curso 1', None, 2)
 
 	# dejo comentado este traer que funciona, creo
 	# for a in abm.traerPorProfesor('didio'):
