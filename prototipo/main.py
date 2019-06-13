@@ -545,7 +545,7 @@ def matricular():
 
                 # creo el mail a enviar
                 msg = Message('Aula creada', sender=app.config['MAIL_USERNAME'],
-                              recipients=['olmos.martin.1992@gmail.com'])  # recipients es una lista!!
+                              recipients=['olmos.martin.1992@gmail.com', 'griselda_gsis@hotmail.com'])  # recipients es una lista!!
 
                 msg.html = render_template('email_matricular.html',
                                            departamento=matricular.departamento.data,
