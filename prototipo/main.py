@@ -502,8 +502,10 @@ def matricular():
 
                 f = request.files['file']
                 filename = secure_filename(f.filename)
-                f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/' + filename)
+                f.save('C:/Users/Griselda/Documents/MEGAsync/UNLa/Proyecto de Software/GestorDePedidos/prototipo/' + filename)
+                #f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/' + filename)
                 #f.save('C:/Users/Trezza/Documents/Git/GestorDePedidos/prototipo/' + filename)
+
 
                 # lectura_del_archivo_excel-------------------------
                 filesheet = filename
@@ -525,13 +527,14 @@ def matricular():
 
                 for persona in personas:
                     nombre, apellido, dni, email, aula1, aula2, aula3, aula4 = persona
+                    #nombre, apellido, dni, email, docente = persona
                     if nombre.value is not None:
                         try:
                             p = persona_abm.traerXDni(dni.value)
                             matricular_abm.insertarpersona(idmatricular, p.getIdPersona())
 
                         except:
-                            idpersona = persona_abm.insertar(nombre.value, apellido.value, dni.value, email.value, 4, None)
+                            idpersona = persona_abm.insertar(nombre.value, apellido.value, dni.value, email.value, 4, None) #4 porque?? Siempre va hacer estudiante? y el login O.O
                             # ultima_persona = persona_abm.listar()[-1]
                             matricular_abm.insertarpersona(idmatricular, idpersona)
                 # ---------------------------------------------------------
@@ -572,7 +575,7 @@ def matricular():
 
 @app.route('/return_file/')
 def devolverarchivo():
-    return send_from_directory('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/vistas/Archivos/', 'Formulario_de_matriculacion.xlsx', as_attachment=True)
+    return send_from_directory('C:/Users/Griselda/Documents/MEGAsync/UNLa/Proyecto de Software/GestorDePedidos/prototipo/vistas/Archivos/', 'Formulario_de_matriculacion.xlsx', as_attachment=True)
 
 
 @app.route('/aula/crear', methods=['GET', 'POST'])
