@@ -502,8 +502,8 @@ def matricular():
 
                 f = request.files['file']
                 filename = secure_filename(f.filename)
-                f.save('C:/Users/Griselda/Documents/MEGAsync/UNLa/Proyecto de Software/GestorDePedidos/prototipo/' + filename)
-                #f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/' + filename)
+                #f.save('C:/Users/Griselda/Documents/MEGAsync/UNLa/Proyecto de Software/GestorDePedidos/prototipo/' + filename)
+                f.save('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/' + filename)
                 #f.save('C:/Users/Trezza/Documents/Git/GestorDePedidos/prototipo/' + filename)
 
 
@@ -526,7 +526,7 @@ def matricular():
                 # ultima_matricula = matriculas[-1]
 
                 for persona in personas:
-                    nombre, apellido, dni, email, aula1, aula2, aula3, aula4 = persona
+                    nombre, apellido, dni, email, aula1 = persona
                     #nombre, apellido, dni, email, docente = persona
                     if nombre.value is not None:
                         try:
@@ -575,7 +575,8 @@ def matricular():
 
 @app.route('/return_file/')
 def devolverarchivo():
-    return send_from_directory('C:/Users/Griselda/Documents/MEGAsync/UNLa/Proyecto de Software/GestorDePedidos/prototipo/vistas/Archivos/', 'Formulario_de_matriculacion.xlsx', as_attachment=True)
+    return send_from_directory('C:/Users/martin/Desktop/proyecto software/GestorDePedidos/prototipo/vistas/Archivos/', 'Formulario_de_matriculacion.xlsx', as_attachment=True)
+    #return send_from_directory('C:/Users/Griselda/Documents/MEGAsync/UNLa/Proyecto de Software/GestorDePedidos/prototipo/vistas/Archivos/', 'Formulario_de_matriculacion.xlsx', as_attachment=True)
 
 
 @app.route('/aula/crear', methods=['GET', 'POST'])
