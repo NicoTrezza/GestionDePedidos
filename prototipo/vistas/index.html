@@ -15,7 +15,7 @@
 
 		{% if usuario == '' %}
 		<a class="right" href="login/solicitudcuenta"><i style="height: 20px;" class="material-icons right">account_circle</i><p style="margin-left: 20px;width: 40px;">Solicitar</p></a>
-		<a class="right" href="login/login"><i style="height: 20px;" class="material-icons right">account_circle</i><p>Entrar</p></a>
+		<a class="right" href="login/login"><i style="height: 20px;" class="material-icons right">exit_to_app</i><p>Entrar</p></a>
 		{% else %}
 		<a class="right" href="/logout"><i style="height: 20px;" class="material-icons right">directions_run</i><p style="margin-left: 20px;">Salir</p></a>
 		{% if permiso_usuario == 1 or permiso_usuario == 2 %}
@@ -32,9 +32,9 @@
     <div class="container">
       <h4 class="header center blue-text text-darken-2">Dirección de Educación a Distancia</h4>
       <div class="row center">
-        <h6 class="col s12 blue-text">Brindar servicios y asesoramiento para la puesta en marcha</h6>
-		<h6 class="col s12 blue-text">de propuestas educativas a distancia y de apoyo a la presencialidad,</h6>
-		<h6 class="col s12 blue-text">de uso de tecnologías en las aulas de la Universidad y de Organismos externos.</h6>
+       <!-- <h6 class="col s12 blue-text">Brindar servicios y asesoramiento para la puesta en marcha</h6> -->
+		<!-- <h6 class="col s12 blue-text">de propuestas educativas a distancia y de apoyo a la presencialidad,</h6> -->
+		<!-- <h6 class="col s12 blue-text">de uso de tecnologías en las aulas de la Universidad y de Organismos externos.</h6> -->
 
       </div>
       <br><br>
@@ -51,7 +51,7 @@
 	        <div class="card-content">
 	          <i class="material-icons light-blue-text right">people</i>
 	          <span class="card-title">Usuarios</span>
-	         <!--  <p>Formularios para la gestión de usuarios en las aulas virtuales.</p> -->
+	           <p>Solicitud de alta de usuarios y matriculación en aulas virtuales.</p>
 	        </div>
 	        <div class="card-action">
 				<a href="usuario/usuario" class="btn-small btn-block light-blue darken-3">Usuario</a>
@@ -66,7 +66,7 @@
 	        <div class="card-content">
 	          <i class="material-icons light-blue-text right">computer</i>
 	          <span class="card-title">Aulas</span>
-	        <!--  <p>Contempla los pasos administrativos para la gestión de un espacio curricular en una aula virtual.</p> -->
+	            <p>Solicitud de creación, reutilización y eliminación de aulas virtuales.</p>
 	        </div>
 	        <div class="card-action ">
 	          <a href="aula/crear" class="btn-small btn-block light-blue darken-3">Crear</a>
@@ -83,7 +83,7 @@
 	        <div class="card-content">
 	          <i class="material-icons light-blue-text right">local_library</i>
 	          <span class="card-title">Capacitaciones</span>
-	          <!-- <p>El Campus Virtual brinda capacitación constante a la comunidad educativa de la UNLa.</p> -->
+	           <p>La dirección de educación a distancia brinda capacitación a través de cursos, talleres y tutorías personalizadas a la comunidad educativa de la UTN.BA.</p>
 	        </div>
 	        <div class="card-action">
 	          <a href="capacitacion/microtalleres" class="btn-small btn-block light-blue darken-3">Cursos y Talleres</a>
@@ -98,7 +98,7 @@
 	        <div class="card-content">
 	          <i class="material-icons light-blue-text right">airplay</i>
 	          <span class="card-title">Virtualizaciones</span>
-	         <!-- <p>Formularios para la solicitud y actualización de virtualización de unidades curriculares.</p> -->
+	            <p>Solicitud y actualización de diseños, gestión de proyectos presenciales, semipresenciales o virtuales.</p>
 	        </div>
 	        <div class="card-action">
 	          <a href="#" class="btn-small btn-block light-blue darken-3">Materiales</a>
