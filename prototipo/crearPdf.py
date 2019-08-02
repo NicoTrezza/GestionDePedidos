@@ -4,6 +4,12 @@
 from reportlab.pdfgen import canvas
 from negocio.departamentoABM import DepartamentoABM
 from negocio.carreraABM import CarreraABM
+from reportlab.platypus import Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.pagesizes import letter
+from  reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate
+from reportlab.lib.enums import TA_CENTER
 
 import time
 
