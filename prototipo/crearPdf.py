@@ -47,7 +47,7 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
 
         #nombrepersona = unicode(persona.getNombre(), 'latin-1')
         if pagina == 1:
-            c.drawString(85, 540, 'Nombre del Docente:')
+            c.drawString(85, 540, 'Nombre del docente:')
             c.drawString(95, 525, persona.getNombre().encode("utf-8"))
             c.drawString(85, 495, 'Apellido del docente:')
             c.drawString(95, 480, persona.getApellido().encode("utf-8"))
@@ -58,7 +58,12 @@ def crear_aula(departamento, carrera, nombreaula, lista_personas, descripcion):
             c.drawString(85, 360, 'Rol del profesor:')
             c.drawString(95, 345, str(persona.getTipoPersona()))
             c.drawString(85, 315, 'Descripcion:')
-            c.drawString(95, 300, descripcion.encode("utf-8"))
+            styles = getSampleStyleSheet()
+            text = descripcion.encode("utf-8")
+            para = Paragraph(text,style=styles["Normal"])
+            para.wrapOn(c, 435,0)
+            para.drawOn(c, 95, 285)
+            #c.drawString(95, 300, descripcion.encode("utf-8"))
             c.drawString(480, 80, 'pagina:')
             c.drawString(525, 80, str(pagina))
             pagina = pagina + 1
@@ -199,7 +204,12 @@ def eliminar_aula(departamento, carrera, nombreaula, direccion, motivo):
     c.drawString(85, 495, 'Direccion ULR:')
     c.drawString(95, 480, direccion.encode("utf-8"))
     c.drawString(85, 450, 'Motivo:')
-    c.drawString(95, 435, motivo.encode("utf-8"))
+    styles = getSampleStyleSheet()
+    text = motivo.encode("utf-8")
+    para = Paragraph(text,style=styles["Normal"])
+    para.wrapOn(c, 435,800)
+    para.drawOn(c, 95, 420)
+    #c.drawString(95, 435, motivo.encode("utf-8"))
     c.drawString(480, 80, 'pagina:')
     c.drawString(525, 80, str(pagina))
 
@@ -255,7 +265,12 @@ def microtaller(nombre, apellido, mail, telefono, dni, departamento, carrera, mo
     c.drawString(85, 315, 'Microtaller:')
     c.drawString(95, 300, str(microtaller))
     c.drawString(85, 270, 'Motivo:')
-    c.drawString(95, 255, motivo.encode("utf-8"))
+    styles = getSampleStyleSheet()
+    text = motivo.encode("utf-8")
+    para = Paragraph(text,style=styles["Normal"])
+    para.wrapOn(c, 435,800)
+    para.drawOn(c, 95, 240)
+    #c.drawString(95, 255, motivo.encode("utf-8"))
 
     c.save()
 
@@ -334,7 +349,12 @@ def tutoria(motivo, nombre, apellido, email, telefono, dni, departamento, carrer
     c.drawString(300, 150, 'Hasta:')
     c.drawString(340, 150, dia3_hora2)
     c.drawString(85, 120, 'Motivo:')
-    c.drawString(95, 105, motivo.encode("utf-8"))
+    styles = getSampleStyleSheet()
+    text = motivo.encode("utf-8")
+    para = Paragraph(text,style=styles["Normal"])
+    para.wrapOn(c, 435,800)
+    para.drawOn(c, 95, 90)
+    #c.drawString(95, 105, motivo.encode("utf-8"))
 
     c.save()
 
