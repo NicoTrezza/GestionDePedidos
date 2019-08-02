@@ -60,7 +60,8 @@ def before_request():
     except:
         print 'no hay usuario logueado'
 
-    if request.endpoint == 'admin':
+    if request.endpoint == 'admin' or request.endpoint == 'solicitudespendientes' or request.endpoint == 'tutoriastabla' or request.endpoint == 'microtallerestabla' or request.endpoint == 'matriculartabla' \
+            or request.endpoint == 'aulas_creadas' or request.endpoint == 'aulas_modificadas' or request.endpoint == 'aulas_eliminadas' or request.endpoint == 'graficos' or request.endpoint == 'modificarpersonas' or request.endpoint == 'altausuarios':
         if permiso_usuario != 1 and permiso_usuario != 2:
             return redirect(url_for('index'))
 
